@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Rename.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,7 +66,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="LICENSE" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -73,6 +78,52 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CleanData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileDialogReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReplaceAll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SearchFolderOpened.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RenameEvent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FolderClosed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileSystemEditor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CollectionPageItemTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StringData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Class.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Rename.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
