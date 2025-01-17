@@ -71,12 +71,13 @@
             this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonP2Num1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonP2Num = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1Num2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP2cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP2cls = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP3cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP3cls = new System.Windows.Forms.ToolStripButton();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -244,6 +245,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSearch.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSearch.FormattingEnabled = true;
+            this.comboBoxSearch.Items.AddRange(new object[] {
+            "*.*"});
             this.comboBoxSearch.Location = new System.Drawing.Point(13, 113);
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(256, 27);
@@ -279,15 +282,21 @@
             this.listBoxSearchResults.Font = new System.Drawing.Font("Consolas", 12F);
             this.listBoxSearchResults.FormattingEnabled = true;
             this.listBoxSearchResults.ItemHeight = 19;
-            this.listBoxSearchResults.Location = new System.Drawing.Point(3, 28);
+            this.listBoxSearchResults.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.listBoxSearchResults.Location = new System.Drawing.Point(3, 31);
             this.listBoxSearchResults.Name = "listBoxSearchResults";
             this.listBoxSearchResults.ScrollAlwaysVisible = true;
             this.listBoxSearchResults.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxSearchResults.Size = new System.Drawing.Size(546, 481);
+            this.listBoxSearchResults.Size = new System.Drawing.Size(546, 478);
             this.listBoxSearchResults.TabIndex = 1;
+            this.listBoxSearchResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxSearchResults_KeyDown);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonP1Num,
             this.toolStripSeparator3,
@@ -298,24 +307,24 @@
             this.toolStripButtonP1cls});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(546, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(546, 28);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // tabPage2
             // 
@@ -335,17 +344,19 @@
             this.listBoxReplacePreview.Font = new System.Drawing.Font("Consolas", 12F);
             this.listBoxReplacePreview.FormattingEnabled = true;
             this.listBoxReplacePreview.ItemHeight = 19;
-            this.listBoxReplacePreview.Location = new System.Drawing.Point(3, 28);
+            this.listBoxReplacePreview.Location = new System.Drawing.Point(3, 31);
             this.listBoxReplacePreview.Name = "listBoxReplacePreview";
             this.listBoxReplacePreview.ScrollAlwaysVisible = true;
             this.listBoxReplacePreview.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxReplacePreview.Size = new System.Drawing.Size(546, 481);
+            this.listBoxReplacePreview.Size = new System.Drawing.Size(546, 478);
             this.listBoxReplacePreview.TabIndex = 3;
+            this.listBoxReplacePreview.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxReplacePreview_KeyDown);
             // 
             // toolStrip2
             // 
+            this.toolStrip2.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonP2Num1,
+            this.toolStripButtonP2Num,
             this.toolStripSeparator5,
             this.toolStripButtonP1Num2,
             this.toolStripSeparator4,
@@ -354,24 +365,24 @@
             this.toolStripButtonP2cls});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(546, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(546, 28);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 28);
             // 
             // tabPage3
             // 
@@ -389,29 +400,30 @@
             // 
             this.textBoxRunLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxRunLog.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRunLog.Location = new System.Drawing.Point(3, 28);
+            this.textBoxRunLog.Location = new System.Drawing.Point(3, 31);
             this.textBoxRunLog.Multiline = true;
             this.textBoxRunLog.Name = "textBoxRunLog";
             this.textBoxRunLog.ReadOnly = true;
-            this.textBoxRunLog.Size = new System.Drawing.Size(546, 481);
+            this.textBoxRunLog.Size = new System.Drawing.Size(546, 478);
             this.textBoxRunLog.TabIndex = 3;
             // 
             // toolStrip3
             // 
+            this.toolStrip3.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonP3cp,
             this.toolStripSeparator9,
             this.toolStripButtonP3cls});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(546, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(546, 28);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 28);
             // 
             // buttonReplace
             // 
@@ -425,6 +437,7 @@
             this.buttonReplace.Text = "开始重命名(&R)";
             this.buttonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
             // 
             // buttonPreview
             // 
@@ -436,6 +449,7 @@
             this.buttonPreview.Text = "预览(&P)";
             this.buttonPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonPreview.UseVisualStyleBackColor = true;
+            this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
             // 
             // checkBoxCase
             // 
@@ -516,6 +530,7 @@
             this.buttonChgRootPath.Text = "浏览(&B)...";
             this.buttonChgRootPath.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonChgRootPath.UseVisualStyleBackColor = true;
+            this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
             // 
             // toolStripButtonP1Num
             // 
@@ -523,7 +538,7 @@
             this.toolStripButtonP1Num.Image = global::FileNameReplacer.Properties.Resources.FileDialogReport;
             this.toolStripButtonP1Num.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP1Num.Name = "toolStripButtonP1Num";
-            this.toolStripButtonP1Num.Size = new System.Drawing.Size(87, 22);
+            this.toolStripButtonP1Num.Size = new System.Drawing.Size(108, 25);
             this.toolStripButtonP1Num.Text = "0 个已找到";
             // 
             // toolStripButtonP1rm
@@ -531,33 +546,36 @@
             this.toolStripButtonP1rm.Image = global::FileNameReplacer.Properties.Resources.DeleteDocument;
             this.toolStripButtonP1rm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP1rm.Name = "toolStripButtonP1rm";
-            this.toolStripButtonP1rm.Size = new System.Drawing.Size(144, 22);
+            this.toolStripButtonP1rm.Size = new System.Drawing.Size(184, 25);
             this.toolStripButtonP1rm.Text = "移除选定项(不要处理)";
+            this.toolStripButtonP1rm.Click += new System.EventHandler(this.toolStripButtonP1rm_Click);
             // 
             // toolStripButtonP1cp
             // 
             this.toolStripButtonP1cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
             this.toolStripButtonP1cp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP1cp.Name = "toolStripButtonP1cp";
-            this.toolStripButtonP1cp.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButtonP1cp.Size = new System.Drawing.Size(126, 25);
             this.toolStripButtonP1cp.Text = "复制到剪贴板";
+            this.toolStripButtonP1cp.Click += new System.EventHandler(this.toolStripButtonP1cp_Click);
             // 
             // toolStripButtonP1cls
             // 
             this.toolStripButtonP1cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
             this.toolStripButtonP1cls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP1cls.Name = "toolStripButtonP1cls";
-            this.toolStripButtonP1cls.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
             this.toolStripButtonP1cls.Text = "清空";
+            this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
             // 
-            // toolStripButtonP2Num1
+            // toolStripButtonP2Num
             // 
-            this.toolStripButtonP2Num1.Enabled = false;
-            this.toolStripButtonP2Num1.Image = global::FileNameReplacer.Properties.Resources.FileDialogReport;
-            this.toolStripButtonP2Num1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP2Num1.Name = "toolStripButtonP2Num1";
-            this.toolStripButtonP2Num1.Size = new System.Drawing.Size(75, 22);
-            this.toolStripButtonP2Num1.Text = "0 个结果";
+            this.toolStripButtonP2Num.Enabled = false;
+            this.toolStripButtonP2Num.Image = global::FileNameReplacer.Properties.Resources.FileDialogReport;
+            this.toolStripButtonP2Num.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP2Num.Name = "toolStripButtonP2Num";
+            this.toolStripButtonP2Num.Size = new System.Drawing.Size(92, 25);
+            this.toolStripButtonP2Num.Text = "0 个结果";
             // 
             // toolStripButtonP1Num2
             // 
@@ -565,7 +583,7 @@
             this.toolStripButtonP1Num2.Image = global::FileNameReplacer.Properties.Resources.ReplaceAll;
             this.toolStripButtonP1Num2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP1Num2.Name = "toolStripButtonP1Num2";
-            this.toolStripButtonP1Num2.Size = new System.Drawing.Size(75, 22);
+            this.toolStripButtonP1Num2.Size = new System.Drawing.Size(92, 25);
             this.toolStripButtonP1Num2.Text = "0 个替换";
             // 
             // toolStripButtonP2cp
@@ -573,32 +591,42 @@
             this.toolStripButtonP2cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
             this.toolStripButtonP2cp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP2cp.Name = "toolStripButtonP2cp";
-            this.toolStripButtonP2cp.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButtonP2cp.Size = new System.Drawing.Size(126, 25);
             this.toolStripButtonP2cp.Text = "复制到剪贴板";
+            this.toolStripButtonP2cp.Click += new System.EventHandler(this.toolStripButtonP2cp_Click);
             // 
             // toolStripButtonP2cls
             // 
             this.toolStripButtonP2cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
             this.toolStripButtonP2cls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP2cls.Name = "toolStripButtonP2cls";
-            this.toolStripButtonP2cls.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButtonP2cls.Size = new System.Drawing.Size(62, 25);
             this.toolStripButtonP2cls.Text = "清空";
+            this.toolStripButtonP2cls.Click += new System.EventHandler(this.toolStripButtonP2cls_Click);
             // 
             // toolStripButtonP3cp
             // 
             this.toolStripButtonP3cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
             this.toolStripButtonP3cp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP3cp.Name = "toolStripButtonP3cp";
-            this.toolStripButtonP3cp.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButtonP3cp.Size = new System.Drawing.Size(126, 25);
             this.toolStripButtonP3cp.Text = "复制到剪贴板";
+            this.toolStripButtonP3cp.Click += new System.EventHandler(this.toolStripButtonP3cp_Click);
             // 
             // toolStripButtonP3cls
             // 
             this.toolStripButtonP3cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
             this.toolStripButtonP3cls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonP3cls.Name = "toolStripButtonP3cls";
-            this.toolStripButtonP3cls.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButtonP3cls.Size = new System.Drawing.Size(62, 25);
             this.toolStripButtonP3cls.Text = "清空";
+            this.toolStripButtonP3cls.Click += new System.EventHandler(this.toolStripButtonP3cls_Click);
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.Description = "选择要查找文件(夹)的根目录";
+            this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // Form1
             // 
@@ -673,7 +701,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ListBox listBoxReplacePreview;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonP2Num1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonP2Num;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton toolStripButtonP2cls;
@@ -687,6 +715,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonP3cp;
         private System.Windows.Forms.ToolStripButton toolStripButtonP1cp;
         private System.Windows.Forms.ToolStripButton toolStripButtonP2cp;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
