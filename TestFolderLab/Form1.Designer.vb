@@ -32,9 +32,11 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,29 +127,50 @@ Partial Class Form1
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Button3)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Button2)
         Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox2)
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ListBox1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.TreeView1)
         Me.SplitContainer1.Size = New System.Drawing.Size(879, 328)
         Me.SplitContainer1.SplitterDistance = 293
         Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 5
         '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "FolderClosed.png")
+        Me.ImageList1.Images.SetKeyName(1, "Document.png")
+        '
+        'Button3
+        '
+        Me.Button3.Image = Global.TestFolderLab.My.Resources.Resources.Test
+        Me.Button3.Location = New System.Drawing.Point(4, 280)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(113, 45)
+        Me.Button3.TabIndex = 4
+        Me.Button3.Text = "预览(&P)"
+        Me.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Button2
         '
         Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.Image = Global.TestFolderLab.My.Resources.Resources.FolderWarning
-        Me.Button2.Location = New System.Drawing.Point(5, 279)
+        Me.Button2.Location = New System.Drawing.Point(118, 280)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(285, 45)
+        Me.Button2.Size = New System.Drawing.Size(171, 45)
         Me.Button2.TabIndex = 4
-        Me.Button2.Text = "生成"
+        Me.Button2.Text = "生成(&G)"
         Me.Button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -165,12 +188,16 @@ Partial Class Form1
         Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ImageList1
+        'ListBox1
         '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "FolderClosed.png")
-        Me.ImageList1.Images.SetKeyName(1, "Document.png")
+        Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 21
+        Me.ListBox1.Location = New System.Drawing.Point(0, 0)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(581, 328)
+        Me.ListBox1.TabIndex = 5
+        Me.ListBox1.Visible = False
         '
         'Form1
         '
@@ -204,4 +231,6 @@ Partial Class Form1
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Button2 As Button
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents Button3 As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class

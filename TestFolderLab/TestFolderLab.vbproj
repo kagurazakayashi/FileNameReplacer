@@ -92,6 +92,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PreviewDir.vb" />
+    <Compile Include="UIAction.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -120,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FolderWarning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Test.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
