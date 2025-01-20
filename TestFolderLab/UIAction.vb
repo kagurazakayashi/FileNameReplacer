@@ -4,8 +4,8 @@ Module UIAction
     ''' <summary>
     ''' 檢查使用者輸入的資料夾路徑是否正確
     ''' </summary>
-    ''' <param name="folderPath" cref="String">資料夾路徑</param>
-    ''' <returns cref="Boolean">是否正確</returns>
+    ''' <param name="folderPath">資料夾路徑</param>
+    ''' <returns>是否正確</returns>
     Public Function ChkDirInput(folderPath As String) As Boolean
         ' 檢查路徑是否合法
         If String.IsNullOrWhiteSpace(folderPath) Then
@@ -31,9 +31,9 @@ Module UIAction
     ''' <summary>
     ''' 檢查使用者輸入的日期是否正確
     ''' </summary>
-    ''' <param name="startDate" cref="EventArgs">起始日期</param>
-    ''' <param name="endDate" cref="EventArgs">結束日期</param>
-    ''' <returns cref="Boolean">是否正確</returns>
+    ''' <param name="startDate">起始日期</param>
+    ''' <param name="endDate">結束日期</param>
+    ''' <returns>是否正確</returns>
     Public Function ChkDateInput(startDate As DateTime, endDate As DateTime) As Boolean
         If startDate > endDate Then
             MessageBox.Show("起始日期不能大于结束日期！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning)

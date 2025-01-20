@@ -27,15 +27,15 @@ Partial Class Form1
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -80,6 +80,20 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "选择基础文件夹"
         '
+        'Button1
+        '
+        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Image = Global.TestFolderLab.My.Resources.Resources.SearchFolderOpened
+        Me.Button1.Location = New System.Drawing.Point(8, 62)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(271, 29)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "浏览(&B)..."
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'ComboBox1
         '
         Me.ComboBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -115,8 +129,15 @@ Partial Class Form1
         Me.TreeView1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TreeView1.Name = "TreeView1"
         Me.TreeView1.SelectedImageIndex = 0
-        Me.TreeView1.Size = New System.Drawing.Size(581, 328)
+        Me.TreeView1.Size = New System.Drawing.Size(581, 532)
         Me.TreeView1.TabIndex = 4
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "FolderClosed.png")
+        Me.ImageList1.Images.SetKeyName(1, "Document.png")
         '
         'SplitContainer1
         '
@@ -136,22 +157,16 @@ Partial Class Form1
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.ListBox1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.TreeView1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(879, 328)
+        Me.SplitContainer1.Size = New System.Drawing.Size(879, 532)
         Me.SplitContainer1.SplitterDistance = 293
         Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 5
         '
-        'ImageList1
-        '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "FolderClosed.png")
-        Me.ImageList1.Images.SetKeyName(1, "Document.png")
-        '
         'Button3
         '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button3.Image = Global.TestFolderLab.My.Resources.Resources.Test
-        Me.Button3.Location = New System.Drawing.Point(4, 280)
+        Me.Button3.Location = New System.Drawing.Point(4, 484)
         Me.Button3.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(113, 45)
@@ -162,10 +177,10 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Button2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.Image = Global.TestFolderLab.My.Resources.Resources.FolderWarning
-        Me.Button2.Location = New System.Drawing.Point(118, 280)
+        Me.Button2.Location = New System.Drawing.Point(118, 484)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(171, 45)
@@ -174,20 +189,6 @@ Partial Class Form1
         Me.Button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button1
-        '
-        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Image = Global.TestFolderLab.My.Resources.Resources.SearchFolderOpened
-        Me.Button1.Location = New System.Drawing.Point(8, 62)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(271, 29)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "浏览(&B)..."
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'ListBox1
         '
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -195,7 +196,7 @@ Partial Class Form1
         Me.ListBox1.ItemHeight = 21
         Me.ListBox1.Location = New System.Drawing.Point(0, 0)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(581, 328)
+        Me.ListBox1.Size = New System.Drawing.Size(581, 532)
         Me.ListBox1.TabIndex = 5
         Me.ListBox1.Visible = False
         '
@@ -203,11 +204,11 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(879, 328)
+        Me.ClientSize = New System.Drawing.Size(879, 532)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "Form1"
         Me.Text = "创建文件和文件夹结构"
         Me.GroupBox1.ResumeLayout(False)

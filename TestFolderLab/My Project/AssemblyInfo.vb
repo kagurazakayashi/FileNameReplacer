@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 '查看程序集特性的值
 
 <Assembly: AssemblyTitle("TestFolderLab")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyDescription("根据日期创建一个文件夹结构用于测试")>
+<Assembly: AssemblyCompany("KagurazakaYashi")>
 <Assembly: AssemblyProduct("TestFolderLab")>
-<Assembly: AssemblyCopyright("Copyright ©  2025")>
+<Assembly: AssemblyCopyright("Copyright © 2025 KagurazakaMiyabi")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
