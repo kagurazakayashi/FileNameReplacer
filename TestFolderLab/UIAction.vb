@@ -41,4 +41,43 @@ Module UIAction
         End If
         Return True
     End Function
+
+    ''' <summary>
+    ''' 計算 TreeView 控制元件中所有節點（包括子節點）的總數。
+    ''' </summary>
+    ''' <param name="treeView">要計算的 TreeView 控制元件。</param>
+    ''' <returns>返回該 TreeView 中所有節點（包括子節點）的總數量。</returns>
+    Public Function GetTreeViewItemCount(treeView As TreeView) As Integer
+        ' 初始化節點計數器
+        Dim count As Integer = 0
+
+        ' 遍歷 TreeView 控制元件的所有頂級節點（一級節點）
+        For Each node As TreeNode In treeView.Nodes
+            ' 呼叫遞迴方法，計算該節點及其子節點的總數量
+            count += GetNodeCount(node)
+        Next
+
+        ' 返回計算出的總節點數
+        Return count
+    End Function
+
+    ''' <summary>
+    ''' 遞迴計算指定節點及其所有子節點的數量。
+    ''' </summary>
+    ''' <param name="node">要計算的起始 TreeNode 節點。</param>
+    ''' <returns>返回該節點及其所有子節點的總數量。</returns>
+    Private Function GetNodeCount(node As TreeNode) As Integer
+        ' 計入當前節點自身
+        Dim count As Integer = 1
+
+        ' 遍歷當前節點的所有子節點
+        For Each child As TreeNode In node.Nodes
+            ' 遞迴計算子節點的數量，並累加
+            count += GetNodeCount(child)
+        Next
+
+        ' 返回該節點及其所有子節點的總數量
+        Return count
+    End Function
+
 End Module

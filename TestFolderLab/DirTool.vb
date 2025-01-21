@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Runtime.InteropServices.ComTypes
 Imports System.Windows.Forms
 
@@ -71,11 +72,12 @@ Module DirTool
     ''' </summary>
     ''' <param name="rootPath">存放資料夾的根路徑</param>
     ''' <param name="nodes">包含年份、月份和日期的樹形結構節點</param>
+    ''' <param name="BackgroundWorker1">向主執行緒回覆用</param>
     ''' <returns>返回包含建立失敗錯誤資訊的列表，如果全部建立成功，則返回空列表。</returns>
-    Public Function MakeDir(rootPath As String, nodes As TreeNode) As List(Of String)
+    Public Function MakeDir(rootPath As String, nodes As TreeNode, BackgroundWorker1 As BackgroundWorker) As List(Of String)
         ' 用於儲存錯誤訊息的列表
         Dim errorMessages As New List(Of String)
-
+        Dim i As Integer = 0
         Try
             ' 遍歷樹形結構的年份節點
             For Each yearNode As TreeNode In nodes.Nodes
@@ -90,6 +92,8 @@ Module DirTool
                     errorMessages.Add("创建年份文件夹失败: " & yearPath & " - " & ex.Message)
                     Continue For
                 End Try
+                i = i + 1
+                BackgroundWorker1.ReportProgress(i)
 
                 ' 遍歷月份節點
                 For Each monthNode As TreeNode In yearNode.Nodes
@@ -104,6 +108,8 @@ Module DirTool
                         errorMessages.Add("创建月份文件夹失败: " & monthPath & " - " & ex.Message)
                         Continue For
                     End Try
+                    i = i + 1
+                    BackgroundWorker1.ReportProgress(i)
 
                     ' 遍歷日期節點
                     For Each dayNode As TreeNode In monthNode.Nodes
@@ -121,22 +127,15 @@ Module DirTool
                             ' 如果建立失敗，記錄錯誤資訊
                             errorMessages.Add("创建文件失败: " & filePath & " - " & ex.Message)
                         End Try
+                        i = i + 1
+                        BackgroundWorker1.ReportProgress(i)
                     Next
                 Next
             Next
 
-            ' 檢查是否有錯誤發生
-            If errorMessages.Count > 0 Then
-                ' 如果有錯誤資訊，則彈出警告訊息框
-                MessageBox.Show("文件创建失败！错误已在右侧栏列出。", "失败", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Else
-                ' 如果全部建立成功，則彈出成功訊息框
-                MessageBox.Show("文件创建完成！双击右侧栏中的文件/文件夹可以打开它们。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-
         Catch ex As Exception
             ' 捕獲整個過程中可能出現的嚴重錯誤
-            MessageBox.Show("发生严重错误: " & ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            errorMessages.Add("发生严重错误: " & ex.Message)
         End Try
 
         ' 返回錯誤資訊列表

@@ -1,6 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
+Imports System.Threading.Tasks
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class Form1
+    Dim errorMessages As List(Of String) = New List(Of String)
     ''' <summary>
     ''' 窗體載入事件，在窗體初始化時執行。
     ''' 設定日期選擇器的預設值，並填充磁碟驅動器資訊到下拉框。
@@ -42,16 +46,18 @@ Public Class Form1
         End If
 
         ' 呼叫 DirTool.MakeDir 建立目錄，並接收可能的錯誤資訊
-        Dim errorMessages As List(Of String) = DirTool.MakeDir(ComboBox1.Text, TreeView1.Nodes(0))
+        BackgroundWorker1.RunWorkerAsync()
+
+        'Dim errorMessages As List(Of String) = DirTool.MakeDir(ComboBox1.Text, TreeView1.Nodes(0))
 
         ' 如果存在錯誤資訊，則顯示在 ListBox1 中
-        If errorMessages.Count > 0 Then
-            ListBox1.Items.Clear()
-            ListBox1.Visible = True
-            For Each msg As String In errorMessages
-                ListBox1.Items.Add(msg)
-            Next
-        End If
+        'If errorMessages.Count > 0 Then
+        '    ListBox1.Items.Clear()
+        '    ListBox1.Visible = True
+        '    For Each msg As String In errorMessages
+        '        ListBox1.Items.Add(msg)
+        '    Next
+        'End If
     End Sub
 
     ''' <summary>
@@ -69,13 +75,20 @@ Public Class Form1
             Return False
         End If
 
+        ProgressBar1.Value = 0
+        ProgressBar1.Style = ProgressBarStyle.Marquee
+
         ' 呼叫 DirTool.Preview 生成預覽
         DirTool.Preview(TreeView1, ComboBox1.Text, DateTimePicker1.Value, DateTimePicker2.Value)
+        Dim treeViewItemCount As Integer = UIAction.GetTreeViewItemCount(TreeView1)
+        ProgressBar1.Style = ProgressBarStyle.Blocks
 
         ' 如果 TreeView 有節點，則選中第一個根節點並滾動到頂部
-        If TreeView1.Nodes.Count > 0 Then
+        If treeViewItemCount > 0 Then
+            ProgressBar1.Maximum = treeViewItemCount - 1
             TreeView1.SelectedNode = TreeView1.Nodes(0) ' 選中第一根節點
             TreeView1.TopNode = TreeView1.Nodes(0) ' 滾動到頂部
+            ProgressBar1.Value = ProgressBar1.Maximum
         End If
 
         Return True
@@ -149,6 +162,60 @@ Public Class Form1
             End Try
         Else
             'MessageBox.Show("文件或文件夹不存在: " & fullPath, "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' 後臺執行緒執行任務（建立目錄樹）。
+    ''' 此方法使用 BackgroundWorker 以避免阻塞 UI 執行緒。
+    ''' </summary>
+    ''' <param name="sender">事件傳送者（BackgroundWorker）</param>
+    ''' <param name="e">包含執行引數的事件引數</param>
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Dim rootPath As String = ""
+        Dim nodes As TreeNode = New TreeNode
+
+        ' 檢查當前執行緒是否需要呼叫 UI 執行緒獲取 ComboBox1 的文字內容
+        If ComboBox1.InvokeRequired Then
+            ComboBox1.Invoke(New MethodInvoker(Sub() rootPath = ComboBox1.Text))
+        Else
+            rootPath = ComboBox1.Text
+        End If
+
+        ' 檢查當前執行緒是否需要呼叫 UI 執行緒獲取 TreeView1 的根節點
+        If TreeView1.InvokeRequired Then
+            TreeView1.Invoke(New MethodInvoker(Sub() nodes = TreeView1.Nodes(0)))
+        Else
+            nodes = TreeView1.Nodes(0)
+        End If
+
+        ' 呼叫 DirTool 的 MakeDir 方法建立目錄樹
+        errorMessages = DirTool.MakeDir(rootPath, nodes, BackgroundWorker1)
+    End Sub
+
+    ''' <summary>
+    ''' 在後臺任務執行過程中，更新進度條。
+    ''' </summary>
+    ''' <param name="sender">事件傳送者（BackgroundWorker）</param>
+    ''' <param name="e">包含進度資訊的事件引數</param>
+    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+        ' 更新進度條的值
+        ProgressBar1.Value = e.ProgressPercentage
+    End Sub
+
+    ''' <summary>
+    ''' 當後臺任務完成時執行，檢查是否有錯誤並顯示相應訊息。
+    ''' </summary>
+    ''' <param name="sender">事件傳送者（BackgroundWorker）</param>
+    ''' <param name="e">包含執行結果的事件引數</param>
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        ' 檢查是否有錯誤資訊
+        If errorMessages.Count > 0 Then
+            ' 如果有錯誤資訊，則彈出警告訊息框
+            MessageBox.Show("文件创建失败！错误已在右侧栏列出。", "失败", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            ' 如果全部建立成功，則彈出成功訊息框
+            MessageBox.Show("文件创建完成！双击右侧栏中的文件/文件夹可以打开它们。", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 End Class
