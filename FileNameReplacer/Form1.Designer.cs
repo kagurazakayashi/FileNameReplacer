@@ -78,6 +78,7 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP3cls = new System.Windows.Forms.ToolStripButton();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -112,6 +113,7 @@
             this.comboBoxRootPath.Name = "comboBoxRootPath";
             this.comboBoxRootPath.Size = new System.Drawing.Size(256, 27);
             this.comboBoxRootPath.TabIndex = 1;
+            this.comboBoxRootPath.Text = "B:\\TestFolder";
             // 
             // splitContainer1
             // 
@@ -272,6 +274,7 @@
             this.buttonSearch.Text = "开始搜索(&S)";
             this.buttonSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // checkBoxASub
             // 
@@ -390,9 +393,9 @@
             this.listBoxSearchResults.FormattingEnabled = true;
             this.listBoxSearchResults.ItemHeight = 19;
             this.listBoxSearchResults.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
+            "📁1",
+            "📁2",
+            "📁3"});
             this.listBoxSearchResults.Location = new System.Drawing.Point(3, 31);
             this.listBoxSearchResults.Name = "listBoxSearchResults";
             this.listBoxSearchResults.ScrollAlwaysVisible = true;
@@ -716,6 +719,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonP1cp;
         private System.Windows.Forms.ToolStripButton toolStripButtonP2cp;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSearch;
     }
 }
 
