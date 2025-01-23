@@ -6,47 +6,33 @@ namespace FileNameReplacer
 {
     class Search
     {
-        public string rootDir = ""; // 要搜尋的根目錄
-        public string searchMode = ""; // 要搜尋的內容(萬用字元,例如 *.jpg )
-        public bool searchSubDir = false; // 是否搜尋子資料夾
-        public bool searchDir = false; // 是否將資料夾列入搜尋結果
-        public bool searchFile = false; // 是否將檔案列入搜尋結果
-        /// <summary>
-        /// 根據當前設定的引數搜尋檔案或資料夾
-        /// </summary>
-        /// <returns>搜尋到的檔案或資料夾列表</returns>
-        public List<FileItem> SearchFile()
-        {
-            // 儲存搜尋結果的列表
-            List<FileItem> results = new List<FileItem>();
+        public string rootDir = ""; // 搜尋的根目錄
+        public string searchMode = "*"; // 搜尋模式 (預設所有檔案)
+        public bool searchSubDir = false; // 是否搜尋子目錄
+        public bool searchDir = false; // 是否包含資料夾
+        public bool searchFile = true; // 是否包含檔案
 
-            // 如果根目錄為空或不存在，則返回空列表
+        // 定義回撥委託，通知外部介面更新 ListBox
+        public Action<FileItem> OnFileFound;
+
+        /// <summary>
+        /// 開始搜尋檔案，並透過 OnFileFound 實時通知 UI
+        /// </summary>
+        public void SearchFile()
+        {
             if (string.IsNullOrEmpty(rootDir) || !Directory.Exists(rootDir))
             {
-                return results;
+                return;
             }
 
-            // 遞迴搜尋目錄
-            SearchDirectory(rootDir, results);
-            return results;
+            SearchDirectory(rootDir);
         }
 
-        /// <summary>
-        /// 遞迴搜尋指定目錄
-        /// </summary>
-        /// <param name="dir">當前搜尋的目錄</param>
-        /// <param name="results">儲存搜尋結果的列表</param>
-        private void SearchDirectory(string dir, List<FileItem> results)
+        private void SearchDirectory(string dir)
         {
             try
             {
-                // 確保目錄存在
-                if (!Directory.Exists(dir))
-                {
-                    return; // 目錄不存在，直接返回
-                }
-
-                // 搜尋檔案（確保 searchFile 為 true）
+                // 搜尋檔案
                 if (searchFile)
                 {
                     try
@@ -54,17 +40,12 @@ namespace FileNameReplacer
                         string[] files = Directory.GetFiles(dir, searchMode);
                         foreach (string file in files)
                         {
-                            results.Add(new FileItem(false, dir, Path.GetFileName(file)));
+                            FileItem item = new FileItem(false, dir, Path.GetFileName(file));
+                            OnFileFound?.Invoke(item); // 觸發回撥，通知 UI
                         }
                     }
-                    catch (UnauthorizedAccessException)
-                    {
-                        // 忽略無許可權的資料夾
-                    }
-                    catch (DirectoryNotFoundException)
-                    {
-                        // 忽略已被刪除或無效的目錄
-                    }
+                    catch (UnauthorizedAccessException) { }
+                    catch (DirectoryNotFoundException) { }
                 }
 
                 // 搜尋子目錄
@@ -75,31 +56,30 @@ namespace FileNameReplacer
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    return; // 無許可權訪問，直接返回
+                    return;
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    return; // 目錄在搜尋過程中被刪除，直接返回
+                    return;
                 }
 
                 foreach (string subDir in directories)
                 {
-                    // 如果 searchDir 為 true，則將資料夾加入結果
                     if (searchDir)
                     {
-                        results.Add(new FileItem(true, dir, Path.GetFileName(subDir)));
+                        FileItem item = new FileItem(true, dir, Path.GetFileName(subDir));
+                        OnFileFound?.Invoke(item); // 觸發回撥
                     }
 
-                    // 遞迴搜尋子目錄
                     if (searchSubDir)
                     {
-                        SearchDirectory(subDir, results);
+                        SearchDirectory(subDir); // 遞迴搜尋
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{dir} E: {ex.Message}");
+                Console.WriteLine($"搜尋目錄 {dir} 時發生錯誤: {ex.Message}");
             }
         }
     }

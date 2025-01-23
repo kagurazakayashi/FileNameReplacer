@@ -94,5 +94,20 @@ namespace FileNameReplacer
             }
             return false;
         }
+
+        static public void DisableControls(Control parent, bool enabled)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is ComboBox || control is CheckBox || control is Button)
+                {
+                    control.Enabled = enabled;
+                }
+                if (control.HasChildren)
+                {
+                    DisableControls(control, enabled);
+                }
+            }
+        }
     }
 }

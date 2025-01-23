@@ -14,6 +14,7 @@ namespace FileNameReplacer
         private Search search = new Search();
         private static string icoFile = "📄";
         private static string icoDir = "📁";
+        private Search searchEngine;
 
         public Form1()
         {
@@ -109,24 +110,87 @@ namespace FileNameReplacer
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            // 创建 Search 对象
-            Search search = new Search
+            if (!backgroundWorkerSearch.IsBusy)
             {
-                rootDir = comboBoxRootPath.Text,  // 搜索的根目录
-                searchMode = comboBoxSearch.Text,   // 搜索文件
-                searchSubDir = checkBoxASub.Checked,    // 递归搜索子目录
-                searchDir = checkBoxADir.Checked,       // 也包括文件夹
-                searchFile = checkBoxAFile.Checked       // 也包括文件
-            };
-            // 执行搜索
-            List<FileItem> results = search.SearchFile();
-
-            // 输出搜索结果
-            listBoxSearchResults.Items.Clear();
-            foreach (FileItem item in results)
-            {
-                listBoxSearchResults.Items.Add($"{(item.isDir ? icoDir : icoFile)} {item.inPath}\\{item.fileName}");
+                searchRunningUI(true);
+                listBoxSearchResults.Items.Clear(); // 清空 ListBox
+                backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
             }
+        }
+
+        private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // 先读取 UI 控件的值，确保数据在 UI 线程中获取
+            string rootPath = "";
+            string searchPattern = "";
+            bool searchSubDir = false;
+            bool searchDir = false;
+            bool searchFile = false;
+            this.Invoke((MethodInvoker)delegate
+            {
+                rootPath = comboBoxRootPath.Text;
+                searchPattern = comboBoxSearch.Text;
+                searchSubDir = checkBoxASub.Checked;
+                searchDir = checkBoxADir.Checked;
+                searchFile = checkBoxAFile.Checked;
+            });
+            searchEngine = new Search
+            {
+                rootDir = rootPath,
+                searchMode = searchPattern,
+                searchSubDir = searchSubDir,
+                searchDir = searchDir,
+                searchFile = searchFile
+            };
+            // 绑定回调函数
+            searchEngine.OnFileFound = (fileItem) =>
+            {
+                if (backgroundWorkerSearch.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                // 向 UI 线程发送搜索结果
+                backgroundWorkerSearch.ReportProgress(0, fileItem);
+            };
+            searchEngine.SearchFile();
+        }
+
+        private void backgroundWorkerSearch_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.UserState is FileItem fileItem)
+            {
+                listBoxSearchResults.Items.Add($"{(fileItem.isDir ? icoDir : icoFile)} {fileItem.inPath}\\{fileItem.fileName}");
+            }
+        }
+
+        private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            searchRunningUI(false);
+            if (e.Cancelled)
+            {
+                MessageBox.Show("搜索已取消。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("搜索完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void buttonSearchStop_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorkerSearch.IsBusy)
+            {
+                backgroundWorkerSearch.CancelAsync();
+            }
+        }
+
+        private void searchRunningUI(bool isRun)
+        {
+            UIAction.DisableControls(this, !isRun);
+            buttonSearch.Visible = !isRun;
+            buttonSearchStop.Visible = isRun;
+            buttonSearchStop.Enabled = isRun;
         }
     }
 }
