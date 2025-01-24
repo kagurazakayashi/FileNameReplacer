@@ -140,7 +140,8 @@ namespace FileNameReplacer
                 searchMode = searchPattern,
                 searchSubDir = searchSubDir,
                 searchDir = searchDir,
-                searchFile = searchFile
+                searchFile = searchFile,
+                ShouldCancel = () => backgroundWorkerSearch.CancellationPending
             };
             // 绑定回调函数
             searchEngine.OnFileFound = (fileItem) =>
@@ -154,6 +155,11 @@ namespace FileNameReplacer
                 backgroundWorkerSearch.ReportProgress(0, fileItem);
             };
             searchEngine.SearchFile();
+            // 任務完成後，檢查是否被取消
+            if (backgroundWorkerSearch.CancellationPending)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void backgroundWorkerSearch_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -183,6 +189,10 @@ namespace FileNameReplacer
             {
                 backgroundWorkerSearch.CancelAsync();
             }
+            if (!backgroundWorkerSearch.IsBusy)
+            {
+                searchRunningUI(false);
+            }
         }
 
         private void searchRunningUI(bool isRun)
@@ -191,6 +201,12 @@ namespace FileNameReplacer
             buttonSearch.Visible = !isRun;
             buttonSearchStop.Visible = isRun;
             buttonSearchStop.Enabled = isRun;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            comboBoxRootPath.Text = "B:\\TestFolder";
+            comboBoxSearch.Text = "2024";
         }
     }
 }
