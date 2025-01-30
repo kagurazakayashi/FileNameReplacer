@@ -127,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\StringRegistryValue.png" />
+    <None Include="Resources\ReplaceAll1.png" />
+    <None Include="Resources\TypeDefinition.png" />
+    <None Include="Resources\SearchFolderClosed.png" />
+    <None Include="Resources\FolderOpened.png" />
+    <None Include="Resources\FullTextStopList.png" />
     <None Include="Resources\StopOutline.png" />
     <None Include="Resources\Stop.png" />
   </ItemGroup>

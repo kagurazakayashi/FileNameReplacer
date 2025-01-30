@@ -110,6 +110,15 @@ namespace FileNameReplacer
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            if (comboBoxRootPath.Text.Length == 0)
+            {
+                MessageBox.Show("请指定要搜索的文件夹。", "请填写必要信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxSearch.Text.Length == 0)
+            {
+                comboBoxSearch.Text = "*";
+            }
             if (!backgroundWorkerSearch.IsBusy)
             {
                 searchRunningUI(true);
@@ -126,6 +135,7 @@ namespace FileNameReplacer
             bool searchSubDir = false;
             bool searchDir = false;
             bool searchFile = false;
+            decimal maxSearchLimit = 0;
             this.Invoke((MethodInvoker)delegate
             {
                 rootPath = comboBoxRootPath.Text;
@@ -133,6 +143,7 @@ namespace FileNameReplacer
                 searchSubDir = checkBoxASub.Checked;
                 searchDir = checkBoxADir.Checked;
                 searchFile = checkBoxAFile.Checked;
+                maxSearchLimit = numericUpDownLimit.Value;
             });
             searchEngine = new Search
             {
@@ -141,6 +152,7 @@ namespace FileNameReplacer
                 searchSubDir = searchSubDir,
                 searchDir = searchDir,
                 searchFile = searchFile,
+                maxSearchLimit = maxSearchLimit,
                 ShouldCancel = () => backgroundWorkerSearch.CancellationPending
             };
             // 绑定回调函数
@@ -207,6 +219,19 @@ namespace FileNameReplacer
         {
             comboBoxRootPath.Text = "B:\\TestFolder";
             comboBoxSearch.Text = "2024";
+        }
+
+        private void checkBoxLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDownLimit.Enabled = checkBoxLimit.Checked;
+            if (!checkBoxLimit.Checked)
+            {
+                numericUpDownLimit.Value = numericUpDownLimit.Maximum;
+            }
+            else if (numericUpDownLimit.Value == numericUpDownLimit.Maximum)
+            {
+                numericUpDownLimit.Value = 10000;
+            }
         }
     }
 }

@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace FileNameReplacer
 {
     class Search
     {
-        public string rootDir = ""; // 搜索的根目录
-        public string searchMode = "*"; // 搜索模式
-        public bool searchSubDir = false; // 是否搜索子目录
-        public bool searchDir = false; // 是否包含文件夹
-        public bool searchFile = true; // 是否包含文件
+        public string rootDir = ""; // 搜尋的根目錄
+        public string searchMode = "*"; // 搜尋模式
+        public bool searchSubDir = false; // 是否搜尋子目錄
+        public bool searchDir = false; // 是否包含資料夾
+        public bool searchFile = true; // 是否包含檔案
+        private int searchCount = 0; // 計數器，記錄搜尋結果數量
+        public decimal maxSearchLimit = 10000; // 觸發使用者提示的搜尋條數
+        private bool searchCountAlert = true; // 太多了提醒我
 
         // 回调：当找到文件或文件夹时触发
         public Action<FileItem> OnFileFound;
 
         // 取消搜索的检查（由 BackgroundWorker 提供）
         public Func<bool> ShouldCancel;
+        public bool ShouldCancel2 = false;
 
         /// <summary>
         /// 开始搜索
@@ -28,33 +33,40 @@ namespace FileNameReplacer
             {
                 return;
             }
-
+            ShouldCancel2 = false;
+            searchCount = 0;
+            if (maxSearchLimit > 0)
+            {
+                searchCountAlert = true;
+            }
             SearchDirectory(rootDir);
         }
 
         private void SearchDirectory(string dir)
         {
             // 先檢查是否請求取消
-            if (ShouldCancel != null && ShouldCancel())
+            if (ShouldCancel2 || (ShouldCancel != null && ShouldCancel()))
             {
                 return;
             }
 
             try
             {
-                // 先處理檔案（獨立於 searchDir）
+                // 先處理檔案
                 if (searchFile)
                 {
                     string[] files = Directory.GetFiles(dir);
                     foreach (string file in files)
                     {
-                        string fileName = Path.GetFileNameWithoutExtension(file); // 只獲取檔名，不帶副檔名
+                        string fileName = Path.GetFileNameWithoutExtension(file);
 
-                        // 支援萬用字元匹配
                         if (IsMatch(fileName, searchMode))
                         {
                             FileItem item = new FileItem(false, dir, Path.GetFileName(file));
                             OnFileFound?.Invoke(item);
+
+                            searchCount++; // 計數 +1
+                            if (CheckSearchLimitExceeded()) ShouldCancel2 = true; // 超過限制時終止搜尋
                         }
                     }
                 }
@@ -67,17 +79,18 @@ namespace FileNameReplacer
                     {
                         string folderName = Path.GetFileName(subDir);
 
-                        // 支援萬用字元匹配
                         if (IsMatch(folderName, searchMode))
                         {
                             FileItem item = new FileItem(true, dir, folderName);
                             OnFileFound?.Invoke(item);
+
+                            searchCount++; // 計數 +1
+                            if (CheckSearchLimitExceeded()) return; // 超過限制時終止搜尋
                         }
 
-                        // 遞迴子目錄（無論 searchDir 是 true 還是 false）
                         if (searchSubDir)
                         {
-                            SearchDirectory(subDir);
+                            SearchDirectory(subDir); // 遞迴搜尋
                         }
                     }
                 }
@@ -146,5 +159,31 @@ namespace FileNameReplacer
             return false;
         }
 
+        /// <summary>
+        /// 如果搜尋結果超過 10000 條，提示使用者是否繼續搜尋
+        /// </summary>
+        /// <returns>如果使用者選擇停止搜尋，則返回 true</returns>
+        private bool CheckSearchLimitExceeded()
+        {
+            if (searchCountAlert && (searchCount % maxSearchLimit == 0))
+            {
+                DialogResult result = MessageBox.Show(
+                    $"搜索结果已超过 {maxSearchLimit} 条，是否需要停止搜索？\n[是] 中止搜索\n[否] 不要停止，本次搜索不再询问\n[取消] 超过 {searchCount + maxSearchLimit} 条再询问我",
+                    "搜索结果过多",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    return true; // 終止搜尋
+                }
+                else if (result == DialogResult.No)
+                {
+                    searchCountAlert = false;
+                }
+            }
+            return false;
+        }
     }
 }
