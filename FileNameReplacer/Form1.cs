@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -23,6 +24,22 @@ namespace FileNameReplacer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string[] paths = SysInfo.GetCommonUserFolders();
+            foreach (var path in paths)
+            {
+                comboBoxRootPath.Items.Add(path);
+            }
+            string[] drives = SysInfo.GetDrives();
+            foreach (var drive in drives)
+            {
+                comboBoxRootPath.Items.Add(drive);
+            }
+            comboBoxRootPath.SelectedIndex = 0;
+            string[] extensions = SysInfo.GetRegisteredFileExtensions();
+            foreach (var ext in extensions)
+            {
+                comboBoxSearch.Items.Add("*" + ext);
+            }
             comboBoxSearch.SelectedIndex = 0;
             updateListBoxItemCount();
         }
@@ -112,8 +129,12 @@ namespace FileNameReplacer
         {
             if (comboBoxRootPath.Text.Length == 0)
             {
-                MessageBox.Show("请指定要搜索的文件夹。", "请填写必要信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                buttonChgRootPath_Click(sender, e);
+                if (comboBoxRootPath.Text.Length == 0)
+                {
+                    MessageBox.Show("请指定要搜索的文件夹。", "请填写必要信息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             if (comboBoxSearch.Text.Length == 0)
             {
@@ -218,7 +239,7 @@ namespace FileNameReplacer
         private void button1_Click(object sender, EventArgs e)
         {
             comboBoxRootPath.Text = "B:\\TestFolder";
-            comboBoxSearch.Text = "2024";
+            comboBoxSearch.Text = "2024*";
         }
 
         private void checkBoxLimit_CheckedChanged(object sender, EventArgs e)

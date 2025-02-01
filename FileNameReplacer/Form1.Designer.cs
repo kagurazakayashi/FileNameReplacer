@@ -35,7 +35,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxReplaceFrom = new System.Windows.Forms.ComboBox();
             this.comboBoxReplaceTo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -60,6 +59,7 @@
             this.numericUpDownLimit = new System.Windows.Forms.NumericUpDown();
             this.buttonReplace = new System.Windows.Forms.Button();
             this.buttonPreview = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.checkBoxCase = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -180,17 +180,6 @@
             this.comboBoxReplaceTo.Size = new System.Drawing.Size(256, 27);
             this.comboBoxReplaceTo.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Image = global::FileNameReplacer.Properties.Resources.ReplaceAll;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label3.Location = new System.Drawing.Point(9, 81);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 21);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "　替换为：";
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -222,7 +211,8 @@
             this.comboBoxSearch.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSearch.FormattingEnabled = true;
             this.comboBoxSearch.Items.AddRange(new object[] {
-            "*.*"});
+            "*.*",
+            "*"});
             this.comboBoxSearch.Location = new System.Drawing.Point(13, 113);
             this.comboBoxSearch.Name = "comboBoxSearch";
             this.comboBoxSearch.Size = new System.Drawing.Size(256, 27);
@@ -459,6 +449,17 @@
             this.buttonPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonPreview.UseVisualStyleBackColor = true;
             this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Image = global::FileNameReplacer.Properties.Resources.ReplaceAll;
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label3.Location = new System.Drawing.Point(9, 81);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 21);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "　替换为：";
             // 
             // checkBoxCase
             // 
