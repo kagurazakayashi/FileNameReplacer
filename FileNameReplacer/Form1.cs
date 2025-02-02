@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FileNameReplacer
 {
@@ -52,77 +53,39 @@ namespace FileNameReplacer
             }
         }
 
-        private void toolStripButtonP1rm_Click(object sender, EventArgs e)
-        {
-            UIAction.ListBoxDelItem(listBoxSearchResults);
-            UIAction.ToolStripButtonCountListBox(toolStripButtonP1Num, listBoxSearchResults);
-
-        }
-
-        private void toolStripButtonP1cp_Click(object sender, EventArgs e)
-        {
-            UIAction.ListBoxCopyToClipboard(listBoxSearchResults);
-        }
-
-        private void toolStripButtonP1cls_Click(object sender, EventArgs e)
-        {
-            cleanListBox();
-        }
-
-        private void toolStripButtonP2cp_Click(object sender, EventArgs e)
-        {
-            UIAction.ListBoxCopyToClipboard(listBoxReplacePreview);
-        }
-
-        private void toolStripButtonP2cls_Click(object sender, EventArgs e)
-        {
-            cleanListBox();
-        }
-
         private void updateListBoxItemCount()
         {
-            UIAction.ToolStripButtonCountListBox(toolStripButtonP1Num, listBoxSearchResults);
-            UIAction.ToolStripButtonCountListBox(toolStripButtonP2Num, listBoxReplacePreview);
-        }
-
-        private void cleanListBox()
-        {
-            UIAction.ListBoxDelAll(listBoxSearchResults);
-            UIAction.ListBoxDelAll(listBoxReplacePreview);
-            updateListBoxItemCount();
-        }
-
-        private void toolStripButtonP3cp_Click(object sender, EventArgs e)
-        {
-            if (textBoxRunLog.Text != null && textBoxRunLog.Text.Length > 0)
+            int dir = 0, file = 0;
+            //dataFileList.Rows[dataLen].Cells[1].Value = fileItem.inPath;
+            foreach (DataGridViewRow row in dataFileList.Rows)
             {
-                Clipboard.SetText(textBoxRunLog.Text);
+                if (Convert.ToBoolean(row.Cells[4].Value))
+                {
+                    dir++;
+                }
+                else
+                {
+                    file++;
+                }
             }
-        }
-
-        private void toolStripButtonP3cls_Click(object sender, EventArgs e)
-        {
-            textBoxRunLog.Text = "";
-        }
-
-        private void listBoxReplacePreview_KeyDown(object sender, KeyEventArgs e)
-        {
-            UIAction.ListBoxKeyDown(listBoxReplacePreview, e);
-        }
-
-        private void listBoxSearchResults_KeyDown(object sender, KeyEventArgs e)
-        {
-            UIAction.ListBoxKeyDown(listBoxSearchResults, e);
+            toolStripButtonNumDir.Text = dir.ToString();
+            toolStripButtonNumFile.Text = file.ToString();
+            //string[] texts = toolStripButtonNumDir.Text.Split(' ');
+            //texts[0] = dataFileList.Rows.Count.ToString();
+            //toolStripButtonNumDir.Text = string.Join(" ", texts);
         }
 
         private void buttonPreview_Click(object sender, EventArgs e)
         {
-            if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            //TODO
+            //if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            preview();
         }
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
-            if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            //TODO
+            //if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -143,14 +106,14 @@ namespace FileNameReplacer
             if (!backgroundWorkerSearch.IsBusy)
             {
                 searchRunningUI(true);
-                listBoxSearchResults.Items.Clear(); // 清空 ListBox
+                dataFileList.Rows.Clear();
                 backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
             }
         }
 
         private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
         {
-            // 先读取 UI 控件的值，确保数据在 UI 线程中获取
+            // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
             string rootPath = "";
             string searchPattern = "";
             bool searchSubDir = false;
@@ -199,7 +162,20 @@ namespace FileNameReplacer
         {
             if (e.UserState is FileItem fileItem)
             {
-                listBoxSearchResults.Items.Add($"{(fileItem.isDir ? icoDir : icoFile)} {fileItem.inPath}\\{fileItem.fileName}");
+                int dataLen = dataFileList.Rows.Count;
+                dataFileList.Rows.Add(); //dataGridView
+                dataFileList.Rows[dataLen].Cells[1].Value = fileItem.inPath;
+                dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
+                dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
+                if (fileItem.isDir)
+                {
+                    dataFileList.Rows[dataLen].Cells[0].Value = Properties.Resources.FolderClosed;
+                    toolStripButtonNumDir.Text = (int.Parse(toolStripButtonNumDir.Text) + 1).ToString();
+                }
+                else
+                {
+                    toolStripButtonNumFile.Text = (int.Parse(toolStripButtonNumDir.Text) + 1).ToString();
+                }
             }
         }
 
@@ -234,6 +210,10 @@ namespace FileNameReplacer
             buttonSearch.Visible = !isRun;
             buttonSearchStop.Visible = isRun;
             buttonSearchStop.Enabled = isRun;
+            if (!isRun)
+            {
+                dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -253,6 +233,66 @@ namespace FileNameReplacer
             {
                 numericUpDownLimit.Value = 10000;
             }
+        }
+
+        private void preview()
+        {
+            //string[] searchResults = listBoxSearchResults.Items
+            //.Cast<string>()
+            //.Select(item => {
+            //    int index = item.IndexOf(' ');
+            //    return index >= 0 ? item.Substring(index + 1) : item;
+            //})
+            //.ToArray();
+
+            //foreach (string searchResult in listBoxSearchResults.Items)
+            //{
+            //    string[] pathUnit = searchResult.Split(' ');
+            //    string path = string.Join(" ", pathUnit.Skip(1));
+                
+            //}
+        }
+
+        private void backgroundWorkerReplace_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
+            
+        }
+
+        private void backgroundWorkerReplace_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorkerReplace_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonP1rm_Click(object sender, EventArgs e)
+        {
+            if (dataFileList.CurrentCell != null)
+            {
+                dataFileList.Rows.RemoveAt(dataFileList.CurrentCell.RowIndex);
+            }
+        }
+
+        private void toolStripButtonP1cp_Click(object sender, EventArgs e)
+        {
+            if (dataFileList.GetCellCount(DataGridViewElementStates.Selected) > 0)
+            {
+                Clipboard.SetDataObject(dataFileList.GetClipboardContent());
+            }
+        }
+
+        private void toolStripButtonP1cls_Click(object sender, EventArgs e)
+        {
+            dataFileList.Rows.Clear();
+        }
+
+        private void dataFileList_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            updateListBoxItemCount();
         }
     }
 }

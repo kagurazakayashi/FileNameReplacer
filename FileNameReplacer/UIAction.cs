@@ -69,13 +69,6 @@ namespace FileNameReplacer
             }
         }
 
-        static public void ToolStripButtonCountListBox(ToolStripButton btn, ListBox box)
-        {
-            string[] texts = btn.Text.Split(' ');
-            texts[0] = box.Items.Count.ToString();
-            btn.Text = string.Join(" ", texts);
-        }
-
         static public bool ChkListBoxIsEmpty(ListBox box)
         {
             if (box.Items.Count == 0)

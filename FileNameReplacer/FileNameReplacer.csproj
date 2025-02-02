@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\Document.png" />
     <None Include="Resources\StringRegistryValue.png" />
     <None Include="Resources\ReplaceAll1.png" />
     <None Include="Resources\TypeDefinition.png" />
