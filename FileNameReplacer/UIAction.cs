@@ -103,5 +103,16 @@ namespace FileNameReplacer
                 }
             }
         }
+
+        static public string ReplaceIgnoringCase(string input, string oldValue, string newValue)
+        {
+            int index = 0;
+            while ((index = input.IndexOf(oldValue, index, StringComparison.OrdinalIgnoreCase)) != -1)
+            {
+                input = input.Remove(index, oldValue.Length).Insert(index, newValue);
+                index += newValue.Length;
+            }
+            return input;
+        }
     }
 }

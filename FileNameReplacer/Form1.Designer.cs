@@ -59,10 +59,6 @@
             this.labelFilePath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonChgRootPath = new System.Windows.Forms.Button();
-            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,7 +68,12 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
+            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isDir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.checkBoxPreview = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -135,11 +136,12 @@
             this.groupBox2.Controls.Add(this.comboBoxReplaceFrom);
             this.groupBox2.Controls.Add(this.comboBoxReplaceTo);
             this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.checkBoxPreview);
             this.groupBox2.Controls.Add(this.checkBoxCase);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(3, 304);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(275, 192);
+            this.groupBox2.Size = new System.Drawing.Size(275, 220);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "重命名条件";
@@ -154,6 +156,7 @@
             this.comboBoxReplaceFrom.Name = "comboBoxReplaceFrom";
             this.comboBoxReplaceFrom.Size = new System.Drawing.Size(256, 27);
             this.comboBoxReplaceFrom.TabIndex = 1;
+            this.comboBoxReplaceFrom.TextChanged += new System.EventHandler(this.comboBoxReplaceFrom_TextChanged);
             // 
             // comboBoxReplaceTo
             // 
@@ -165,6 +168,7 @@
             this.comboBoxReplaceTo.Name = "comboBoxReplaceTo";
             this.comboBoxReplaceTo.Size = new System.Drawing.Size(256, 27);
             this.comboBoxReplaceTo.TabIndex = 3;
+            this.comboBoxReplaceTo.TextChanged += new System.EventHandler(this.comboBoxReplaceTo_TextChanged);
             // 
             // groupBox1
             // 
@@ -285,9 +289,9 @@
             this.buttonReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonReplace.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
-            this.buttonReplace.Location = new System.Drawing.Point(121, 138);
+            this.buttonReplace.Location = new System.Drawing.Point(13, 169);
             this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(148, 42);
+            this.buttonReplace.Size = new System.Drawing.Size(256, 42);
             this.buttonReplace.TabIndex = 9;
             this.buttonReplace.Text = "开始重命名(&R)";
             this.buttonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -297,9 +301,9 @@
             // buttonPreview
             // 
             this.buttonPreview.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.buttonPreview.Location = new System.Drawing.Point(13, 138);
+            this.buttonPreview.Location = new System.Drawing.Point(147, 136);
             this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(100, 42);
+            this.buttonPreview.Size = new System.Drawing.Size(122, 27);
             this.buttonPreview.TabIndex = 9;
             this.buttonPreview.Text = "预览(&P)";
             this.buttonPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -345,9 +349,9 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.button1.Location = new System.Drawing.Point(3, 502);
+            this.button1.Location = new System.Drawing.Point(5, 544);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 38);
+            this.button1.Size = new System.Drawing.Size(100, 27);
             this.button1.TabIndex = 10;
             this.button1.Text = "测试(&T)";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -487,42 +491,6 @@
             this.buttonChgRootPath.UseVisualStyleBackColor = true;
             this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
             // 
-            // ColumnIcon
-            // 
-            this.ColumnIcon.HeaderText = "";
-            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.ColumnIcon.Name = "ColumnIcon";
-            this.ColumnIcon.ReadOnly = true;
-            this.ColumnIcon.Width = 30;
-            // 
-            // Dir
-            // 
-            this.Dir.HeaderText = "文件(夹)所在路径";
-            this.Dir.MinimumWidth = 200;
-            this.Dir.Name = "Dir";
-            this.Dir.ReadOnly = true;
-            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dir.Width = 200;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "原文件(夹)名";
-            this.Source.MinimumWidth = 130;
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Source.Width = 130;
-            // 
-            // NewName
-            // 
-            this.NewName.HeaderText = "新文件(夹)名";
-            this.NewName.MinimumWidth = 130;
-            this.NewName.Name = "NewName";
-            this.NewName.ReadOnly = true;
-            this.NewName.Width = 130;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -601,12 +569,67 @@
             this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
             this.toolStripButtonNumFile.Text = "0";
             // 
+            // ColumnIcon
+            // 
+            this.ColumnIcon.HeaderText = "";
+            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.ColumnIcon.Name = "ColumnIcon";
+            this.ColumnIcon.ReadOnly = true;
+            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnIcon.Width = 30;
+            // 
+            // Dir
+            // 
+            this.Dir.HeaderText = "文件(夹)所在路径";
+            this.Dir.MinimumWidth = 200;
+            this.Dir.Name = "Dir";
+            this.Dir.ReadOnly = true;
+            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dir.Width = 200;
+            // 
+            // Source
+            // 
+            this.Source.HeaderText = "原文件(夹)名";
+            this.Source.MinimumWidth = 130;
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Source.Width = 130;
+            // 
+            // NewName
+            // 
+            this.NewName.HeaderText = "新文件(夹)名";
+            this.NewName.MinimumWidth = 130;
+            this.NewName.Name = "NewName";
+            this.NewName.ReadOnly = true;
+            this.NewName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NewName.Width = 130;
+            // 
             // isDir
             // 
             this.isDir.HeaderText = "";
+            this.isDir.MinimumWidth = 2;
             this.isDir.Name = "isDir";
             this.isDir.ReadOnly = true;
+            this.isDir.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.isDir.Visible = false;
+            this.isDir.Width = 2;
+            // 
+            // checkBoxPreview
+            // 
+            this.checkBoxPreview.AutoSize = true;
+            this.checkBoxPreview.Checked = true;
+            this.checkBoxPreview.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPreview.Image = global::FileNameReplacer.Properties.Resources.StringData;
+            this.checkBoxPreview.Location = new System.Drawing.Point(13, 138);
+            this.checkBoxPreview.Name = "checkBoxPreview";
+            this.checkBoxPreview.Size = new System.Drawing.Size(109, 25);
+            this.checkBoxPreview.TabIndex = 3;
+            this.checkBoxPreview.Text = "实时预览";
+            this.checkBoxPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxPreview.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -668,10 +691,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownLimit;
         private System.ComponentModel.BackgroundWorker backgroundWorkerReplace;
         private System.Windows.Forms.DataGridView dataFileList;
-        private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NewName;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonNumDir;
@@ -682,7 +701,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButtonP1cls;
         private System.Windows.Forms.ToolStripButton toolStripButtonNumFile;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isDir;
+        private System.Windows.Forms.CheckBox checkBoxPreview;
     }
 }
 

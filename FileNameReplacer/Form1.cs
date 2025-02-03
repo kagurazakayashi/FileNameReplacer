@@ -77,15 +77,13 @@ namespace FileNameReplacer
 
         private void buttonPreview_Click(object sender, EventArgs e)
         {
-            //TODO
-            //if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
-            preview();
+            previewAll();
         }
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
-            //TODO
-            //if (UIAction.ChkListBoxIsEmpty(listBoxSearchResults) || UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            previewAll();
+            backgroundWorkerReplace.RunWorkerAsync();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -235,22 +233,28 @@ namespace FileNameReplacer
             }
         }
 
-        private void preview()
+        private string preview(string oldStr)
         {
-            //string[] searchResults = listBoxSearchResults.Items
-            //.Cast<string>()
-            //.Select(item => {
-            //    int index = item.IndexOf(' ');
-            //    return index >= 0 ? item.Substring(index + 1) : item;
-            //})
-            //.ToArray();
+            string newStr;
+            if (checkBoxCase.Checked)
+            {
+                newStr = oldStr.Replace(comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
+            }
+            else
+            {
+                newStr = UIAction.ReplaceIgnoringCase(oldStr, comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
+            }
+            return newStr;
+        }
 
-            //foreach (string searchResult in listBoxSearchResults.Items)
-            //{
-            //    string[] pathUnit = searchResult.Split(' ');
-            //    string path = string.Join(" ", pathUnit.Skip(1));
-                
-            //}
+        private void previewAll()
+        {
+            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            foreach (DataGridViewRow row in dataFileList.Rows)
+            {
+                string srcName = (string)row.Cells[2].Value;
+                row.Cells[3].Value = preview(srcName);
+            }
         }
 
         private void backgroundWorkerReplace_DoWork(object sender, DoWorkEventArgs e)
@@ -271,9 +275,12 @@ namespace FileNameReplacer
 
         private void toolStripButtonP1rm_Click(object sender, EventArgs e)
         {
-            if (dataFileList.CurrentCell != null)
+            foreach (DataGridViewRow row in dataFileList.SelectedRows)
             {
-                dataFileList.Rows.RemoveAt(dataFileList.CurrentCell.RowIndex);
+                if (!row.IsNewRow)
+                {
+                    dataFileList.Rows.Remove(row);
+                }
             }
         }
 
@@ -293,6 +300,22 @@ namespace FileNameReplacer
         private void dataFileList_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             updateListBoxItemCount();
+        }
+
+        private void comboBoxReplaceFrom_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
+        }
+
+        private void comboBoxReplaceTo_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
         }
     }
 }
