@@ -25,6 +25,10 @@ namespace FileNameReplacer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            buttonSearchStop.Location = buttonSearch.Location;
+            buttonReplaceStop.Location = buttonReplace.Location;
+            buttonSearchStop.Size = buttonSearch.Size;
+            buttonReplaceStop.Size = buttonReplace.Size;
             string[] paths = SysInfo.GetCommonUserFolders();
             foreach (var path in paths)
             {
@@ -77,11 +81,13 @@ namespace FileNameReplacer
 
         private void buttonPreview_Click(object sender, EventArgs e)
         {
+            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
             previewAll();
         }
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
+            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
             previewAll();
             backgroundWorkerReplace.RunWorkerAsync();
         }
@@ -218,6 +224,8 @@ namespace FileNameReplacer
         {
             comboBoxRootPath.Text = "B:\\TestFolder";
             comboBoxSearch.Text = "2024*";
+            comboBoxReplaceFrom.Text = "2024";
+            comboBoxReplaceTo.Text = "2025";
         }
 
         private void checkBoxLimit_CheckedChanged(object sender, EventArgs e)
@@ -249,18 +257,38 @@ namespace FileNameReplacer
 
         private void previewAll()
         {
-            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
             foreach (DataGridViewRow row in dataFileList.Rows)
             {
                 string srcName = (string)row.Cells[2].Value;
                 row.Cells[3].Value = preview(srcName);
             }
         }
+        private string[][] GetRenameJob()
+        {
+            int rowCount = dataFileList.Rows.Count;
+            string[][] result = new string[rowCount][];
+            for (int i = 0; i < rowCount; i++)
+            {
+                string puth = dataFileList.Rows[i].Cells[1].Value.ToString();
+                string cell2Value = puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString();
+                string cell3Value = puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString();
+                result[i] = new string[] { cell2Value, cell3Value };
+            }
+            return result;
+        }
 
         private void backgroundWorkerReplace_DoWork(object sender, DoWorkEventArgs e)
         {
             // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
-            
+            string[][] job = new string[][] {};
+            this.Invoke((MethodInvoker)delegate
+            {
+                job = GetRenameJob();
+            });
+            foreach (string[] item in job)
+            {
+                Console.WriteLine(item[0]+" | "+item[1]);
+            }
         }
 
         private void backgroundWorkerReplace_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -316,6 +344,13 @@ namespace FileNameReplacer
             {
                 previewAll();
             }
+        }
+
+        private void buttonReplaceExchange_Click(object sender, EventArgs e)
+        {
+            string tmp = comboBoxReplaceTo.Text;
+            comboBoxReplaceTo.Text = comboBoxReplaceFrom.Text;
+            comboBoxReplaceFrom.Text = tmp;
         }
     }
 }
