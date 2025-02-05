@@ -1,14 +1,22 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace FileNameReplacer
 {
     static class UIAction
     {
+        public static string NormalizePath(string path)
+        {
+            string normalizedPath = Regex.Replace(path, @"[\\/]+", Path.DirectorySeparatorChar.ToString());
+            return Path.GetFullPath(normalizedPath).TrimEnd(Path.DirectorySeparatorChar);
+        }
+
         static public void ListBoxDelItem(ListBox box)
         {
             if (box.SelectedItems.Count > 0)
@@ -38,45 +46,6 @@ namespace FileNameReplacer
             }
             text = string.Join(Environment.NewLine, box.SelectedItems.Cast<string>());
             Clipboard.SetText(text);
-        }
-
-        static public void ListBoxDelAll(ListBox box)
-        {
-            box.Items.Clear();
-        }
-
-        static public void ListBoxKeyDown(ListBox box, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.A) // Ctrl+A
-            {
-                ListBoxSelectAll(box);
-                e.Handled = true;
-            }
-            else if (e.Control && e.KeyCode == Keys.C) // Ctrl+C
-            {
-                ListBoxCopyToClipboard(box);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Delete) // Delete
-            {
-                ListBoxDelItem(box);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.Escape) // Esc
-            {
-                box.ClearSelected();
-                e.Handled = true;
-            }
-        }
-
-        static public bool ChkListBoxIsEmpty(ListBox box)
-        {
-            if (box.Items.Count == 0)
-            {
-                MessageBox.Show("文件列表为空，请先搜索要执行操作的文件(夹)。", "没有需要处理的文件(夹)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
-            }
-            return false;
         }
 
         static public bool ChkComboBoxIsEmpty(ComboBox box)
@@ -113,6 +82,12 @@ namespace FileNameReplacer
                 index += newValue.Length;
             }
             return input;
+        }
+
+        static public ReplaceJob[] SortJobsByLevel(ReplaceJob[] jobs)
+        {
+            Array.Sort(jobs, (job1, job2) => job2.PathLevel.CompareTo(job1.PathLevel));
+            return jobs;
         }
     }
 }

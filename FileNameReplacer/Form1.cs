@@ -13,9 +13,6 @@ namespace FileNameReplacer
 {
     public partial class Form1: Form
     {
-        private Search search = new Search();
-        private static string icoFile = "📄";
-        private static string icoDir = "📁";
         private Search searchEngine;
 
         public Form1()
@@ -168,7 +165,7 @@ namespace FileNameReplacer
             {
                 int dataLen = dataFileList.Rows.Count;
                 dataFileList.Rows.Add(); //dataGridView
-                dataFileList.Rows[dataLen].Cells[1].Value = fileItem.inPath;
+                dataFileList.Rows[dataLen].Cells[1].Value = UIAction.NormalizePath(fileItem.inPath);
                 dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
                 dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
                 if (fileItem.isDir)
@@ -263,31 +260,36 @@ namespace FileNameReplacer
                 row.Cells[3].Value = preview(srcName);
             }
         }
-        private string[][] GetRenameJob()
+
+        private ReplaceJob[] GetRenameJob()
         {
             int rowCount = dataFileList.Rows.Count;
-            string[][] result = new string[rowCount][];
+            List<ReplaceJob> jobs = new List<ReplaceJob> { };
             for (int i = 0; i < rowCount; i++)
             {
-                string puth = dataFileList.Rows[i].Cells[1].Value.ToString();
-                string cell2Value = puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString();
-                string cell3Value = puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString();
-                result[i] = new string[] { cell2Value, cell3Value };
+                string puth = UIAction.NormalizePath(dataFileList.Rows[i].Cells[1].Value.ToString());
+                bool cell4Value = Convert.ToBoolean(dataFileList.Rows[i].Cells[4].Value);
+                string cell2Value = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString());
+                string cell3Value = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString());
+                ReplaceJob job = new ReplaceJob(cell4Value, puth, cell2Value, cell3Value);
+                jobs.Add(job);
             }
-            return result;
+            ReplaceJob[] jobsR = jobs.ToArray();
+            jobsR = UIAction.SortJobsByLevel(jobsR);
+            return jobsR;
         }
 
         private void backgroundWorkerReplace_DoWork(object sender, DoWorkEventArgs e)
         {
             // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
-            string[][] job = new string[][] {};
+            ReplaceJob[] jobs = new ReplaceJob[] { };
             this.Invoke((MethodInvoker)delegate
             {
-                job = GetRenameJob();
+                jobs = GetRenameJob();
             });
-            foreach (string[] item in job)
+            foreach (ReplaceJob job in jobs)
             {
-                Console.WriteLine(item[0]+" | "+item[1]);
+                Console.WriteLine(job.ToString());
             }
         }
 
