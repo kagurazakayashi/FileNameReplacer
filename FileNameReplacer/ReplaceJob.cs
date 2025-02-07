@@ -7,6 +7,8 @@ namespace FileNameReplacer
     /// </summary>
     public struct ReplaceJob
     {
+        public int ID;
+
         /// <summary>
         /// 指示任務是否針對目錄。
         /// </summary>
@@ -35,12 +37,14 @@ namespace FileNameReplacer
         /// <summary>
         /// 初始化一個新的 <see cref="ReplaceJob"/> 例項。
         /// </summary>
+        /// <param name="id">ID/param>
         /// <param name="isDir">指示任務是否針對目錄。</param>
         /// <param name="inPath">輸入路徑，表示檔案或目錄所在的路徑。</param>
         /// <param name="fromName">需要替換的原始名稱。</param>
         /// <param name="toName">替換後的目標名稱。</param>
-        public ReplaceJob(bool isDir, string inPath, string fromName, string toName)
+        public ReplaceJob(int id, bool isDir, string inPath, string fromName, string toName)
         {
+            ID = id;
             IsDir = isDir;
             InPath = UIAction.NormalizePath(inPath); // 規範化路徑
             FromName = fromName;
@@ -73,8 +77,9 @@ namespace FileNameReplacer
         /// <returns>表示當前 <see cref="ReplaceJob"/> 的字串(JSON)。</returns>
         public override string ToString()
         {
-            string[] echo = new string[5]
+            string[] echo = new string[6]
             {
+                "\"ID\":" + ID.ToString(),
                 "\"IsDir\":" + IsDir.ToString().ToLower(),
                 "\"InPath\":\"" + InPath + "\"",
                 "\"FromName\":\"" + FromName + "\"",

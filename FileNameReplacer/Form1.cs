@@ -7,7 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FileNameReplacer
 {
@@ -68,6 +70,11 @@ namespace FileNameReplacer
                 {
                     file++;
                 }
+            }
+            if (searchEngine != null)
+            {
+                searchEngine.TotalC[0] = dir;
+                searchEngine.TotalC[1] = file;
             }
             toolStripButtonNumDir.Text = dir.ToString();
             toolStripButtonNumFile.Text = file.ToString();
@@ -168,14 +175,19 @@ namespace FileNameReplacer
                 dataFileList.Rows[dataLen].Cells[1].Value = UIAction.NormalizePath(fileItem.inPath);
                 dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
                 dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
+                dataFileList.Rows[dataLen].Cells[6].Value = dataLen.ToString();
                 if (fileItem.isDir)
                 {
                     dataFileList.Rows[dataLen].Cells[0].Value = Properties.Resources.FolderClosed;
-                    toolStripButtonNumDir.Text = (int.Parse(toolStripButtonNumDir.Text) + 1).ToString();
+                    int num = int.Parse(toolStripButtonNumDir.Text) + 1;
+                    toolStripButtonNumDir.Text = num.ToString();
+                    searchEngine.TotalC[0] = num;
                 }
                 else
                 {
-                    toolStripButtonNumFile.Text = (int.Parse(toolStripButtonNumDir.Text) + 1).ToString();
+                    int num = int.Parse(toolStripButtonNumDir.Text) + 1;
+                    toolStripButtonNumFile.Text = num.ToString();
+                    searchEngine.TotalC[1] = num;
                 }
             }
         }
@@ -208,13 +220,14 @@ namespace FileNameReplacer
         private void searchRunningUI(bool isRun)
         {
             UIAction.DisableControls(this, !isRun);
+            this.Cursor = isRun ? Cursors.AppStarting : Cursors.Default;
+            dataFileList.Cursor = this.Cursor;
             buttonSearch.Visible = !isRun;
             buttonSearchStop.Visible = isRun;
+            pictureBoxSearch.Visible = isRun;
             buttonSearchStop.Enabled = isRun;
-            if (!isRun)
-            {
-                dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            }
+            progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -268,10 +281,11 @@ namespace FileNameReplacer
             for (int i = 0; i < rowCount; i++)
             {
                 string puth = UIAction.NormalizePath(dataFileList.Rows[i].Cells[1].Value.ToString());
-                bool cell4Value = Convert.ToBoolean(dataFileList.Rows[i].Cells[4].Value);
-                string cell2Value = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString());
-                string cell3Value = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString());
-                ReplaceJob job = new ReplaceJob(cell4Value, puth, cell2Value, cell3Value);
+                bool isDir = Convert.ToBoolean(dataFileList.Rows[i].Cells[4].Value);
+                string fromName = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString());
+                string toName = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString());
+                int id = Convert.ToInt32(dataFileList.Rows[i].Cells[6].Value);
+                ReplaceJob job = new ReplaceJob(id, isDir, puth, fromName, toName);
                 jobs.Add(job);
             }
             ReplaceJob[] jobsR = jobs.ToArray();
@@ -353,6 +367,41 @@ namespace FileNameReplacer
             string tmp = comboBoxReplaceTo.Text;
             comboBoxReplaceTo.Text = comboBoxReplaceFrom.Text;
             comboBoxReplaceFrom.Text = tmp;
+        }
+
+        private void toolStripButtonAutoWidth_Click(object sender, EventArgs e)
+        {
+            int len = dataFileList.Rows.Count;
+            if (len == 0) return;
+            if (len > 1000)
+            {
+                DialogResult result = MessageBox.Show(
+                    $"调整 {len.ToString()} 行的宽度可能需要一些时间，\n操作过程中程序可能会暂停响应，请等待。\n是否继续？",
+                    "自动调整表格列宽度",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+                if (result == DialogResult.Yes)
+                {
+                    this.UseWaitCursor = true;
+                    dataFileList.Visible = false;
+                    timerAutoWidth.Enabled = true;
+                }
+            }
+            else
+            {
+                this.UseWaitCursor = true;
+                dataFileList.Visible = false;
+                timerAutoWidth.Enabled = true;
+            }
+        }
+
+        private void timerAutoWidth_Tick(object sender, EventArgs e)
+        {
+            timerAutoWidth.Enabled = false;
+            dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dataFileList.Visible = true;
+            this.UseWaitCursor = false;
         }
     }
 }

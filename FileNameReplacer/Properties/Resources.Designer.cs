@@ -63,6 +63,16 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap AutoSizeStretch {
+            get {
+                object obj = ResourceManager.GetObject("AutoSizeStretch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Class {
             get {
                 object obj = ResourceManager.GetObject("Class", resourceCulture);
@@ -123,6 +133,26 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap FILEDEL {
+            get {
+                object obj = ResourceManager.GetObject("FILEDEL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap FILEDELR {
+            get {
+                object obj = ResourceManager.GetObject("FILEDELR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap FileDialogReport {
             get {
                 object obj = ResourceManager.GetObject("FileDialogReport", resourceCulture);
@@ -133,9 +163,39 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap FILEMOVE {
+            get {
+                object obj = ResourceManager.GetObject("FILEMOVE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap FileSystemEditor {
             get {
                 object obj = ResourceManager.GetObject("FileSystemEditor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap FINDCOMP {
+            get {
+                object obj = ResourceManager.GetObject("FINDCOMP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap FINDFILE {
+            get {
+                object obj = ResourceManager.GetObject("FINDFILE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +256,16 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap ReplaceAll {
             get {
                 object obj = ResourceManager.GetObject("ReplaceAll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap SEARCH {
+            get {
+                object obj = ResourceManager.GetObject("SEARCH", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
