@@ -17,6 +17,7 @@ namespace FileNameReplacer
         public decimal maxSearchLimit = 10000; // 觸發使用者提示的搜尋條數
         private bool searchCountAlert = true; // 太多了提醒我
         public int[] TotalC = new int[2] { 0, 0 };
+        public Int16 Status = 0;
 
         // 回调：当找到文件或文件夹时触发
         public Action<FileItem> OnFileFound;
@@ -34,6 +35,7 @@ namespace FileNameReplacer
             {
                 return;
             }
+            Status = 1;
             ShouldCancel2 = false;
             searchCount = 0;
             if (maxSearchLimit > 0)
@@ -41,6 +43,10 @@ namespace FileNameReplacer
                 searchCountAlert = true;
             }
             SearchDirectory(rootDir);
+            if (Status == 1)
+            {
+                Status = 0;
+            }
         }
 
         private void SearchDirectory(string dir)
@@ -50,7 +56,6 @@ namespace FileNameReplacer
             {
                 return;
             }
-
             try
             {
                 // 先處理檔案
@@ -182,6 +187,7 @@ namespace FileNameReplacer
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                Status = 2;
                 return true;
             }
             decimal nextLimit = totalAll + maxSearchLimit;
@@ -196,6 +202,7 @@ namespace FileNameReplacer
 
                 if (result == DialogResult.Yes)
                 {
+                    Status = 2;
                     return true; // 終止搜尋
                 }
                 else if (result == DialogResult.Cancel)

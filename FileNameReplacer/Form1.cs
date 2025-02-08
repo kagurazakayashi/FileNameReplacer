@@ -195,13 +195,14 @@ namespace FileNameReplacer
         private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             searchRunningUI(false);
-            if (e.Cancelled)
+            notifyIcon1.Visible = true;
+            if (e.Cancelled || searchEngine.Status == 2)
             {
-                MessageBox.Show("搜索已取消。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                notifyIcon1.ShowBalloonTip(3000, "搜索已取消。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Error);
             }
             else
             {
-                MessageBox.Show("搜索完成！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                notifyIcon1.ShowBalloonTip(3000, "搜索完成。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Info);
             }
         }
 
@@ -220,6 +221,7 @@ namespace FileNameReplacer
         private void searchRunningUI(bool isRun)
         {
             UIAction.DisableControls(this, !isRun);
+            if (isRun) notifyIcon1.Visible = true;
             this.Cursor = isRun ? Cursors.AppStarting : Cursors.Default;
             dataFileList.Cursor = this.Cursor;
             buttonSearch.Visible = !isRun;
@@ -402,6 +404,21 @@ namespace FileNameReplacer
             dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             dataFileList.Visible = true;
             this.UseWaitCursor = false;
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+        }
+
+        private void notifyIcon1_BalloonTipClosed(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            notifyIcon1.Visible = false;
         }
     }
 }
