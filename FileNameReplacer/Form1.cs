@@ -16,6 +16,7 @@ namespace FileNameReplacer
     public partial class Form1: Form
     {
         private Search searchEngine;
+        private Replace replaceEngine;
 
         public Form1()
         {
@@ -92,8 +93,16 @@ namespace FileNameReplacer
         private void buttonReplace_Click(object sender, EventArgs e)
         {
             if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            if (dataFileList.Rows.Count == 0)
+            {
+                MessageBox.Show("文件处理列表是空的，请先进行文件搜索。", "请先指定要操作的文件", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             previewAll();
-            backgroundWorkerReplace.RunWorkerAsync();
+            if (!backgroundWorkerReplace.IsBusy)
+            {
+                searchRunningUI(true, false);
+                backgroundWorkerReplace.RunWorkerAsync();
+            }
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -113,7 +122,7 @@ namespace FileNameReplacer
             }
             if (!backgroundWorkerSearch.IsBusy)
             {
-                searchRunningUI(true);
+                searchRunningUI(true, true);
                 dataFileList.Rows.Clear();
                 backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
             }
@@ -194,7 +203,7 @@ namespace FileNameReplacer
 
         private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            searchRunningUI(false);
+            searchRunningUI(false, true);
             notifyIcon1.Visible = true;
             if (e.Cancelled || searchEngine.Status == 2)
             {
@@ -204,6 +213,7 @@ namespace FileNameReplacer
             {
                 notifyIcon1.ShowBalloonTip(3000, "搜索完成。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Info);
             }
+            buttonReplace.Enabled = dataFileList.Rows.Count > 0;
         }
 
         private void buttonSearchStop_Click(object sender, EventArgs e)
@@ -214,22 +224,52 @@ namespace FileNameReplacer
             }
             if (!backgroundWorkerSearch.IsBusy)
             {
-                searchRunningUI(false);
+                searchRunningUI(false, true);
             }
         }
 
-        private void searchRunningUI(bool isRun)
+        private void searchRunningUI(bool isRun, bool isSearch)
         {
-            UIAction.DisableControls(this, !isRun);
-            if (isRun) notifyIcon1.Visible = true;
             this.Cursor = isRun ? Cursors.AppStarting : Cursors.Default;
+            UIAction.DisableControls(this, !isRun);
             dataFileList.Cursor = this.Cursor;
-            buttonSearch.Visible = !isRun;
-            buttonSearchStop.Visible = isRun;
-            pictureBoxSearch.Visible = isRun;
-            buttonSearchStop.Enabled = isRun;
-            progressBar1.Value = progressBar1.Maximum;
-            progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
+            buttonSearch.Enabled = true;
+            buttonSearch.Visible = buttonSearch.Enabled;
+            buttonSearchStop.Enabled = false;
+            buttonSearchStop.Visible = buttonSearchStop.Enabled;
+            buttonReplace.Enabled = true;
+            buttonReplace.Visible = buttonReplace.Enabled;
+            buttonReplaceStop.Enabled = false;
+            buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
+            pictureBoxSearch.Visible = false;
+            pictureBoxReplace.Visible = false;
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            if (isRun)
+            {
+                notifyIcon1.Visible = true;
+                if (isSearch)
+                {
+                    buttonSearch.Enabled = false;
+                    buttonSearch.Visible = buttonSearch.Enabled;
+                    buttonSearchStop.Enabled = true;
+                    buttonSearchStop.Visible = buttonSearchStop.Enabled;
+                    pictureBoxSearch.Visible = true;
+                    progressBar1.Value = progressBar1.Maximum;
+                    progressBar1.Style = ProgressBarStyle.Marquee;
+                    buttonReplace.Enabled = false;
+                }
+                else
+                {
+                    buttonReplace.Enabled = false;
+                    buttonReplace.Visible = buttonReplace.Enabled;
+                    buttonReplaceStop.Enabled = true;
+                    buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
+                    pictureBoxReplace.Visible = true;
+                    progressBar1.Value = progressBar1.Minimum;
+                    progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Continuous;
+                    buttonSearch.Enabled = false;
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -302,21 +342,75 @@ namespace FileNameReplacer
             this.Invoke((MethodInvoker)delegate
             {
                 jobs = GetRenameJob();
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = jobs.Length;
+                progressBar1.Value = progressBar1.Minimum;
+                progressBar1.Style = ProgressBarStyle.Continuous;
             });
-            foreach (ReplaceJob job in jobs)
+            replaceEngine = new Replace
             {
-                Console.WriteLine(job.ToString());
+                Jobs = jobs,
+            };
+            replaceEngine.OnFileRename = (fileItem) =>
+            {
+                if (backgroundWorkerReplace.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                backgroundWorkerReplace.ReportProgress(0, fileItem);
+            };
+            replaceEngine.ReplaceFile();
+            if (backgroundWorkerReplace.CancellationPending)
+            {
+                e.Cancel = true;
             }
         }
 
         private void backgroundWorkerReplace_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            int jobID = 0;
+            int nowID = 0;
+            if (e.UserState is ReplaceJob job)
+            {
+                jobID = job.ID;
+                progressBar1.Value++;
+                foreach (DataGridViewRow row in dataFileList.Rows)
+                {
+                    nowID = Convert.ToInt32(row.Cells[6].Value);
+                    if (jobID == nowID)
+                    {
+                        if (job.Result == "O")
+                        {
+                            row.Cells[5].Value = "重命名成功";
+                        }
+                        else if (job.Result == "I")
+                        {
+                            row.Cells[5].Value = "跳过";
+                        }
+                        else
+                        {
+                            row.Cells[5].Value = job.Result;
+                        }
+                        return;
+                    }
+                }
+            }
         }
 
         private void backgroundWorkerReplace_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            searchRunningUI(false, false);
+            notifyIcon1.Visible = true;
+            if (e.Cancelled || replaceEngine.Status == 2)
+            {
+                notifyIcon1.ShowBalloonTip(3000, "重命名已取消。", $"重命名已取消。 {replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Error);
+            }
+            else
+            {
+                notifyIcon1.ShowBalloonTip(3000, "重命名完成。", $"重命名完成。 {replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Info);
+            }
+            buttonReplace.Enabled = false;
         }
 
         private void toolStripButtonP1rm_Click(object sender, EventArgs e)

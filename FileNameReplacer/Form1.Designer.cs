@@ -48,12 +48,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerReplace = new System.ComponentModel.BackgroundWorker();
-            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isDir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
@@ -75,7 +69,6 @@
             this.labelFilePath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonChgRootPath = new System.Windows.Forms.Button();
-            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
@@ -86,6 +79,13 @@
             this.timerAutoWidth = new System.Windows.Forms.Timer(this.components);
             this.labelTableWait = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isDir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -344,67 +344,6 @@
             this.backgroundWorkerReplace.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerReplace_ProgressChanged);
             this.backgroundWorkerReplace.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerReplace_RunWorkerCompleted);
             // 
-            // Dir
-            // 
-            this.Dir.HeaderText = "文件(夹)所在路径";
-            this.Dir.MinimumWidth = 120;
-            this.Dir.Name = "Dir";
-            this.Dir.ReadOnly = true;
-            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dir.Width = 240;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "原文件(夹)名";
-            this.Source.MinimumWidth = 100;
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Source.Width = 140;
-            // 
-            // NewName
-            // 
-            this.NewName.HeaderText = "新文件(夹)名";
-            this.NewName.MinimumWidth = 100;
-            this.NewName.Name = "NewName";
-            this.NewName.ReadOnly = true;
-            this.NewName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NewName.Width = 140;
-            // 
-            // isDir
-            // 
-            this.isDir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.isDir.HeaderText = "";
-            this.isDir.MinimumWidth = 2;
-            this.isDir.Name = "isDir";
-            this.isDir.ReadOnly = true;
-            this.isDir.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isDir.Visible = false;
-            this.isDir.Width = 2;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "执行结果";
-            this.Status.MinimumWidth = 100;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Status.Width = 120;
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID.HeaderText = "";
-            this.ID.MinimumWidth = 2;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID.Visible = false;
-            this.ID.Width = 2;
-            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -461,6 +400,7 @@
             // 
             this.buttonReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReplace.Enabled = false;
             this.buttonReplace.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
             this.buttonReplace.Location = new System.Drawing.Point(13, 169);
             this.buttonReplace.Name = "buttonReplace";
@@ -535,13 +475,12 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.button1.Location = new System.Drawing.Point(80, 238);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(205, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 27);
+            this.button1.Size = new System.Drawing.Size(71, 25);
             this.button1.TabIndex = 10;
-            this.button1.Text = "测试(&T)";
+            this.button1.Text = "测试";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -679,16 +618,6 @@
             this.buttonChgRootPath.UseVisualStyleBackColor = true;
             this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
             // 
-            // ColumnIcon
-            // 
-            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnIcon.HeaderText = "";
-            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.ColumnIcon.Name = "ColumnIcon";
-            this.ColumnIcon.ReadOnly = true;
-            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnIcon.Width = 30;
-            // 
             // toolStripButtonNumDir
             // 
             this.toolStripButtonNumDir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
@@ -769,6 +698,77 @@
             this.notifyIcon1.BalloonTipClosed += new System.EventHandler(this.notifyIcon1_BalloonTipClosed);
             this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
             // 
+            // ColumnIcon
+            // 
+            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnIcon.HeaderText = "";
+            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.ColumnIcon.Name = "ColumnIcon";
+            this.ColumnIcon.ReadOnly = true;
+            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnIcon.Width = 30;
+            // 
+            // Dir
+            // 
+            this.Dir.HeaderText = "文件(夹)所在路径";
+            this.Dir.MinimumWidth = 120;
+            this.Dir.Name = "Dir";
+            this.Dir.ReadOnly = true;
+            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dir.Width = 230;
+            // 
+            // Source
+            // 
+            this.Source.HeaderText = "原文件(夹)名";
+            this.Source.MinimumWidth = 100;
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Source.Width = 140;
+            // 
+            // NewName
+            // 
+            this.NewName.HeaderText = "新文件(夹)名";
+            this.NewName.MinimumWidth = 100;
+            this.NewName.Name = "NewName";
+            this.NewName.ReadOnly = true;
+            this.NewName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NewName.Width = 140;
+            // 
+            // isDir
+            // 
+            this.isDir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.isDir.HeaderText = "";
+            this.isDir.MinimumWidth = 2;
+            this.isDir.Name = "isDir";
+            this.isDir.ReadOnly = true;
+            this.isDir.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isDir.Visible = false;
+            this.isDir.Width = 2;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "执行结果";
+            this.Status.MinimumWidth = 120;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Status.Width = 120;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID.HeaderText = "";
+            this.ID.MinimumWidth = 2;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Visible = false;
+            this.ID.Width = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -847,6 +847,11 @@
         private System.Windows.Forms.Button buttonReplaceExchange;
         private System.Windows.Forms.PictureBox pictureBoxSearch;
         private System.Windows.Forms.PictureBox pictureBoxReplace;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAutoWidth;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.Timer timerAutoWidth;
+        private System.Windows.Forms.Label labelTableWait;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
@@ -854,11 +859,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isDir;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAutoWidth;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.Timer timerAutoWidth;
-        private System.Windows.Forms.Label labelTableWait;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FileNameReplacer
@@ -51,6 +52,7 @@ namespace FileNameReplacer
 
         private void SearchDirectory(string dir)
         {
+            Thread.Sleep(1);
             // 先檢查是否請求取消
             if (ShouldCancel2 || (ShouldCancel != null && ShouldCancel()))
             {

@@ -35,6 +35,11 @@ namespace FileNameReplacer
         public int PathLevel;
 
         /// <summary>
+        /// 處理結果
+        /// </summary>
+        public string Result;
+
+        /// <summary>
         /// 初始化一個新的 <see cref="ReplaceJob"/> 例項。
         /// </summary>
         /// <param name="id">ID/param>
@@ -51,6 +56,7 @@ namespace FileNameReplacer
             ToName = toName;
             string[] pathParts = InPath.Split(Path.DirectorySeparatorChar); // 分割路徑以計算層級
             PathLevel = pathParts.Length;
+            Result = "";
         }
 
         /// <summary>
@@ -77,7 +83,7 @@ namespace FileNameReplacer
         /// <returns>表示當前 <see cref="ReplaceJob"/> 的字串(JSON)。</returns>
         public override string ToString()
         {
-            string[] echo = new string[6]
+            string[] echo = new string[7]
             {
                 "\"ID\":" + ID.ToString(),
                 "\"IsDir\":" + IsDir.ToString().ToLower(),
@@ -85,6 +91,7 @@ namespace FileNameReplacer
                 "\"FromName\":\"" + FromName + "\"",
                 "\"ToName\":\"" + ToName + "\"",
                 "\"PathLevel\":" + PathLevel.ToString(),
+                "\"Result\":\"" + Result + "\""
             };
             return "{" + string.Join(",", echo) + "}";
         }
