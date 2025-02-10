@@ -62,7 +62,7 @@ namespace FileNameReplacer
         {
             foreach (Control control in parent.Controls)
             {
-                if (control is ComboBox || control is CheckBox || control is Button)
+                if (control is ComboBox || control is CheckBox || control is Button || control is NumericUpDown)
                 {
                     control.Enabled = enabled;
                 }

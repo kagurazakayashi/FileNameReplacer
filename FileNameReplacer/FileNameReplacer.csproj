@@ -130,6 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\DocumentWarning.png" />
+    <None Include="Resources\DocumentError.png" />
+    <None Include="Resources\DocumentOK.png" />
+    <None Include="Resources\FolderCodeAnalysis.png" />
+    <None Include="Resources\FolderError.png" />
+    <None Include="Resources\FolderWarning.png" />
+    <None Include="Resources\Timer.png" />
     <None Include="Resources\AutoSizeStretch.png" />
     <None Include="Resources\SEARCH.GIF" />
     <None Include="Resources\FINDFILE.GIF" />

@@ -8,6 +8,7 @@ namespace FileNameReplacer
     {
         public ReplaceJob[] Jobs = new ReplaceJob[] { };
         public Int16 Status = 0;
+        public int SleepTime = 1;
         public int[] TotalOK = new int[3] { 0, 0, 0 };
 
         public Action<ReplaceJob> OnFileRename;
@@ -16,7 +17,7 @@ namespace FileNameReplacer
         {
             for (int i = 0; i < Jobs.Length; i++)
             {
-                Thread.Sleep(1);
+                Thread.Sleep(SleepTime);
                 ReplaceJob job = Jobs[i];
                 if (job.FromFullPath() == job.ToFullPath())
                 {
@@ -27,12 +28,21 @@ namespace FileNameReplacer
                 {
                     try
                     {
-                        File.Move(job.FromFullPath(), job.ToFullPath()); //RENAME
+                        Console.WriteLine(job.FromFullPath() + " -> " + job.ToFullPath());
+                        if (job.IsDir)
+                        {
+                            Directory.Move(job.FromFullPath(), job.ToFullPath());
+                        }
+                        else
+                        {
+                            File.Move(job.FromFullPath(), job.ToFullPath());
+                        }
                         job.Result = "O";
                         TotalOK[0]++;
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         job.Result = ex.Message;
                         TotalOK[1]++;
                     }

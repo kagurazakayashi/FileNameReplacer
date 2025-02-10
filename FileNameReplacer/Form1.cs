@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
@@ -29,24 +30,7 @@ namespace FileNameReplacer
             buttonReplaceStop.Location = buttonReplace.Location;
             buttonSearchStop.Size = buttonSearch.Size;
             buttonReplaceStop.Size = buttonReplace.Size;
-            string[] paths = SysInfo.GetCommonUserFolders();
-            foreach (var path in paths)
-            {
-                comboBoxRootPath.Items.Add(path);
-            }
-            string[] drives = SysInfo.GetDrives();
-            foreach (var drive in drives)
-            {
-                comboBoxRootPath.Items.Add(drive);
-            }
-            comboBoxRootPath.SelectedIndex = 0;
-            string[] extensions = SysInfo.GetRegisteredFileExtensions();
-            foreach (var ext in extensions)
-            {
-                comboBoxSearch.Items.Add("*" + ext);
-            }
-            comboBoxSearch.SelectedIndex = 0;
-            updateListBoxItemCount();
+            timerLoad.Enabled = true;
         }
 
         private void buttonChgRootPath_Click(object sender, EventArgs e)
@@ -96,6 +80,12 @@ namespace FileNameReplacer
             if (dataFileList.Rows.Count == 0)
             {
                 MessageBox.Show("文件处理列表是空的，请先进行文件搜索。", "请先指定要操作的文件", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxReplaceFrom.Text == comboBoxReplaceTo.Text)
+            {
+                MessageBox.Show("替换前后的内容是一样的。", "无效替换", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             previewAll();
             if (!backgroundWorkerReplace.IsBusy)
@@ -137,6 +127,7 @@ namespace FileNameReplacer
             bool searchDir = false;
             bool searchFile = false;
             decimal maxSearchLimit = 0;
+            int sleepTime = 1;
             this.Invoke((MethodInvoker)delegate
             {
                 rootPath = comboBoxRootPath.Text;
@@ -145,6 +136,7 @@ namespace FileNameReplacer
                 searchDir = checkBoxADir.Checked;
                 searchFile = checkBoxAFile.Checked;
                 maxSearchLimit = numericUpDownLimit.Value;
+                sleepTime = Convert.ToInt32(numericUpDownSleep.Value);
             });
             searchEngine = new Search
             {
@@ -154,6 +146,7 @@ namespace FileNameReplacer
                 searchDir = searchDir,
                 searchFile = searchFile,
                 maxSearchLimit = maxSearchLimit,
+                SleepTime = sleepTime,
                 ShouldCancel = () => backgroundWorkerSearch.CancellationPending
             };
             // 绑定回调函数
@@ -197,6 +190,10 @@ namespace FileNameReplacer
                     int num = int.Parse(toolStripButtonNumDir.Text) + 1;
                     toolStripButtonNumFile.Text = num.ToString();
                     searchEngine.TotalC[1] = num;
+                }
+                if (checkBoxRealWidth.Checked)
+                {
+                    dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 }
             }
         }
@@ -243,7 +240,7 @@ namespace FileNameReplacer
             buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
             pictureBoxSearch.Visible = false;
             pictureBoxReplace.Visible = false;
-            progressBar1.Style = ProgressBarStyle.Continuous;
+            progressBar1.Style = ProgressBarStyle.Blocks;
             if (isRun)
             {
                 notifyIcon1.Visible = true;
@@ -266,7 +263,7 @@ namespace FileNameReplacer
                     buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
                     pictureBoxReplace.Visible = true;
                     progressBar1.Value = progressBar1.Minimum;
-                    progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Continuous;
+                    progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
                     buttonSearch.Enabled = false;
                 }
             }
@@ -324,8 +321,8 @@ namespace FileNameReplacer
             {
                 string puth = UIAction.NormalizePath(dataFileList.Rows[i].Cells[1].Value.ToString());
                 bool isDir = Convert.ToBoolean(dataFileList.Rows[i].Cells[4].Value);
-                string fromName = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[2].Value.ToString());
-                string toName = UIAction.NormalizePath(puth + Path.DirectorySeparatorChar + dataFileList.Rows[i].Cells[3].Value.ToString());
+                string fromName = dataFileList.Rows[i].Cells[2].Value.ToString();
+                string toName = dataFileList.Rows[i].Cells[3].Value.ToString();
                 int id = Convert.ToInt32(dataFileList.Rows[i].Cells[6].Value);
                 ReplaceJob job = new ReplaceJob(id, isDir, puth, fromName, toName);
                 jobs.Add(job);
@@ -339,17 +336,20 @@ namespace FileNameReplacer
         {
             // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
             ReplaceJob[] jobs = new ReplaceJob[] { };
+            int sleepTime = 1;
             this.Invoke((MethodInvoker)delegate
             {
                 jobs = GetRenameJob();
                 progressBar1.Minimum = 0;
                 progressBar1.Maximum = jobs.Length;
                 progressBar1.Value = progressBar1.Minimum;
-                progressBar1.Style = ProgressBarStyle.Continuous;
+                progressBar1.Style = ProgressBarStyle.Blocks;
+                sleepTime = Convert.ToInt32(numericUpDownSleep.Value);
             });
             replaceEngine = new Replace
             {
                 Jobs = jobs,
+                SleepTime = sleepTime
             };
             replaceEngine.OnFileRename = (fileItem) =>
             {
@@ -383,14 +383,17 @@ namespace FileNameReplacer
                         if (job.Result == "O")
                         {
                             row.Cells[5].Value = "重命名成功";
+                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderCodeAnalysis : Properties.Resources.DocumentOK;
                         }
                         else if (job.Result == "I")
                         {
                             row.Cells[5].Value = "跳过";
+                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderCodeAnalysis : Properties.Resources.DocumentOK;
                         }
                         else
                         {
                             row.Cells[5].Value = job.Result;
+                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderError : Properties.Resources.DocumentError;
                         }
                         return;
                     }
@@ -513,6 +516,29 @@ namespace FileNameReplacer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             notifyIcon1.Visible = false;
+        }
+
+        private void timerLoad_Tick(object sender, EventArgs e)
+        {
+            timerLoad.Enabled = false;
+            string[] paths = SysInfo.GetCommonUserFolders();
+            foreach (var path in paths)
+            {
+                comboBoxRootPath.Items.Add(path);
+            }
+            string[] drives = SysInfo.GetDrives();
+            foreach (var drive in drives)
+            {
+                comboBoxRootPath.Items.Add(drive);
+            }
+            comboBoxRootPath.SelectedIndex = 0;
+            string[] extensions = SysInfo.GetRegisteredFileExtensions();
+            foreach (var ext in extensions)
+            {
+                comboBoxSearch.Items.Add("*" + ext);
+            }
+            comboBoxSearch.SelectedIndex = 0;
+            updateListBoxItemCount();
         }
     }
 }

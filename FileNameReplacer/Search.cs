@@ -14,6 +14,7 @@ namespace FileNameReplacer
         public bool searchSubDir = false; // 是否搜尋子目錄
         public bool searchDir = false; // 是否包含資料夾
         public bool searchFile = true; // 是否包含檔案
+        public int SleepTime = 1;
         private int searchCount = 0; // 計數器，記錄搜尋結果數量
         public decimal maxSearchLimit = 10000; // 觸發使用者提示的搜尋條數
         private bool searchCountAlert = true; // 太多了提醒我
@@ -52,7 +53,7 @@ namespace FileNameReplacer
 
         private void SearchDirectory(string dir)
         {
-            Thread.Sleep(1);
+            Thread.Sleep(SleepTime);
             // 先檢查是否請求取消
             if (ShouldCancel2 || (ShouldCancel != null && ShouldCancel()))
             {
