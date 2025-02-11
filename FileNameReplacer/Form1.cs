@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileNameReplacer.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace FileNameReplacer
     {
         private Search searchEngine;
         private Replace replaceEngine;
+        private Int16 FileAction = 0;
 
         public Form1()
         {
@@ -26,10 +28,6 @@ namespace FileNameReplacer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            buttonSearchStop.Location = buttonSearch.Location;
-            buttonReplaceStop.Location = buttonReplace.Location;
-            buttonSearchStop.Size = buttonSearch.Size;
-            buttonReplaceStop.Size = buttonReplace.Size;
             timerLoad.Enabled = true;
         }
 
@@ -91,6 +89,8 @@ namespace FileNameReplacer
             if (!backgroundWorkerReplace.IsBusy)
             {
                 searchRunningUI(true, false);
+                FileAction = 0;
+                pictureBoxReplace.Image = Resources.FILEMOVE;
                 backgroundWorkerReplace.RunWorkerAsync();
             }
         }
@@ -180,7 +180,7 @@ namespace FileNameReplacer
                 dataFileList.Rows[dataLen].Cells[6].Value = dataLen.ToString();
                 if (fileItem.isDir)
                 {
-                    dataFileList.Rows[dataLen].Cells[0].Value = Properties.Resources.FolderClosed;
+                    dataFileList.Rows[dataLen].Cells[0].Value = Resources.FolderClosed;
                     int num = int.Parse(toolStripButtonNumDir.Text) + 1;
                     toolStripButtonNumDir.Text = num.ToString();
                     searchEngine.TotalC[0] = num;
@@ -211,6 +211,7 @@ namespace FileNameReplacer
                 notifyIcon1.ShowBalloonTip(3000, "搜索完成。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Info);
             }
             buttonReplace.Enabled = dataFileList.Rows.Count > 0;
+            buttonRM.Enabled = dataFileList.Rows.Count > 0;
         }
 
         private void buttonSearchStop_Click(object sender, EventArgs e)
@@ -236,6 +237,8 @@ namespace FileNameReplacer
             buttonSearchStop.Visible = buttonSearchStop.Enabled;
             buttonReplace.Enabled = true;
             buttonReplace.Visible = buttonReplace.Enabled;
+            buttonRM.Enabled = true;
+            buttonRM.Visible = buttonRM.Enabled;
             buttonReplaceStop.Enabled = false;
             buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
             pictureBoxSearch.Visible = false;
@@ -254,6 +257,7 @@ namespace FileNameReplacer
                     progressBar1.Value = progressBar1.Maximum;
                     progressBar1.Style = ProgressBarStyle.Marquee;
                     buttonReplace.Enabled = false;
+                    buttonRM.Enabled = false;
                 }
                 else
                 {
@@ -322,7 +326,7 @@ namespace FileNameReplacer
                 string puth = UIAction.NormalizePath(dataFileList.Rows[i].Cells[1].Value.ToString());
                 bool isDir = Convert.ToBoolean(dataFileList.Rows[i].Cells[4].Value);
                 string fromName = dataFileList.Rows[i].Cells[2].Value.ToString();
-                string toName = dataFileList.Rows[i].Cells[3].Value.ToString();
+                string toName = dataFileList.Rows[i].Cells[3].Value?.ToString();
                 int id = Convert.ToInt32(dataFileList.Rows[i].Cells[6].Value);
                 ReplaceJob job = new ReplaceJob(id, isDir, puth, fromName, toName);
                 jobs.Add(job);
@@ -337,6 +341,7 @@ namespace FileNameReplacer
             // 先讀取 UI 控制元件的值，確保資料在 UI 執行緒中獲取
             ReplaceJob[] jobs = new ReplaceJob[] { };
             int sleepTime = 1;
+            bool emu = false;
             this.Invoke((MethodInvoker)delegate
             {
                 jobs = GetRenameJob();
@@ -345,11 +350,14 @@ namespace FileNameReplacer
                 progressBar1.Value = progressBar1.Minimum;
                 progressBar1.Style = ProgressBarStyle.Blocks;
                 sleepTime = Convert.ToInt32(numericUpDownSleep.Value);
+                emu = checkBoxDebug.Checked;
             });
             replaceEngine = new Replace
             {
                 Jobs = jobs,
-                SleepTime = sleepTime
+                SleepTime = sleepTime,
+                FileAction = this.FileAction,
+                Emu = emu
             };
             replaceEngine.OnFileRename = (fileItem) =>
             {
@@ -383,17 +391,27 @@ namespace FileNameReplacer
                         if (job.Result == "O")
                         {
                             row.Cells[5].Value = "重命名成功";
-                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderCodeAnalysis : Properties.Resources.DocumentOK;
+                            row.Cells[0].Value = job.IsDir ? Resources.FolderCodeAnalysis : Resources.DocumentOK;
                         }
                         else if (job.Result == "I")
                         {
                             row.Cells[5].Value = "跳过";
-                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderCodeAnalysis : Properties.Resources.DocumentOK;
+                            row.Cells[0].Value = job.IsDir ? Resources.FolderCodeAnalysis : Resources.DocumentOK;
+                        }
+                        else if (job.Result == "B")
+                        {
+                            row.Cells[5].Value = "放入回收站";
+                            row.Cells[0].Value = job.IsDir ? Resources.DeleteFolder : Resources.DeleteDocument;
+                        }
+                        else if (job.Result == "R")
+                        {
+                            row.Cells[5].Value = "已永久删除";
+                            row.Cells[0].Value = job.IsDir ? Resources.DeleteFolder : Resources.DeleteDocument;
                         }
                         else
                         {
                             row.Cells[5].Value = job.Result;
-                            row.Cells[0].Value = job.IsDir ? Properties.Resources.FolderError : Properties.Resources.DocumentError;
+                            row.Cells[0].Value = job.IsDir ? Resources.FolderError : Resources.DocumentError;
                         }
                         return;
                     }
@@ -414,6 +432,7 @@ namespace FileNameReplacer
                 notifyIcon1.ShowBalloonTip(3000, "重命名完成。", $"重命名完成。 {replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Info);
             }
             buttonReplace.Enabled = false;
+            buttonRM.Enabled = false;
         }
 
         private void toolStripButtonP1rm_Click(object sender, EventArgs e)
@@ -539,6 +558,31 @@ namespace FileNameReplacer
             }
             comboBoxSearch.SelectedIndex = 0;
             updateListBoxItemCount();
+        }
+
+        private void buttonRM_Click(object sender, EventArgs e)
+        {
+            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            if (dataFileList.Rows.Count == 0)
+            {
+                MessageBox.Show("文件处理列表是空的，请先进行文件搜索。", "请先指定要操作的文件", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!backgroundWorkerReplace.IsBusy)
+            {
+                searchRunningUI(true, false);
+                if (radioButtonRm.Checked)
+                {
+                    FileAction = 1;
+                    pictureBoxReplace.Image = Resources.FILEDEL;
+                }
+                else
+                {
+                    FileAction = 2;
+                    pictureBoxReplace.Image = Resources.FILEDELR;
+                }
+                backgroundWorkerReplace.RunWorkerAsync();
+            }
         }
     }
 }
