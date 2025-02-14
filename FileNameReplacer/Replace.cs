@@ -20,7 +20,6 @@ namespace FileNameReplacer
         {
             for (int i = 0; i < Jobs.Length; i++)
             {
-                Thread.Sleep(SleepTime);
                 ReplaceJob job = Jobs[i];
                 if (job.FromFullPath() == job.ToFullPath())
                 {
@@ -89,6 +88,7 @@ namespace FileNameReplacer
                 }
                 Jobs[i] = job;
                 OnFileRename?.Invoke(job);
+                Thread.Sleep(SleepTime);
             }
         }
     }

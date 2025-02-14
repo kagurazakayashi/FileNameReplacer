@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace FileNameReplacer
 {
@@ -61,9 +62,12 @@ namespace FileNameReplacer
             }
             toolStripButtonNumDir.Text = dir.ToString();
             toolStripButtonNumFile.Text = file.ToString();
-            //string[] texts = toolStripButtonNumDir.Text.Split(' ');
-            //texts[0] = dataFileList.Rows.Count.ToString();
-            //toolStripButtonNumDir.Text = string.Join(" ", texts);
+            if (dir == 0 && file == 0)
+            {
+                labelUpdateAlert.Text = "没有文件可以操作";
+                labelUpdateAlert.Visible = true;
+                tabControl2.Visible = false;
+            }
         }
 
         private void buttonPreview_Click(object sender, EventArgs e)
@@ -88,7 +92,7 @@ namespace FileNameReplacer
             previewAll();
             if (!backgroundWorkerReplace.IsBusy)
             {
-                searchRunningUI(true, false);
+                searchRunningUI(true, 0);
                 FileAction = 0;
                 pictureBoxReplace.Image = Resources.FILEMOVE;
                 backgroundWorkerReplace.RunWorkerAsync();
@@ -112,7 +116,7 @@ namespace FileNameReplacer
             }
             if (!backgroundWorkerSearch.IsBusy)
             {
-                searchRunningUI(true, true);
+                searchRunningUI(true, -1);
                 dataFileList.Rows.Clear();
                 backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
             }
@@ -200,7 +204,7 @@ namespace FileNameReplacer
 
         private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            searchRunningUI(false, true);
+            searchRunningUI(false, -1);
             notifyIcon1.Visible = true;
             if (e.Cancelled || searchEngine.Status == 2)
             {
@@ -210,8 +214,20 @@ namespace FileNameReplacer
             {
                 notifyIcon1.ShowBalloonTip(3000, "搜索完成。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Info);
             }
-            buttonReplace.Enabled = dataFileList.Rows.Count > 0;
-            buttonRM.Enabled = dataFileList.Rows.Count > 0;
+            //labelUpdateAlert
+            if (dataFileList.Rows.Count > 0)
+            {
+                buttonReplace.Enabled = true;
+                buttonRM.Enabled = true;
+                labelUpdateAlert.Visible = false;
+                tabControl2.Visible = true;
+            }
+            else
+            {
+                labelUpdateAlert.Text = "没有文件可以操作";
+                labelUpdateAlert.Visible = true;
+                tabControl2.Visible = false;
+            }
         }
 
         private void buttonSearchStop_Click(object sender, EventArgs e)
@@ -222,53 +238,77 @@ namespace FileNameReplacer
             }
             if (!backgroundWorkerSearch.IsBusy)
             {
-                searchRunningUI(false, true);
+                searchRunningUI(false, -1);
             }
         }
 
-        private void searchRunningUI(bool isRun, bool isSearch)
+        private void searchRunningUI(bool isRun, Int16 mode)
         {
             this.Cursor = isRun ? Cursors.AppStarting : Cursors.Default;
             UIAction.DisableControls(this, !isRun);
             dataFileList.Cursor = this.Cursor;
-            buttonSearch.Enabled = true;
-            buttonSearch.Visible = buttonSearch.Enabled;
+
+            buttonSearch.Enabled = false;
+            buttonSearch.Visible = true;
             buttonSearchStop.Enabled = false;
-            buttonSearchStop.Visible = buttonSearchStop.Enabled;
-            buttonReplace.Enabled = true;
-            buttonReplace.Visible = buttonReplace.Enabled;
-            buttonRM.Enabled = true;
-            buttonRM.Visible = buttonRM.Enabled;
+            buttonSearchStop.Visible = false;
+
+            buttonReplace.Enabled = false;
+            buttonReplace.Visible = true;
             buttonReplaceStop.Enabled = false;
-            buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
+            buttonReplaceStop.Visible = false;
+
+            buttonRM.Enabled = false;
+            buttonRM.Visible = true;
+            buttonRMStop.Enabled = false;
+            buttonRMStop.Visible = false;
+
             pictureBoxSearch.Visible = false;
             pictureBoxReplace.Visible = false;
             progressBar1.Style = ProgressBarStyle.Blocks;
+
             if (isRun)
             {
                 notifyIcon1.Visible = true;
-                if (isSearch)
+                labelUpdateAlert.Visible = false;
+                if (mode == -1)
                 {
-                    buttonSearch.Enabled = false;
-                    buttonSearch.Visible = buttonSearch.Enabled;
-                    buttonSearchStop.Enabled = true;
-                    buttonSearchStop.Visible = buttonSearchStop.Enabled;
-                    pictureBoxSearch.Visible = true;
-                    progressBar1.Value = progressBar1.Maximum;
                     progressBar1.Style = ProgressBarStyle.Marquee;
-                    buttonReplace.Enabled = false;
-                    buttonRM.Enabled = false;
+                    pictureBoxSearch.Visible = true;
+                    buttonSearch.Visible = false;
+                    buttonSearchStop.Enabled = true;
+                    buttonSearchStop.Visible = true;
                 }
-                else
+                else if (mode == 0)
                 {
-                    buttonReplace.Enabled = false;
-                    buttonReplace.Visible = buttonReplace.Enabled;
-                    buttonReplaceStop.Enabled = true;
-                    buttonReplaceStop.Visible = buttonReplaceStop.Enabled;
                     pictureBoxReplace.Visible = true;
-                    progressBar1.Value = progressBar1.Minimum;
-                    progressBar1.Style = isRun ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
-                    buttonSearch.Enabled = false;
+                    buttonReplace.Visible = false;
+                    buttonReplaceStop.Enabled = true;
+                    buttonReplaceStop.Visible = true;
+                }
+                else if (mode == 1 || mode == 2)
+                {
+                    pictureBoxReplace.Visible = true;
+                    buttonRM.Visible = false;
+                    buttonRMStop.Enabled = true;
+                    buttonRMStop.Visible = true;
+                }
+            }
+            else
+            {
+                labelUpdateAlert.Text = "为了确保数据是最新的\n请重新进行搜索";
+                labelUpdateAlert.Visible = true;
+                tabControl2.Visible = false;
+                buttonSearch.Enabled = true;
+                if (mode == 0)
+                {
+                    buttonReplace.Enabled = true;
+                    buttonReplace.Visible = true;
+                }
+                else if (mode == 1 || mode == 2)
+                {
+                    buttonRM.Enabled = true;
+                    buttonRM.Visible = true;
                 }
             }
         }
@@ -290,7 +330,7 @@ namespace FileNameReplacer
             }
             else if (numericUpDownLimit.Value == numericUpDownLimit.Maximum)
             {
-                numericUpDownLimit.Value = 10000;
+                numericUpDownLimit.Value = 1000;
             }
         }
 
@@ -421,15 +461,15 @@ namespace FileNameReplacer
 
         private void backgroundWorkerReplace_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            searchRunningUI(false, false);
+            searchRunningUI(false, FileAction);
             notifyIcon1.Visible = true;
             if (e.Cancelled || replaceEngine.Status == 2)
             {
-                notifyIcon1.ShowBalloonTip(3000, "重命名已取消。", $"重命名已取消。 {replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Error);
+                notifyIcon1.ShowBalloonTip(3000, "操作已取消。", $"{replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Error);
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(3000, "重命名完成。", $"重命名完成。 {replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Info);
+                notifyIcon1.ShowBalloonTip(3000, "操作完成。", $"{replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Info);
             }
             buttonReplace.Enabled = false;
             buttonRM.Enabled = false;
@@ -562,7 +602,6 @@ namespace FileNameReplacer
 
         private void buttonRM_Click(object sender, EventArgs e)
         {
-            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
             if (dataFileList.Rows.Count == 0)
             {
                 MessageBox.Show("文件处理列表是空的，请先进行文件搜索。", "请先指定要操作的文件", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -570,7 +609,7 @@ namespace FileNameReplacer
             }
             if (!backgroundWorkerReplace.IsBusy)
             {
-                searchRunningUI(true, false);
+                searchRunningUI(true, 0);
                 if (radioButtonRm.Checked)
                 {
                     FileAction = 1;

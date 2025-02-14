@@ -313,6 +313,26 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap InfoTipInline_11_11 {
+            get {
+                object obj = ResourceManager.GetObject("InfoTipInline.11.11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap InfoTipInline_32 {
+            get {
+                object obj = ResourceManager.GetObject("InfoTipInline.32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap OpenFolder {
             get {
                 object obj = ResourceManager.GetObject("OpenFolder", resourceCulture);
@@ -436,6 +456,16 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap TypeDefinition {
             get {
                 object obj = ResourceManager.GetObject("TypeDefinition", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap UpdatePanel {
+            get {
+                object obj = ResourceManager.GetObject("UpdatePanel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

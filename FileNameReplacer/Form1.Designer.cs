@@ -68,8 +68,6 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
-            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.buttonReplaceStop = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonReplace = new System.Windows.Forms.Button();
@@ -77,7 +75,11 @@
             this.checkBoxPreview = new System.Windows.Forms.CheckBox();
             this.buttonPreview = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonRMStop = new System.Windows.Forms.Button();
             this.buttonRM = new System.Windows.Forms.Button();
+            this.labelUpdateAlert = new System.Windows.Forms.Label();
+            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
+            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.labelFilePath = new System.Windows.Forms.Label();
             this.buttonChgRootPath = new System.Windows.Forms.Button();
             this.buttonSearchStop = new System.Windows.Forms.Button();
@@ -89,6 +91,7 @@
             this.checkBoxAFile = new System.Windows.Forms.CheckBox();
             this.checkBoxLimit = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.checkBoxDebug = new System.Windows.Forms.CheckBox();
             this.checkBoxRealWidth = new System.Windows.Forms.CheckBox();
             this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
@@ -97,7 +100,6 @@
             this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAutoWidth = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
-            this.checkBoxDebug = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -136,10 +138,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.progressBar1);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBoxSearch);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBoxReplace);
-            this.splitContainer1.Panel1.Controls.Add(this.progressBar1);
             this.splitContainer1.Panel1.Controls.Add(this.tabControl2);
+            this.splitContainer1.Panel1.Controls.Add(this.labelUpdateAlert);
             this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
             // 
             // splitContainer1.Panel2
@@ -171,9 +174,11 @@
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(277, 241);
             this.tabControl2.TabIndex = 14;
+            this.tabControl2.Visible = false;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.comboBoxReplaceFrom);
             this.tabPage3.Controls.Add(this.buttonReplaceStop);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.buttonReplace);
@@ -182,7 +187,6 @@
             this.tabPage3.Controls.Add(this.checkBoxPreview);
             this.tabPage3.Controls.Add(this.buttonPreview);
             this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.comboBoxReplaceFrom);
             this.tabPage3.Controls.Add(this.comboBoxReplaceTo);
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
@@ -231,6 +235,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.buttonRMStop);
             this.tabPage4.Controls.Add(this.radioButtonRmF);
             this.tabPage4.Controls.Add(this.radioButtonRm);
             this.tabPage4.Controls.Add(this.buttonRM);
@@ -362,7 +367,7 @@
             this.numericUpDownLimit.TabIndex = 12;
             this.numericUpDownLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownLimit.Value = new decimal(new int[] {
-            10000,
+            1000,
             0,
             0,
             0});
@@ -381,7 +386,7 @@
             this.numericUpDownSleep.TabIndex = 14;
             this.numericUpDownSleep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownSleep.Value = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
@@ -572,31 +577,6 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewImageColumn1.Width = 30;
             // 
-            // pictureBoxSearch
-            // 
-            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
-            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 581);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 11;
-            this.pictureBoxSearch.TabStop = false;
-            this.pictureBoxSearch.Visible = false;
-            // 
-            // pictureBoxReplace
-            // 
-            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 566);
-            this.pictureBoxReplace.Name = "pictureBoxReplace";
-            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
-            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxReplace.TabIndex = 12;
-            this.pictureBoxReplace.TabStop = false;
-            this.pictureBoxReplace.Visible = false;
-            // 
             // buttonReplaceStop
             // 
             this.buttonReplaceStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -695,6 +675,22 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "　替换为：";
             // 
+            // buttonRMStop
+            // 
+            this.buttonRMStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRMStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRMStop.Enabled = false;
+            this.buttonRMStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
+            this.buttonRMStop.Location = new System.Drawing.Point(7, 98);
+            this.buttonRMStop.Name = "buttonRMStop";
+            this.buttonRMStop.Size = new System.Drawing.Size(255, 42);
+            this.buttonRMStop.TabIndex = 10;
+            this.buttonRMStop.Text = "停止删除";
+            this.buttonRMStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonRMStop.UseVisualStyleBackColor = true;
+            this.buttonRMStop.Visible = false;
+            // 
             // buttonRM
             // 
             this.buttonRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -709,6 +705,44 @@
             this.buttonRM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonRM.UseVisualStyleBackColor = true;
             this.buttonRM.Click += new System.EventHandler(this.buttonRM_Click);
+            // 
+            // labelUpdateAlert
+            // 
+            this.labelUpdateAlert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUpdateAlert.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_32;
+            this.labelUpdateAlert.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelUpdateAlert.Location = new System.Drawing.Point(-2, 320);
+            this.labelUpdateAlert.Name = "labelUpdateAlert";
+            this.labelUpdateAlert.Size = new System.Drawing.Size(282, 110);
+            this.labelUpdateAlert.TabIndex = 6;
+            this.labelUpdateAlert.Text = "请先进行搜索";
+            this.labelUpdateAlert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBoxSearch
+            // 
+            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
+            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 581);
+            this.pictureBoxSearch.Name = "pictureBoxSearch";
+            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
+            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSearch.TabIndex = 11;
+            this.pictureBoxSearch.TabStop = false;
+            this.pictureBoxSearch.Visible = false;
+            // 
+            // pictureBoxReplace
+            // 
+            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 566);
+            this.pictureBoxReplace.Name = "pictureBoxReplace";
+            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
+            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReplace.TabIndex = 12;
+            this.pictureBoxReplace.TabStop = false;
+            this.pictureBoxReplace.Visible = false;
             // 
             // labelFilePath
             // 
@@ -857,9 +891,24 @@
             this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.label5.Location = new System.Drawing.Point(7, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 21);
+            this.label5.Size = new System.Drawing.Size(145, 21);
             this.label5.TabIndex = 15;
-            this.label5.Text = "　线程等待：";
+            this.label5.Text = "　等待UI刷新ms：";
+            // 
+            // checkBoxDebug
+            // 
+            this.checkBoxDebug.AutoSize = true;
+            this.checkBoxDebug.Checked = true;
+            this.checkBoxDebug.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDebug.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxDebug.Image = global::FileNameReplacer.Properties.Resources.Test;
+            this.checkBoxDebug.Location = new System.Drawing.Point(9, 112);
+            this.checkBoxDebug.Name = "checkBoxDebug";
+            this.checkBoxDebug.Size = new System.Drawing.Size(237, 25);
+            this.checkBoxDebug.TabIndex = 13;
+            this.checkBoxDebug.Text = "不实际操作文件（调试用）";
+            this.checkBoxDebug.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxDebug.UseVisualStyleBackColor = true;
             // 
             // checkBoxRealWidth
             // 
@@ -935,21 +984,6 @@
             this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
             this.toolStripButtonP1cls.Text = "清空";
             this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
-            // 
-            // checkBoxDebug
-            // 
-            this.checkBoxDebug.AutoSize = true;
-            this.checkBoxDebug.Checked = true;
-            this.checkBoxDebug.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDebug.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxDebug.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.checkBoxDebug.Location = new System.Drawing.Point(9, 112);
-            this.checkBoxDebug.Name = "checkBoxDebug";
-            this.checkBoxDebug.Size = new System.Drawing.Size(237, 25);
-            this.checkBoxDebug.TabIndex = 13;
-            this.checkBoxDebug.Text = "不实际操作文件（调试用）";
-            this.checkBoxDebug.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxDebug.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1060,6 +1094,8 @@
         private System.Windows.Forms.RadioButton radioButtonRmF;
         private System.Windows.Forms.RadioButton radioButtonRm;
         private System.Windows.Forms.CheckBox checkBoxDebug;
+        private System.Windows.Forms.Button buttonRMStop;
+        private System.Windows.Forms.Label labelUpdateAlert;
     }
 }
 

@@ -53,7 +53,6 @@ namespace FileNameReplacer
 
         private void SearchDirectory(string dir)
         {
-            Thread.Sleep(SleepTime);
             // 先檢查是否請求取消
             if (ShouldCancel2 || (ShouldCancel != null && ShouldCancel()))
             {
@@ -72,6 +71,7 @@ namespace FileNameReplacer
                         {
                             FileItem item = new FileItem(false, dir, Path.GetFileName(file));
                             OnFileFound?.Invoke(item);
+                            Thread.Sleep(SleepTime);
                             searchCount++;
                             if (CheckSearchLimitExceeded())
                             {
@@ -93,6 +93,7 @@ namespace FileNameReplacer
                         {
                             FileItem item = new FileItem(true, dir, folderName);
                             OnFileFound?.Invoke(item);
+                            Thread.Sleep(SleepTime);
                             searchCount++;
                             if (CheckSearchLimitExceeded())
                             {
