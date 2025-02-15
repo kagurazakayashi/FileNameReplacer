@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace FileNameReplacer
 {
@@ -621,6 +622,16 @@ namespace FileNameReplacer
                     pictureBoxReplace.Image = Resources.FILEDELR;
                 }
                 backgroundWorkerReplace.RunWorkerAsync();
+            }
+        }
+
+        private void buttonMultiple_Click(object sender, EventArgs e)
+        {
+            Form2 formMultiple = new Form2();
+            formMultiple.loadData(comboBoxSearch.Text);
+            if (formMultiple.ShowDialog() == DialogResult.OK)
+            {
+                comboBoxSearch.Text = formMultiple.Value;
             }
         }
     }
