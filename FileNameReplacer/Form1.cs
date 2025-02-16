@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -143,10 +145,18 @@ namespace FileNameReplacer
                 maxSearchLimit = numericUpDownLimit.Value;
                 sleepTime = Convert.ToInt32(numericUpDownSleep.Value);
             });
+            List<string> tPattern = new List<string>();
+            foreach (string patt in searchPattern.Split(';'))
+            {
+                if (patt.Length > 0)
+                {
+                    tPattern.Add(patt);
+                }
+            }
             searchEngine = new Search
             {
                 rootDir = rootPath,
-                searchMode = searchPattern,
+                searchMode = tPattern.ToArray(),
                 searchSubDir = searchSubDir,
                 searchDir = searchDir,
                 searchFile = searchFile,
@@ -233,6 +243,7 @@ namespace FileNameReplacer
 
         private void buttonSearchStop_Click(object sender, EventArgs e)
         {
+            buttonSearchStop.Enabled = false;
             if (backgroundWorkerSearch.IsBusy)
             {
                 backgroundWorkerSearch.CancelAsync();
@@ -478,11 +489,16 @@ namespace FileNameReplacer
 
         private void toolStripButtonP1rm_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataFileList.SelectedRows)
+            if (dataFileList.SelectedCells.Count > 0)
             {
-                if (!row.IsNewRow)
+                HashSet<int> rowsToDelete = new HashSet<int>();
+                foreach (DataGridViewCell cell in dataFileList.SelectedCells)
                 {
-                    dataFileList.Rows.Remove(row);
+                    rowsToDelete.Add(cell.RowIndex);
+                }
+                foreach (int rowIndex in rowsToDelete.OrderByDescending(x => x))
+                {
+                    dataFileList.Rows.RemoveAt(rowIndex);
                 }
             }
         }
@@ -598,7 +614,7 @@ namespace FileNameReplacer
                 comboBoxSearch.Items.Add("*" + ext);
             }
             comboBoxSearch.SelectedIndex = 0;
-            updateListBoxItemCount();
+            //updateListBoxItemCount();
         }
 
         private void buttonRM_Click(object sender, EventArgs e)
@@ -632,6 +648,26 @@ namespace FileNameReplacer
             if (formMultiple.ShowDialog() == DialogResult.OK)
             {
                 comboBoxSearch.Text = formMultiple.Value;
+            }
+        }
+
+        private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            const string url = "https://github.com/kagurazakayashi/FileNameReplacer";
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show($"无法打开网址 {url}\n{ex.Message}\n按[确定]将网址复制到剪贴板。", "无法打开网址", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    Clipboard.SetText(url);
+                }
             }
         }
     }

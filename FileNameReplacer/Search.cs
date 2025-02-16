@@ -10,7 +10,7 @@ namespace FileNameReplacer
     class Search
     {
         public string rootDir = ""; // 搜尋的根目錄
-        public string searchMode = "*"; // 搜尋模式
+        public string[] searchMode = new string[] { }; // 搜尋模式
         public bool searchSubDir = false; // 是否搜尋子目錄
         public bool searchDir = false; // 是否包含資料夾
         public bool searchFile = true; // 是否包含檔案
@@ -67,16 +67,19 @@ namespace FileNameReplacer
                     foreach (string file in files)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(file);
-                        if (IsMatch(fileName, searchMode))
+                        foreach (string m in searchMode)
                         {
-                            FileItem item = new FileItem(false, dir, Path.GetFileName(file));
-                            OnFileFound?.Invoke(item);
-                            Thread.Sleep(SleepTime);
-                            searchCount++;
-                            if (CheckSearchLimitExceeded())
+                            if (IsMatch(fileName, m))
                             {
-                                ShouldCancel2 = true;
-                                return;
+                                FileItem item = new FileItem(false, dir, Path.GetFileName(file));
+                                OnFileFound?.Invoke(item);
+                                Thread.Sleep(SleepTime);
+                                searchCount++;
+                                if (CheckSearchLimitExceeded())
+                                {
+                                    ShouldCancel2 = true;
+                                    return;
+                                }
                             }
                         }
                     }
@@ -89,16 +92,19 @@ namespace FileNameReplacer
                     foreach (string subDir in directories)
                     {
                         string folderName = Path.GetFileName(subDir);
-                        if (IsMatch(folderName, searchMode))
+                        foreach (string m in searchMode)
                         {
-                            FileItem item = new FileItem(true, dir, folderName);
-                            OnFileFound?.Invoke(item);
-                            Thread.Sleep(SleepTime);
-                            searchCount++;
-                            if (CheckSearchLimitExceeded())
+                            if (IsMatch(folderName, m))
                             {
-                                ShouldCancel2 = true;
-                                return;
+                                FileItem item = new FileItem(true, dir, folderName);
+                                OnFileFound?.Invoke(item);
+                                Thread.Sleep(SleepTime);
+                                searchCount++;
+                                if (CheckSearchLimitExceeded())
+                                {
+                                    ShouldCancel2 = true;
+                                    return;
+                                }
                             }
                         }
                         if (searchSubDir)
