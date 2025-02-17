@@ -35,8 +35,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.buttonReplaceExchange = new System.Windows.Forms.Button();
             this.comboBoxReplaceFrom = new System.Windows.Forms.ComboBox();
+            this.buttonReplaceExchange = new System.Windows.Forms.Button();
             this.comboBoxReplaceTo = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.radioButtonRmF = new System.Windows.Forms.RadioButton();
@@ -80,6 +80,7 @@
             this.buttonRMStop = new System.Windows.Forms.Button();
             this.buttonRM = new System.Windows.Forms.Button();
             this.labelUpdateAlert = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.labelFilePath = new System.Windows.Forms.Label();
             this.buttonMultiple = new System.Windows.Forms.Button();
             this.buttonChgRootPath = new System.Windows.Forms.Button();
@@ -91,6 +92,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxAFile = new System.Windows.Forms.CheckBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.checkBoxLimit = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxDebug = new System.Windows.Forms.CheckBox();
@@ -102,7 +105,6 @@
             this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAutoWidth = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
-            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -199,6 +201,18 @@
             this.tabPage3.Text = "批量文件名替换";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // comboBoxReplaceFrom
+            // 
+            this.comboBoxReplaceFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxReplaceFrom.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxReplaceFrom.FormattingEnabled = true;
+            this.comboBoxReplaceFrom.Location = new System.Drawing.Point(7, 36);
+            this.comboBoxReplaceFrom.Name = "comboBoxReplaceFrom";
+            this.comboBoxReplaceFrom.Size = new System.Drawing.Size(255, 27);
+            this.comboBoxReplaceFrom.TabIndex = 1;
+            this.comboBoxReplaceFrom.TextChanged += new System.EventHandler(this.comboBoxReplaceFrom_TextChanged);
+            // 
             // buttonReplaceExchange
             // 
             this.buttonReplaceExchange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -211,18 +225,6 @@
             this.buttonReplaceExchange.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonReplaceExchange.UseVisualStyleBackColor = true;
             this.buttonReplaceExchange.Click += new System.EventHandler(this.buttonReplaceExchange_Click);
-            // 
-            // comboBoxReplaceFrom
-            // 
-            this.comboBoxReplaceFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxReplaceFrom.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxReplaceFrom.FormattingEnabled = true;
-            this.comboBoxReplaceFrom.Location = new System.Drawing.Point(7, 36);
-            this.comboBoxReplaceFrom.Name = "comboBoxReplaceFrom";
-            this.comboBoxReplaceFrom.Size = new System.Drawing.Size(255, 27);
-            this.comboBoxReplaceFrom.TabIndex = 1;
-            this.comboBoxReplaceFrom.TextChanged += new System.EventHandler(this.comboBoxReplaceFrom_TextChanged);
             // 
             // comboBoxReplaceTo
             // 
@@ -288,6 +290,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.linkLabel1);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.labelFilePath);
             this.tabPage1.Controls.Add(this.buttonMultiple);
@@ -340,6 +343,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.linkLabel2);
             this.tabPage2.Controls.Add(this.linkLabelGitHub);
             this.tabPage2.Controls.Add(this.numericUpDownLimit);
             this.tabPage2.Controls.Add(this.numericUpDownSleep);
@@ -400,6 +404,7 @@
             // 
             // dataFileList
             // 
+            this.dataFileList.AllowDrop = true;
             this.dataFileList.AllowUserToAddRows = false;
             this.dataFileList.AllowUserToResizeRows = false;
             this.dataFileList.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -422,6 +427,9 @@
             this.dataFileList.Size = new System.Drawing.Size(712, 629);
             this.dataFileList.TabIndex = 2;
             this.dataFileList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataFileList_RowsRemoved);
+            this.dataFileList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragDrop);
+            this.dataFileList.DragEnter += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragEnter);
+            this.dataFileList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataFileList_KeyDown);
             // 
             // Dir
             // 
@@ -749,8 +757,21 @@
             this.labelUpdateAlert.Name = "labelUpdateAlert";
             this.labelUpdateAlert.Size = new System.Drawing.Size(282, 110);
             this.labelUpdateAlert.TabIndex = 6;
-            this.labelUpdateAlert.Text = "请先进行搜索";
+            this.labelUpdateAlert.Text = "请先进行搜索\r\n或将文件拖入到右侧列表中";
             this.labelUpdateAlert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabel1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabel1.Location = new System.Drawing.Point(154, 145);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(63, 21);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "通配符 ";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // labelFilePath
             // 
@@ -871,9 +892,9 @@
             this.label6.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.label6.Location = new System.Drawing.Point(7, 145);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(201, 21);
+            this.label6.Size = new System.Drawing.Size(148, 21);
             this.label6.TabIndex = 6;
-            this.label6.Text = "　以 ; 分隔，支持 * 通配符";
+            this.label6.Text = "　以 ; 分隔，支持 *";
             // 
             // label4
             // 
@@ -901,6 +922,35 @@
             this.checkBoxAFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxAFile.UseVisualStyleBackColor = true;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabel2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabel2.Location = new System.Drawing.Point(62, 48);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(64, 21);
+            this.linkLabel2.TabIndex = 16;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "UI刷新 ";
+            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabelGitHub
+            // 
+            this.linkLabelGitHub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelGitHub.AutoSize = true;
+            this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
+            this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.linkLabelGitHub.Location = new System.Drawing.Point(182, 252);
+            this.linkLabelGitHub.Name = "linkLabelGitHub";
+            this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
+            this.linkLabelGitHub.TabIndex = 16;
+            this.linkLabelGitHub.TabStop = true;
+            this.linkLabelGitHub.Text = "　GitHub";
+            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
+            // 
             // checkBoxLimit
             // 
             this.checkBoxLimit.AutoSize = true;
@@ -910,9 +960,9 @@
             this.checkBoxLimit.Image = global::FileNameReplacer.Properties.Resources.FullTextStopList;
             this.checkBoxLimit.Location = new System.Drawing.Point(9, 12);
             this.checkBoxLimit.Name = "checkBoxLimit";
-            this.checkBoxLimit.Size = new System.Drawing.Size(125, 25);
+            this.checkBoxLimit.Size = new System.Drawing.Size(109, 25);
             this.checkBoxLimit.TabIndex = 11;
-            this.checkBoxLimit.Text = "结果限量：";
+            this.checkBoxLimit.Text = "结果限量";
             this.checkBoxLimit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxLimit.UseVisualStyleBackColor = true;
             this.checkBoxLimit.CheckedChanged += new System.EventHandler(this.checkBoxLimit_CheckedChanged);
@@ -924,9 +974,9 @@
             this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.label5.Location = new System.Drawing.Point(7, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 21);
+            this.label5.Size = new System.Drawing.Size(58, 21);
             this.label5.TabIndex = 15;
-            this.label5.Text = "　等待UI刷新ms：";
+            this.label5.Text = "　等待";
             // 
             // checkBoxDebug
             // 
@@ -1015,19 +1065,6 @@
             this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
             this.toolStripButtonP1cls.Text = "清空";
             this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
-            // 
-            // linkLabelGitHub
-            // 
-            this.linkLabelGitHub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(196, 247);
-            this.linkLabelGitHub.Name = "linkLabelGitHub";
-            this.linkLabelGitHub.Size = new System.Drawing.Size(64, 21);
-            this.linkLabelGitHub.TabIndex = 16;
-            this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "GitHub";
-            this.linkLabelGitHub.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // Form1
             // 
@@ -1143,6 +1180,8 @@
         private System.Windows.Forms.Button buttonMultiple;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 

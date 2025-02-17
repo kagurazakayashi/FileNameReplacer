@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\OpenWebSite.png" />
     <None Include="Resources\MultiView.png" />
     <None Include="Resources\Cancel.png" />
     <None Include="Resources\CheckedOutForEdit.png" />

@@ -183,33 +183,38 @@ namespace FileNameReplacer
             }
         }
 
+        private void addFileItemToList(FileItem fileItem)
+        {
+            int dataLen = dataFileList.Rows.Count;
+            dataFileList.Rows.Add(); //dataGridView
+            dataFileList.Rows[dataLen].Cells[1].Value = UIAction.NormalizePath(fileItem.inPath);
+            dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
+            dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
+            dataFileList.Rows[dataLen].Cells[6].Value = dataLen.ToString();
+            if (fileItem.isDir)
+            {
+                dataFileList.Rows[dataLen].Cells[0].Value = Resources.FolderClosed;
+                int num = int.Parse(toolStripButtonNumDir.Text) + 1;
+                toolStripButtonNumDir.Text = num.ToString();
+                if (searchEngine != null) searchEngine.TotalC[0] = num;
+            }
+            else
+            {
+                int num = int.Parse(toolStripButtonNumDir.Text) + 1;
+                toolStripButtonNumFile.Text = num.ToString();
+                if (searchEngine != null) searchEngine.TotalC[1] = num;
+            }
+            if (checkBoxRealWidth.Checked)
+            {
+                dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+        }
+
         private void backgroundWorkerSearch_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.UserState is FileItem fileItem)
             {
-                int dataLen = dataFileList.Rows.Count;
-                dataFileList.Rows.Add(); //dataGridView
-                dataFileList.Rows[dataLen].Cells[1].Value = UIAction.NormalizePath(fileItem.inPath);
-                dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
-                dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
-                dataFileList.Rows[dataLen].Cells[6].Value = dataLen.ToString();
-                if (fileItem.isDir)
-                {
-                    dataFileList.Rows[dataLen].Cells[0].Value = Resources.FolderClosed;
-                    int num = int.Parse(toolStripButtonNumDir.Text) + 1;
-                    toolStripButtonNumDir.Text = num.ToString();
-                    searchEngine.TotalC[0] = num;
-                }
-                else
-                {
-                    int num = int.Parse(toolStripButtonNumDir.Text) + 1;
-                    toolStripButtonNumFile.Text = num.ToString();
-                    searchEngine.TotalC[1] = num;
-                }
-                if (checkBoxRealWidth.Checked)
-                {
-                    dataFileList.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                }
+                addFileItemToList(fileItem);
             }
         }
 
@@ -277,6 +282,7 @@ namespace FileNameReplacer
 
             pictureBoxSearch.Visible = false;
             pictureBoxReplace.Visible = false;
+            tabControl2.Visible = true;
             progressBar1.Style = ProgressBarStyle.Blocks;
 
             if (isRun)
@@ -308,16 +314,19 @@ namespace FileNameReplacer
             }
             else
             {
-                labelUpdateAlert.Text = "为了确保数据是最新的\n请重新进行搜索";
-                labelUpdateAlert.Visible = true;
-                tabControl2.Visible = false;
+                if (mode != -1)
+                {
+                    labelUpdateAlert.Text = "为了确保数据是最新的\n请重新进行搜索";
+                    labelUpdateAlert.Visible = true;
+                    tabControl2.Visible = false;
+                }
                 buttonSearch.Enabled = true;
-                if (mode == 0)
+                if (mode == -1 || mode == 0)
                 {
                     buttonReplace.Enabled = true;
                     buttonReplace.Visible = true;
                 }
-                else if (mode == 1 || mode == 2)
+                if (mode == -1 || mode == 1 || mode == 2)
                 {
                     buttonRM.Enabled = true;
                     buttonRM.Visible = true;
@@ -669,6 +678,73 @@ namespace FileNameReplacer
                     Clipboard.SetText(url);
                 }
             }
+        }
+
+        private void dataFileList_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void dataFileList_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files)
+            {
+                bool isDir = Directory.Exists(file);
+                char separator = Path.DirectorySeparatorChar;
+                string[] pathUnit = file.Split(separator);
+                string fileName = pathUnit.Last();
+                string[] newParts = pathUnit.Take(pathUnit.Length - 1).ToArray();
+                string inPath = string.Join(Path.DirectorySeparatorChar.ToString(), newParts);
+                FileItem fileItem = new FileItem(isDir, inPath, fileName);
+                addFileItemToList(fileItem);
+            }
+            searchRunningUI(false, -1);
+            labelUpdateAlert.Visible = false;
+            tabControl2.Visible = true;
+        }
+
+        private void dataFileList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                toolStripButtonP1rm_Click(sender, e);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string[] info = new string[]
+            {
+                "在文件系统中，* 通配符通常用于匹配文件名中的任意字符序列。例如：",
+                "[*.txt] 匹配所有以 .txt 结尾的文件（如 file.txt、notes.txt）。",
+                "[doc*] 匹配所有以 doc 开头的文件（如 document.docx、doc1.pdf）。",
+                "[*2018*] 匹配所有名称中包含 2018 的文件（如 log-2018-05-01.log、2018-01.zip）。",
+                "[*one.*] 匹配所有文件名以 one 结尾的文件（如 a1one.log、b2one.txt）。",
+                "[*.*] 匹配所有带扩展名的文件名（如 file.txt、image.jpg）。",
+                "[*] 匹配所有文件。"
+            };
+            MessageBox.Show(string.Join("\r\n", info), "通配符( * )使用说明", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string[] info = new string[]
+            {
+                "前台绘制图形画面需要一些时间才能完成，没有足够时间刷新的话，将会导致程序看起来没有相应。",
+                "这项设置会让后台工作等待前台绘制图形画面指定毫秒数，避免出现没有相应。",
+                "建议设置区间：1-100 ，高速电脑建议值：1，低速电脑建议值：10。",
+                "更小的值：可以让任务更快地完成，但是图形画面可能卡顿甚至程序在完成前停止响应。",
+                "更大的值：可以更流畅地实时查看进度和文件列表，但是任务完成时间会延长。"
+            };
+            MessageBox.Show(string.Join("\r\n", info), "等待 UI 刷新配置说明", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
