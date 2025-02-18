@@ -33,57 +33,34 @@
             this.comboBoxRootPath = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
+            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.comboBoxReplaceFrom = new System.Windows.Forms.ComboBox();
-            this.buttonReplaceExchange = new System.Windows.Forms.Button();
-            this.comboBoxReplaceTo = new System.Windows.Forms.ComboBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.radioButtonRmF = new System.Windows.Forms.RadioButton();
-            this.radioButtonRm = new System.Windows.Forms.RadioButton();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBoxSearch = new System.Windows.Forms.ComboBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.numericUpDownLimit = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownSleep = new System.Windows.Forms.NumericUpDown();
-            this.dataFileList = new System.Windows.Forms.DataGridView();
-            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isDir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.labelTableWait = new System.Windows.Forms.Label();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerReplace = new System.ComponentModel.BackgroundWorker();
-            this.timerAutoWidth = new System.Windows.Forms.Timer(this.components);
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.timerLoad = new System.Windows.Forms.Timer(this.components);
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
-            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.buttonReplaceStop = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonReplace = new System.Windows.Forms.Button();
             this.checkBoxCase = new System.Windows.Forms.CheckBox();
+            this.buttonReplaceExchange = new System.Windows.Forms.Button();
             this.checkBoxPreview = new System.Windows.Forms.CheckBox();
             this.buttonPreview = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxReplaceTo = new System.Windows.Forms.ComboBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.buttonRMStop = new System.Windows.Forms.Button();
+            this.radioButtonRmF = new System.Windows.Forms.RadioButton();
+            this.radioButtonRm = new System.Windows.Forms.RadioButton();
             this.buttonRM = new System.Windows.Forms.Button();
             this.labelUpdateAlert = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.labelFilePath = new System.Windows.Forms.Label();
             this.buttonMultiple = new System.Windows.Forms.Button();
             this.buttonChgRootPath = new System.Windows.Forms.Button();
+            this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.buttonSearchStop = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -92,23 +69,48 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxAFile = new System.Windows.Forms.CheckBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
+            this.numericUpDownLimit = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownSleep = new System.Windows.Forms.NumericUpDown();
             this.checkBoxLimit = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxDebug = new System.Windows.Forms.CheckBox();
             this.checkBoxRealWidth = new System.Windows.Forms.CheckBox();
-            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataFileList = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAutoWidth = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
+            this.labelTableWait = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerReplace = new System.ComponentModel.BackgroundWorker();
+            this.timerAutoWidth = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timerLoad = new System.Windows.Forms.Timer(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isDir = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -119,8 +121,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSleep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxRootPath
@@ -168,6 +168,31 @@
             this.progressBar1.Size = new System.Drawing.Size(272, 23);
             this.progressBar1.TabIndex = 7;
             // 
+            // pictureBoxSearch
+            // 
+            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
+            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 581);
+            this.pictureBoxSearch.Name = "pictureBoxSearch";
+            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
+            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSearch.TabIndex = 11;
+            this.pictureBoxSearch.TabStop = false;
+            this.pictureBoxSearch.Visible = false;
+            // 
+            // pictureBoxReplace
+            // 
+            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 566);
+            this.pictureBoxReplace.Name = "pictureBoxReplace";
+            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
+            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReplace.TabIndex = 12;
+            this.pictureBoxReplace.TabStop = false;
+            this.pictureBoxReplace.Visible = false;
+            // 
             // tabControl2
             // 
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -213,410 +238,6 @@
             this.comboBoxReplaceFrom.TabIndex = 1;
             this.comboBoxReplaceFrom.TextChanged += new System.EventHandler(this.comboBoxReplaceFrom_TextChanged);
             // 
-            // buttonReplaceExchange
-            // 
-            this.buttonReplaceExchange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReplaceExchange.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReplaceExchange.Location = new System.Drawing.Point(211, 64);
-            this.buttonReplaceExchange.Name = "buttonReplaceExchange";
-            this.buttonReplaceExchange.Size = new System.Drawing.Size(51, 27);
-            this.buttonReplaceExchange.TabIndex = 9;
-            this.buttonReplaceExchange.Text = "↑↓";
-            this.buttonReplaceExchange.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonReplaceExchange.UseVisualStyleBackColor = true;
-            this.buttonReplaceExchange.Click += new System.EventHandler(this.buttonReplaceExchange_Click);
-            // 
-            // comboBoxReplaceTo
-            // 
-            this.comboBoxReplaceTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxReplaceTo.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxReplaceTo.FormattingEnabled = true;
-            this.comboBoxReplaceTo.Location = new System.Drawing.Point(7, 92);
-            this.comboBoxReplaceTo.Name = "comboBoxReplaceTo";
-            this.comboBoxReplaceTo.Size = new System.Drawing.Size(255, 27);
-            this.comboBoxReplaceTo.TabIndex = 3;
-            this.comboBoxReplaceTo.TextChanged += new System.EventHandler(this.comboBoxReplaceTo_TextChanged);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.buttonRMStop);
-            this.tabPage4.Controls.Add(this.radioButtonRmF);
-            this.tabPage4.Controls.Add(this.radioButtonRm);
-            this.tabPage4.Controls.Add(this.buttonRM);
-            this.tabPage4.Location = new System.Drawing.Point(4, 30);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(269, 207);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "批量删除";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRmF
-            // 
-            this.radioButtonRmF.AutoSize = true;
-            this.radioButtonRmF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radioButtonRmF.Location = new System.Drawing.Point(20, 53);
-            this.radioButtonRmF.Name = "radioButtonRmF";
-            this.radioButtonRmF.Size = new System.Drawing.Size(92, 25);
-            this.radioButtonRmF.TabIndex = 9;
-            this.radioButtonRmF.Text = "永久删除";
-            this.radioButtonRmF.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRm
-            // 
-            this.radioButtonRm.AutoSize = true;
-            this.radioButtonRm.Checked = true;
-            this.radioButtonRm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radioButtonRm.Location = new System.Drawing.Point(20, 22);
-            this.radioButtonRm.Name = "radioButtonRm";
-            this.radioButtonRm.Size = new System.Drawing.Size(124, 25);
-            this.radioButtonRm.TabIndex = 9;
-            this.radioButtonRm.TabStop = true;
-            this.radioButtonRm.Text = "移动到回收站";
-            this.radioButtonRm.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(277, 314);
-            this.tabControl1.TabIndex = 13;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.linkLabel1);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.labelFilePath);
-            this.tabPage1.Controls.Add(this.buttonMultiple);
-            this.tabPage1.Controls.Add(this.buttonChgRootPath);
-            this.tabPage1.Controls.Add(this.comboBoxSearch);
-            this.tabPage1.Controls.Add(this.buttonSearchStop);
-            this.tabPage1.Controls.Add(this.comboBoxRootPath);
-            this.tabPage1.Controls.Add(this.buttonSearch);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.checkBoxASub);
-            this.tabPage1.Controls.Add(this.checkBoxADir);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.checkBoxAFile);
-            this.tabPage1.Location = new System.Drawing.Point(4, 30);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(269, 280);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "文件搜索";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(187, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 25);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "测试";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // comboBoxSearch
-            // 
-            this.comboBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxSearch.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSearch.FormattingEnabled = true;
-            this.comboBoxSearch.Items.AddRange(new object[] {
-            "*.*",
-            "*"});
-            this.comboBoxSearch.Location = new System.Drawing.Point(7, 115);
-            this.comboBoxSearch.Name = "comboBoxSearch";
-            this.comboBoxSearch.Size = new System.Drawing.Size(256, 27);
-            this.comboBoxSearch.TabIndex = 1;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.linkLabel2);
-            this.tabPage2.Controls.Add(this.linkLabelGitHub);
-            this.tabPage2.Controls.Add(this.numericUpDownLimit);
-            this.tabPage2.Controls.Add(this.numericUpDownSleep);
-            this.tabPage2.Controls.Add(this.checkBoxLimit);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.checkBoxDebug);
-            this.tabPage2.Controls.Add(this.checkBoxRealWidth);
-            this.tabPage2.Location = new System.Drawing.Point(4, 30);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(269, 280);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "高级设置";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownLimit
-            // 
-            this.numericUpDownLimit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.numericUpDownLimit.Location = new System.Drawing.Point(156, 11);
-            this.numericUpDownLimit.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.numericUpDownLimit.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownLimit.Name = "numericUpDownLimit";
-            this.numericUpDownLimit.Size = new System.Drawing.Size(109, 29);
-            this.numericUpDownLimit.TabIndex = 12;
-            this.numericUpDownLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownLimit.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDownSleep
-            // 
-            this.numericUpDownSleep.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.numericUpDownSleep.Location = new System.Drawing.Point(156, 46);
-            this.numericUpDownSleep.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownSleep.Name = "numericUpDownSleep";
-            this.numericUpDownSleep.Size = new System.Drawing.Size(109, 29);
-            this.numericUpDownSleep.TabIndex = 14;
-            this.numericUpDownSleep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownSleep.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // dataFileList
-            // 
-            this.dataFileList.AllowDrop = true;
-            this.dataFileList.AllowUserToAddRows = false;
-            this.dataFileList.AllowUserToResizeRows = false;
-            this.dataFileList.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataFileList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataFileList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataFileList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFileList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnIcon,
-            this.Dir,
-            this.Source,
-            this.NewName,
-            this.isDir,
-            this.Status,
-            this.ID});
-            this.dataFileList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataFileList.Location = new System.Drawing.Point(0, 28);
-            this.dataFileList.Name = "dataFileList";
-            this.dataFileList.ReadOnly = true;
-            this.dataFileList.RowTemplate.Height = 23;
-            this.dataFileList.Size = new System.Drawing.Size(712, 629);
-            this.dataFileList.TabIndex = 2;
-            this.dataFileList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataFileList_RowsRemoved);
-            this.dataFileList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragDrop);
-            this.dataFileList.DragEnter += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragEnter);
-            this.dataFileList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataFileList_KeyDown);
-            // 
-            // Dir
-            // 
-            this.Dir.HeaderText = "文件(夹)所在路径";
-            this.Dir.MinimumWidth = 120;
-            this.Dir.Name = "Dir";
-            this.Dir.ReadOnly = true;
-            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dir.Width = 230;
-            // 
-            // Source
-            // 
-            this.Source.HeaderText = "原文件(夹)名";
-            this.Source.MinimumWidth = 100;
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Source.Width = 140;
-            // 
-            // NewName
-            // 
-            this.NewName.HeaderText = "新文件(夹)名";
-            this.NewName.MinimumWidth = 100;
-            this.NewName.Name = "NewName";
-            this.NewName.ReadOnly = true;
-            this.NewName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NewName.Width = 140;
-            // 
-            // isDir
-            // 
-            this.isDir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.isDir.HeaderText = "";
-            this.isDir.MinimumWidth = 2;
-            this.isDir.Name = "isDir";
-            this.isDir.ReadOnly = true;
-            this.isDir.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isDir.Visible = false;
-            this.isDir.Width = 2;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "执行结果";
-            this.Status.MinimumWidth = 120;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Status.Width = 120;
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID.HeaderText = "";
-            this.ID.MinimumWidth = 2;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID.Visible = false;
-            this.ID.Width = 2;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonNumDir,
-            this.toolStripButtonNumFile,
-            this.toolStripSeparator3,
-            this.toolStripButtonP1rm,
-            this.toolStripSeparator1,
-            this.toolStripButtonP1cp,
-            this.toolStripSeparator2,
-            this.toolStripButtonAutoWidth,
-            this.toolStripSeparator4,
-            this.toolStripButtonP1cls});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(712, 28);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
-            // 
-            // labelTableWait
-            // 
-            this.labelTableWait.BackColor = System.Drawing.SystemColors.Window;
-            this.labelTableWait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTableWait.Location = new System.Drawing.Point(0, 0);
-            this.labelTableWait.Name = "labelTableWait";
-            this.labelTableWait.Size = new System.Drawing.Size(712, 657);
-            this.labelTableWait.TabIndex = 3;
-            this.labelTableWait.Text = "请稍候";
-            this.labelTableWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.Description = "选择要查找文件(夹)的根目录";
-            this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // backgroundWorkerSearch
-            // 
-            this.backgroundWorkerSearch.WorkerReportsProgress = true;
-            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
-            this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
-            this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
-            this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
-            // 
-            // backgroundWorkerReplace
-            // 
-            this.backgroundWorkerReplace.WorkerReportsProgress = true;
-            this.backgroundWorkerReplace.WorkerSupportsCancellation = true;
-            this.backgroundWorkerReplace.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerReplace_DoWork);
-            this.backgroundWorkerReplace.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerReplace_ProgressChanged);
-            this.backgroundWorkerReplace.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerReplace_RunWorkerCompleted);
-            // 
-            // timerAutoWidth
-            // 
-            this.timerAutoWidth.Interval = 500;
-            this.timerAutoWidth.Tick += new System.EventHandler(this.timerAutoWidth_Tick);
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "文件名批量替换工具：正在工作中";
-            this.notifyIcon1.BalloonTipClosed += new System.EventHandler(this.notifyIcon1_BalloonTipClosed);
-            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
-            // 
-            // timerLoad
-            // 
-            this.timerLoad.Interval = 500;
-            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewImageColumn1.Width = 30;
-            // 
-            // pictureBoxSearch
-            // 
-            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
-            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 581);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 11;
-            this.pictureBoxSearch.TabStop = false;
-            this.pictureBoxSearch.Visible = false;
-            // 
-            // pictureBoxReplace
-            // 
-            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 566);
-            this.pictureBoxReplace.Name = "pictureBoxReplace";
-            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
-            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxReplace.TabIndex = 12;
-            this.pictureBoxReplace.TabStop = false;
-            this.pictureBoxReplace.Visible = false;
-            // 
             // buttonReplaceStop
             // 
             this.buttonReplaceStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -652,9 +273,9 @@
             this.buttonReplace.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonReplace.Enabled = false;
             this.buttonReplace.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
-            this.buttonReplace.Location = new System.Drawing.Point(6, 156);
+            this.buttonReplace.Location = new System.Drawing.Point(7, 156);
             this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(256, 42);
+            this.buttonReplace.Size = new System.Drawing.Size(255, 42);
             this.buttonReplace.TabIndex = 9;
             this.buttonReplace.Text = "开始重命名(&R)";
             this.buttonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -674,6 +295,19 @@
             this.checkBoxCase.Text = "区分大小写";
             this.checkBoxCase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxCase.UseVisualStyleBackColor = true;
+            // 
+            // buttonReplaceExchange
+            // 
+            this.buttonReplaceExchange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReplaceExchange.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReplaceExchange.Location = new System.Drawing.Point(211, 64);
+            this.buttonReplaceExchange.Name = "buttonReplaceExchange";
+            this.buttonReplaceExchange.Size = new System.Drawing.Size(51, 27);
+            this.buttonReplaceExchange.TabIndex = 9;
+            this.buttonReplaceExchange.Text = "↑↓";
+            this.buttonReplaceExchange.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonReplaceExchange.UseVisualStyleBackColor = true;
+            this.buttonReplaceExchange.Click += new System.EventHandler(this.buttonReplaceExchange_Click);
             // 
             // checkBoxPreview
             // 
@@ -715,6 +349,32 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "　替换为：";
             // 
+            // comboBoxReplaceTo
+            // 
+            this.comboBoxReplaceTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxReplaceTo.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxReplaceTo.FormattingEnabled = true;
+            this.comboBoxReplaceTo.Location = new System.Drawing.Point(7, 92);
+            this.comboBoxReplaceTo.Name = "comboBoxReplaceTo";
+            this.comboBoxReplaceTo.Size = new System.Drawing.Size(255, 27);
+            this.comboBoxReplaceTo.TabIndex = 3;
+            this.comboBoxReplaceTo.TextChanged += new System.EventHandler(this.comboBoxReplaceTo_TextChanged);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.buttonRMStop);
+            this.tabPage4.Controls.Add(this.radioButtonRmF);
+            this.tabPage4.Controls.Add(this.radioButtonRm);
+            this.tabPage4.Controls.Add(this.buttonRM);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(269, 215);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "批量删除";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // buttonRMStop
             // 
             this.buttonRMStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -731,6 +391,30 @@
             this.buttonRMStop.UseVisualStyleBackColor = true;
             this.buttonRMStop.Visible = false;
             this.buttonRMStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
+            // 
+            // radioButtonRmF
+            // 
+            this.radioButtonRmF.AutoSize = true;
+            this.radioButtonRmF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radioButtonRmF.Location = new System.Drawing.Point(20, 53);
+            this.radioButtonRmF.Name = "radioButtonRmF";
+            this.radioButtonRmF.Size = new System.Drawing.Size(92, 25);
+            this.radioButtonRmF.TabIndex = 9;
+            this.radioButtonRmF.Text = "永久删除";
+            this.radioButtonRmF.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonRm
+            // 
+            this.radioButtonRm.AutoSize = true;
+            this.radioButtonRm.Checked = true;
+            this.radioButtonRm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radioButtonRm.Location = new System.Drawing.Point(20, 22);
+            this.radioButtonRm.Name = "radioButtonRm";
+            this.radioButtonRm.Size = new System.Drawing.Size(124, 25);
+            this.radioButtonRm.TabIndex = 9;
+            this.radioButtonRm.TabStop = true;
+            this.radioButtonRm.Text = "移动到回收站";
+            this.radioButtonRm.UseVisualStyleBackColor = true;
             // 
             // buttonRM
             // 
@@ -760,6 +444,43 @@
             this.labelUpdateAlert.Text = "请先进行搜索\r\n或将文件拖入到右侧列表中";
             this.labelUpdateAlert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(277, 314);
+            this.tabControl1.TabIndex = 13;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.linkLabel1);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.labelFilePath);
+            this.tabPage1.Controls.Add(this.buttonMultiple);
+            this.tabPage1.Controls.Add(this.buttonChgRootPath);
+            this.tabPage1.Controls.Add(this.comboBoxSearch);
+            this.tabPage1.Controls.Add(this.buttonSearchStop);
+            this.tabPage1.Controls.Add(this.comboBoxRootPath);
+            this.tabPage1.Controls.Add(this.buttonSearch);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.checkBoxASub);
+            this.tabPage1.Controls.Add(this.checkBoxADir);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.checkBoxAFile);
+            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(269, 280);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "文件搜索";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -772,6 +493,20 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "通配符 ";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(187, 241);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 25);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "测试";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelFilePath
             // 
@@ -812,6 +547,20 @@
             this.buttonChgRootPath.UseVisualStyleBackColor = true;
             this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
             // 
+            // comboBoxSearch
+            // 
+            this.comboBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSearch.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSearch.FormattingEnabled = true;
+            this.comboBoxSearch.Items.AddRange(new object[] {
+            "*.*",
+            "*"});
+            this.comboBoxSearch.Location = new System.Drawing.Point(8, 115);
+            this.comboBoxSearch.Name = "comboBoxSearch";
+            this.comboBoxSearch.Size = new System.Drawing.Size(255, 27);
+            this.comboBoxSearch.TabIndex = 1;
+            // 
             // buttonSearchStop
             // 
             this.buttonSearchStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -819,9 +568,9 @@
             this.buttonSearchStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSearchStop.Enabled = false;
             this.buttonSearchStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
-            this.buttonSearchStop.Location = new System.Drawing.Point(7, 232);
+            this.buttonSearchStop.Location = new System.Drawing.Point(8, 232);
             this.buttonSearchStop.Name = "buttonSearchStop";
-            this.buttonSearchStop.Size = new System.Drawing.Size(255, 42);
+            this.buttonSearchStop.Size = new System.Drawing.Size(254, 42);
             this.buttonSearchStop.TabIndex = 9;
             this.buttonSearchStop.Text = "停止搜索(&S)";
             this.buttonSearchStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -835,9 +584,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSearch.Image = global::FileNameReplacer.Properties.Resources.SearchFolderOpened;
-            this.buttonSearch.Location = new System.Drawing.Point(6, 232);
+            this.buttonSearch.Location = new System.Drawing.Point(7, 232);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(257, 42);
+            this.buttonSearch.Size = new System.Drawing.Size(256, 42);
             this.buttonSearch.TabIndex = 8;
             this.buttonSearch.Text = "开始搜索(&S)";
             this.buttonSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -922,13 +671,31 @@
             this.checkBoxAFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxAFile.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.linkLabel2);
+            this.tabPage2.Controls.Add(this.linkLabelGitHub);
+            this.tabPage2.Controls.Add(this.numericUpDownLimit);
+            this.tabPage2.Controls.Add(this.numericUpDownSleep);
+            this.tabPage2.Controls.Add(this.checkBoxLimit);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.checkBoxDebug);
+            this.tabPage2.Controls.Add(this.checkBoxRealWidth);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(269, 288);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "高级设置";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // linkLabel2
             // 
             this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
             this.linkLabel2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.linkLabel2.Location = new System.Drawing.Point(62, 48);
+            this.linkLabel2.Location = new System.Drawing.Point(62, 56);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(64, 21);
             this.linkLabel2.TabIndex = 16;
@@ -943,13 +710,56 @@
             this.linkLabelGitHub.AutoSize = true;
             this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
             this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(182, 252);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(182, 260);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
             this.linkLabelGitHub.TabIndex = 16;
             this.linkLabelGitHub.TabStop = true;
             this.linkLabelGitHub.Text = "　GitHub";
             this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
+            // 
+            // numericUpDownLimit
+            // 
+            this.numericUpDownLimit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.numericUpDownLimit.Location = new System.Drawing.Point(156, 11);
+            this.numericUpDownLimit.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.numericUpDownLimit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownLimit.Name = "numericUpDownLimit";
+            this.numericUpDownLimit.Size = new System.Drawing.Size(109, 29);
+            this.numericUpDownLimit.TabIndex = 12;
+            this.numericUpDownLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownLimit.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDownSleep
+            // 
+            this.numericUpDownSleep.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.numericUpDownSleep.Location = new System.Drawing.Point(156, 46);
+            this.numericUpDownSleep.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownSleep.Name = "numericUpDownSleep";
+            this.numericUpDownSleep.Size = new System.Drawing.Size(109, 29);
+            this.numericUpDownSleep.TabIndex = 14;
+            this.numericUpDownSleep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownSleep.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // checkBoxLimit
             // 
@@ -1004,6 +814,197 @@
             this.checkBoxRealWidth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxRealWidth.UseVisualStyleBackColor = true;
             // 
+            // dataFileList
+            // 
+            this.dataFileList.AllowDrop = true;
+            this.dataFileList.AllowUserToAddRows = false;
+            this.dataFileList.AllowUserToResizeRows = false;
+            this.dataFileList.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataFileList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataFileList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataFileList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnIcon,
+            this.Dir,
+            this.Source,
+            this.NewName,
+            this.isDir,
+            this.Status,
+            this.ID});
+            this.dataFileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataFileList.Location = new System.Drawing.Point(0, 28);
+            this.dataFileList.Name = "dataFileList";
+            this.dataFileList.ReadOnly = true;
+            this.dataFileList.RowTemplate.Height = 23;
+            this.dataFileList.Size = new System.Drawing.Size(712, 629);
+            this.dataFileList.TabIndex = 2;
+            this.dataFileList.Visible = false;
+            this.dataFileList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataFileList_RowsAdded);
+            this.dataFileList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataFileList_RowsRemoved);
+            this.dataFileList.SelectionChanged += new System.EventHandler(this.dataFileList_SelectionChanged);
+            this.dataFileList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragDrop);
+            this.dataFileList.DragEnter += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragEnter);
+            this.dataFileList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataFileList_KeyDown);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonNumDir,
+            this.toolStripButtonNumFile,
+            this.toolStripSeparator3,
+            this.toolStripButtonP1rm,
+            this.toolStripSeparator1,
+            this.toolStripButtonP1cp,
+            this.toolStripSeparator2,
+            this.toolStripButtonAutoWidth,
+            this.toolStripSeparator4,
+            this.toolStripButtonP1cls});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(712, 28);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonNumDir
+            // 
+            this.toolStripButtonNumDir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
+            this.toolStripButtonNumDir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNumDir.Name = "toolStripButtonNumDir";
+            this.toolStripButtonNumDir.Size = new System.Drawing.Size(39, 25);
+            this.toolStripButtonNumDir.Text = "0";
+            this.toolStripButtonNumDir.ToolTipText = "要处理的文件夹数量";
+            // 
+            // toolStripButtonNumFile
+            // 
+            this.toolStripButtonNumFile.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.toolStripButtonNumFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNumFile.Name = "toolStripButtonNumFile";
+            this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
+            this.toolStripButtonNumFile.Text = "0";
+            this.toolStripButtonNumFile.ToolTipText = "要处理的文件数量";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonP1rm
+            // 
+            this.toolStripButtonP1rm.Enabled = false;
+            this.toolStripButtonP1rm.Image = global::FileNameReplacer.Properties.Resources.DeleteDocument;
+            this.toolStripButtonP1rm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1rm.Name = "toolStripButtonP1rm";
+            this.toolStripButtonP1rm.Size = new System.Drawing.Size(110, 25);
+            this.toolStripButtonP1rm.Text = "移除选定项";
+            this.toolStripButtonP1rm.ToolTipText = "移除选定项后，此项不做处理，不会影响原文件。";
+            this.toolStripButtonP1rm.Click += new System.EventHandler(this.toolStripButtonP1rm_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonP1cp
+            // 
+            this.toolStripButtonP1cp.Enabled = false;
+            this.toolStripButtonP1cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
+            this.toolStripButtonP1cp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1cp.Name = "toolStripButtonP1cp";
+            this.toolStripButtonP1cp.Size = new System.Drawing.Size(126, 25);
+            this.toolStripButtonP1cp.Text = "复制到剪贴板";
+            this.toolStripButtonP1cp.Click += new System.EventHandler(this.toolStripButtonP1cp_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonAutoWidth
+            // 
+            this.toolStripButtonAutoWidth.Enabled = false;
+            this.toolStripButtonAutoWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
+            this.toolStripButtonAutoWidth.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAutoWidth.Name = "toolStripButtonAutoWidth";
+            this.toolStripButtonAutoWidth.Size = new System.Drawing.Size(126, 25);
+            this.toolStripButtonAutoWidth.Text = "自动调整列宽";
+            this.toolStripButtonAutoWidth.ToolTipText = "根据内容自动调整列宽，清空后再按可以还原到默认值。";
+            this.toolStripButtonAutoWidth.Click += new System.EventHandler(this.toolStripButtonAutoWidth_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonP1cls
+            // 
+            this.toolStripButtonP1cls.Enabled = false;
+            this.toolStripButtonP1cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
+            this.toolStripButtonP1cls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1cls.Name = "toolStripButtonP1cls";
+            this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
+            this.toolStripButtonP1cls.Text = "清空";
+            this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
+            // 
+            // labelTableWait
+            // 
+            this.labelTableWait.BackColor = System.Drawing.SystemColors.Window;
+            this.labelTableWait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTableWait.Location = new System.Drawing.Point(0, 0);
+            this.labelTableWait.Name = "labelTableWait";
+            this.labelTableWait.Size = new System.Drawing.Size(712, 657);
+            this.labelTableWait.TabIndex = 3;
+            this.labelTableWait.Text = "请稍候";
+            this.labelTableWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.Description = "选择要查找文件(夹)的根目录";
+            this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
+            // 
+            // backgroundWorkerSearch
+            // 
+            this.backgroundWorkerSearch.WorkerReportsProgress = true;
+            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
+            this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
+            this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
+            this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
+            // 
+            // backgroundWorkerReplace
+            // 
+            this.backgroundWorkerReplace.WorkerReportsProgress = true;
+            this.backgroundWorkerReplace.WorkerSupportsCancellation = true;
+            this.backgroundWorkerReplace.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerReplace_DoWork);
+            this.backgroundWorkerReplace.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerReplace_ProgressChanged);
+            this.backgroundWorkerReplace.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerReplace_RunWorkerCompleted);
+            // 
+            // timerAutoWidth
+            // 
+            this.timerAutoWidth.Interval = 500;
+            this.timerAutoWidth.Tick += new System.EventHandler(this.timerAutoWidth_Tick);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "文件名批量替换工具：正在工作中";
+            this.notifyIcon1.BalloonTipClosed += new System.EventHandler(this.notifyIcon1_BalloonTipClosed);
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            // 
+            // timerLoad
+            // 
+            this.timerLoad.Interval = 1000;
+            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewImageColumn1.Width = 30;
+            // 
             // ColumnIcon
             // 
             this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1014,57 +1015,66 @@
             this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColumnIcon.Width = 30;
             // 
-            // toolStripButtonNumDir
+            // Dir
             // 
-            this.toolStripButtonNumDir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
-            this.toolStripButtonNumDir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNumDir.Name = "toolStripButtonNumDir";
-            this.toolStripButtonNumDir.Size = new System.Drawing.Size(39, 25);
-            this.toolStripButtonNumDir.Text = "0";
+            this.Dir.HeaderText = "文件(夹)所在路径";
+            this.Dir.MinimumWidth = 100;
+            this.Dir.Name = "Dir";
+            this.Dir.ReadOnly = true;
+            this.Dir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dir.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Dir.Width = 180;
             // 
-            // toolStripButtonNumFile
+            // Source
             // 
-            this.toolStripButtonNumFile.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.toolStripButtonNumFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNumFile.Name = "toolStripButtonNumFile";
-            this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
-            this.toolStripButtonNumFile.Text = "0";
+            this.Source.HeaderText = "原文件(夹)名";
+            this.Source.MinimumWidth = 100;
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
+            this.Source.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Source.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Source.Width = 150;
             // 
-            // toolStripButtonP1rm
+            // NewName
             // 
-            this.toolStripButtonP1rm.Image = global::FileNameReplacer.Properties.Resources.DeleteDocument;
-            this.toolStripButtonP1rm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1rm.Name = "toolStripButtonP1rm";
-            this.toolStripButtonP1rm.Size = new System.Drawing.Size(184, 25);
-            this.toolStripButtonP1rm.Text = "移除选定项(不要处理)";
-            this.toolStripButtonP1rm.Click += new System.EventHandler(this.toolStripButtonP1rm_Click);
+            this.NewName.HeaderText = "新文件(夹)名";
+            this.NewName.MinimumWidth = 100;
+            this.NewName.Name = "NewName";
+            this.NewName.ReadOnly = true;
+            this.NewName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NewName.Width = 150;
             // 
-            // toolStripButtonP1cp
+            // isDir
             // 
-            this.toolStripButtonP1cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
-            this.toolStripButtonP1cp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1cp.Name = "toolStripButtonP1cp";
-            this.toolStripButtonP1cp.Size = new System.Drawing.Size(126, 25);
-            this.toolStripButtonP1cp.Text = "复制到剪贴板";
-            this.toolStripButtonP1cp.Click += new System.EventHandler(this.toolStripButtonP1cp_Click);
+            this.isDir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.isDir.HeaderText = "";
+            this.isDir.MinimumWidth = 2;
+            this.isDir.Name = "isDir";
+            this.isDir.ReadOnly = true;
+            this.isDir.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isDir.Visible = false;
+            this.isDir.Width = 2;
             // 
-            // toolStripButtonAutoWidth
+            // Status
             // 
-            this.toolStripButtonAutoWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
-            this.toolStripButtonAutoWidth.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAutoWidth.Name = "toolStripButtonAutoWidth";
-            this.toolStripButtonAutoWidth.Size = new System.Drawing.Size(126, 25);
-            this.toolStripButtonAutoWidth.Text = "自动调整列宽";
-            this.toolStripButtonAutoWidth.Click += new System.EventHandler(this.toolStripButtonAutoWidth_Click);
+            this.Status.HeaderText = "执行结果";
+            this.Status.MinimumWidth = 130;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Status.Width = 130;
             // 
-            // toolStripButtonP1cls
+            // ID
             // 
-            this.toolStripButtonP1cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
-            this.toolStripButtonP1cls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1cls.Name = "toolStripButtonP1cls";
-            this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
-            this.toolStripButtonP1cls.Text = "清空";
-            this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID.HeaderText = "";
+            this.ID.MinimumWidth = 2;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Visible = false;
+            this.ID.Width = 2;
             // 
             // Form1
             // 
@@ -1084,6 +1094,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -1099,8 +1111,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1154,13 +1164,6 @@
         private System.Windows.Forms.Timer timerAutoWidth;
         private System.Windows.Forms.Label labelTableWait;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NewName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isDir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1182,6 +1185,13 @@
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isDir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }
 

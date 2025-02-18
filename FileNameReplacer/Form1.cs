@@ -4,18 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace FileNameReplacer
 {
@@ -24,6 +15,7 @@ namespace FileNameReplacer
         private Search searchEngine;
         private Replace replaceEngine;
         private Int16 FileAction = 0;
+        private Dictionary<string, int> defaultColumnWidths = new Dictionary<string, int>();
 
         public Form1()
         {
@@ -70,12 +62,21 @@ namespace FileNameReplacer
                 labelUpdateAlert.Text = "没有文件可以操作";
                 labelUpdateAlert.Visible = true;
                 tabControl2.Visible = false;
+                toolStripButtonP1cls.Enabled = false;
+                toolStripButtonAutoWidth.Text = "还原默认列宽";
+            }
+            else
+            {
+                toolStripButtonP1cls.Enabled = true;
+                toolStripButtonAutoWidth.Text = "自动调整列宽";
             }
         }
 
         private void buttonPreview_Click(object sender, EventArgs e)
         {
             if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            comboBoxReplaceFrom.Items.Insert(0, comboBoxReplaceFrom.Text);
+            comboBoxReplaceTo.Items.Insert(0, comboBoxReplaceTo.Text);
             previewAll();
         }
 
@@ -92,6 +93,8 @@ namespace FileNameReplacer
                 MessageBox.Show("替换前后的内容是一样的。", "无效替换", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            comboBoxReplaceFrom.Items.Insert(0, comboBoxReplaceFrom.Text);
+            comboBoxReplaceTo.Items.Insert(0, comboBoxReplaceTo.Text);
             previewAll();
             if (!backgroundWorkerReplace.IsBusy)
             {
@@ -115,10 +118,26 @@ namespace FileNameReplacer
             }
             if (comboBoxSearch.Text.Length == 0)
             {
-                comboBoxSearch.Text = "*";
+                string info = "您还没有指定要搜索什么，是要直接列出所有文件吗？";
+                MessageBoxIcon icon = MessageBoxIcon.Question;
+                if (checkBoxASub.Checked)
+                {
+                    info += "\r\n注：如果文件夹中的文件量较大，会导致大量文件或文件夹导入。";
+                    icon = MessageBoxIcon.Warning;
+                }
+                if (MessageBox.Show(info, "请确定搜索内容", MessageBoxButtons.YesNo, icon) == DialogResult.Yes)
+                {
+                    comboBoxSearch.Text = "*";
+                }
+                else
+                {
+                    return;
+                }
             }
             if (!backgroundWorkerSearch.IsBusy)
             {
+                comboBoxRootPath.Items.Insert(0, comboBoxRootPath.Text);
+                comboBoxSearch.Items.Insert(0, comboBoxRootPath.Text);
                 searchRunningUI(true, -1);
                 dataFileList.Rows.Clear();
                 backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
@@ -316,7 +335,7 @@ namespace FileNameReplacer
             {
                 if (mode != -1)
                 {
-                    labelUpdateAlert.Text = "为了确保数据是最新的\n请重新进行搜索";
+                    labelUpdateAlert.Text = "为了确保数据是最新的\r\n请重新进行搜索";
                     labelUpdateAlert.Visible = true;
                     tabControl2.Visible = false;
                 }
@@ -523,6 +542,8 @@ namespace FileNameReplacer
         private void toolStripButtonP1cls_Click(object sender, EventArgs e)
         {
             dataFileList.Rows.Clear();
+            toolStripButtonP1cls.Enabled = false;
+            toolStripButtonAutoWidth.Text = "还原默认列宽";
         }
 
         private void dataFileList_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -556,11 +577,21 @@ namespace FileNameReplacer
         private void toolStripButtonAutoWidth_Click(object sender, EventArgs e)
         {
             int len = dataFileList.Rows.Count;
-            if (len == 0) return;
+            if (len == 0)
+            {
+                foreach (DataGridViewColumn column in dataFileList.Columns)
+                {
+                    if (defaultColumnWidths.ContainsKey(column.Name))
+                    {
+                        column.Width = defaultColumnWidths[column.Name];
+                    }
+                }
+                return;
+            }
             if (len > 1000)
             {
                 DialogResult result = MessageBox.Show(
-                    $"调整 {len.ToString()} 行的宽度可能需要一些时间，\n操作过程中程序可能会暂停响应，请等待。\n是否继续？",
+                    $"调整 {len.ToString()} 行的宽度可能需要一些时间，\r\n操作过程中程序可能会暂停响应，请等待。\r\n是否继续？",
                     "自动调整表格列宽度",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -606,6 +637,12 @@ namespace FileNameReplacer
         private void timerLoad_Tick(object sender, EventArgs e)
         {
             timerLoad.Enabled = false;
+            foreach (DataGridViewColumn column in dataFileList.Columns)
+            {
+                defaultColumnWidths[column.Name] = column.Width;
+            }
+            toolStripButtonAutoWidth.Enabled = true;
+            dataFileList.Visible = true;
             string[] paths = SysInfo.GetCommonUserFolders();
             foreach (var path in paths)
             {
@@ -616,14 +653,13 @@ namespace FileNameReplacer
             {
                 comboBoxRootPath.Items.Add(drive);
             }
+            comboBoxRootPath.Items.Add(string.Join(";", drives));
             comboBoxRootPath.SelectedIndex = 0;
             string[] extensions = SysInfo.GetRegisteredFileExtensions();
             foreach (var ext in extensions)
             {
                 comboBoxSearch.Items.Add("*" + ext);
             }
-            comboBoxSearch.SelectedIndex = 0;
-            //updateListBoxItemCount();
         }
 
         private void buttonRM_Click(object sender, EventArgs e)
@@ -673,7 +709,7 @@ namespace FileNameReplacer
             }
             catch (Exception ex)
             {
-                if (MessageBox.Show($"无法打开网址 {url}\n{ex.Message}\n按[确定]将网址复制到剪贴板。", "无法打开网址", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show($"无法打开网址 {url}\r\n{ex.Message}\r\n按[确定]将网址复制到剪贴板。", "无法打开网址", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     Clipboard.SetText(url);
                 }
@@ -745,6 +781,42 @@ namespace FileNameReplacer
                 "更大的值：可以更流畅地实时查看进度和文件列表，但是任务完成时间会延长。"
             };
             MessageBox.Show(string.Join("\r\n", info), "等待 UI 刷新配置说明", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dataFileList_SelectionChanged(object sender, EventArgs e)
+        {
+            string tip = "";
+            DataObject clipboardContent = dataFileList.GetClipboardContent();
+            if (clipboardContent != null)
+            {
+                tip = clipboardContent.GetText();
+                if (!toolStripButtonP1cp.Enabled)
+                {
+                    toolStripButtonP1cp.Enabled = true;
+                    toolStripButtonP1rm.Enabled = true;
+                }
+            }
+            if (tip.Length == 0)
+            {
+                if (toolStripButtonP1cp.Enabled)
+                {
+                    toolStripButtonP1cp.Enabled = false;
+                    toolStripButtonP1rm.Enabled = false;
+                    toolStripButtonP1cp.ToolTipText = "选中一个或多个单元格，可以复制文本内容到剪贴板。";
+                }
+            }
+            else
+            {
+                if (toolStripButtonP1cp.ToolTipText != tip)
+                {
+                    toolStripButtonP1cp.ToolTipText = tip;
+                }
+            }
+        }
+
+        private void dataFileList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (!toolStripButtonP1cls.Enabled) toolStripButtonP1cls.Enabled = true;
         }
     }
 }
