@@ -1,4 +1,5 @@
 ﻿using FileNameReplacer.Properties;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,16 @@ namespace FileNameReplacer
         public Form1()
         {
             InitializeComponent();
+            SystemEvents.UserPreferenceChanged += (sender, e) =>
+            {
+                checkBoxDark.Checked = DarkMode.AutoDarkMode(this);
+            };
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             timerLoad.Enabled = true;
+            checkBoxDark.Checked = DarkMode.AutoDarkMode(this);
         }
 
         private void buttonChgRootPath_Click(object sender, EventArgs e)
@@ -817,6 +823,18 @@ namespace FileNameReplacer
         private void dataFileList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             if (!toolStripButtonP1cls.Enabled) toolStripButtonP1cls.Enabled = true;
+        }
+
+        private void checkBoxDark_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxDark.Checked)
+            {
+                DarkMode.ApplyDarkMode(this);
+            }
+            else
+            {
+                DarkMode.ApplyLightMode(this);
+            }
         }
     }
 }
