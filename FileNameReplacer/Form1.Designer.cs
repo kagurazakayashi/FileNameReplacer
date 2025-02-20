@@ -33,23 +33,67 @@
             this.comboBoxRootPath = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
+            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.comboBoxReplaceFrom = new System.Windows.Forms.ComboBox();
+            this.buttonReplaceStop = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonReplace = new System.Windows.Forms.Button();
+            this.checkBoxCase = new System.Windows.Forms.CheckBox();
             this.buttonReplaceExchange = new System.Windows.Forms.Button();
+            this.checkBoxPreview = new System.Windows.Forms.CheckBox();
+            this.buttonPreview = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.comboBoxReplaceTo = new System.Windows.Forms.ComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.linkLabelNumName = new System.Windows.Forms.LinkLabel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonRMStop = new System.Windows.Forms.Button();
             this.radioButtonRmF = new System.Windows.Forms.RadioButton();
             this.radioButtonRm = new System.Windows.Forms.RadioButton();
+            this.buttonRM = new System.Windows.Forms.Button();
+            this.labelUpdateAlert = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.linkLabelSearch = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.labelFilePath = new System.Windows.Forms.Label();
+            this.buttonMultiple = new System.Windows.Forms.Button();
+            this.buttonChgRootPath = new System.Windows.Forms.Button();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.buttonSearchStop = new System.Windows.Forms.Button();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxASub = new System.Windows.Forms.CheckBox();
+            this.checkBoxADir = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxAFile = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.linkLabelSleep = new System.Windows.Forms.LinkLabel();
+            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.numericUpDownLimit = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownSleep = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxLimit = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBoxDark = new System.Windows.Forms.CheckBox();
+            this.checkBoxDebug = new System.Windows.Forms.CheckBox();
+            this.checkBoxRealWidth = new System.Windows.Forms.CheckBox();
             this.dataFileList = new System.Windows.Forms.DataGridView();
+            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,10 +101,16 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonAutoWidth = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
             this.labelTableWait = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
@@ -69,49 +119,18 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
-            this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
-            this.buttonReplaceStop = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonReplace = new System.Windows.Forms.Button();
-            this.checkBoxCase = new System.Windows.Forms.CheckBox();
-            this.checkBoxPreview = new System.Windows.Forms.CheckBox();
-            this.buttonPreview = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.buttonRMStop = new System.Windows.Forms.Button();
-            this.buttonRM = new System.Windows.Forms.Button();
-            this.labelUpdateAlert = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.labelFilePath = new System.Windows.Forms.Label();
-            this.buttonMultiple = new System.Windows.Forms.Button();
-            this.buttonChgRootPath = new System.Windows.Forms.Button();
-            this.buttonSearchStop = new System.Windows.Forms.Button();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxASub = new System.Windows.Forms.CheckBox();
-            this.checkBoxADir = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBoxAFile = new System.Windows.Forms.CheckBox();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
-            this.checkBoxLimit = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBoxDark = new System.Windows.Forms.CheckBox();
-            this.checkBoxDebug = new System.Windows.Forms.CheckBox();
-            this.checkBoxRealWidth = new System.Windows.Forms.CheckBox();
-            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonAutoWidth = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonP1cls = new System.Windows.Forms.ToolStripButton();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,8 +139,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSleep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxRootPath
@@ -156,7 +173,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.dataFileList);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.labelTableWait);
-            this.splitContainer1.Size = new System.Drawing.Size(1004, 661);
+            this.splitContainer1.Size = new System.Drawing.Size(1004, 692);
             this.splitContainer1.SplitterDistance = 284;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -164,21 +181,47 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(5, 630);
+            this.progressBar1.Location = new System.Drawing.Point(5, 661);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(272, 23);
             this.progressBar1.TabIndex = 7;
+            // 
+            // pictureBoxSearch
+            // 
+            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
+            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 612);
+            this.pictureBoxSearch.Name = "pictureBoxSearch";
+            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
+            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSearch.TabIndex = 11;
+            this.pictureBoxSearch.TabStop = false;
+            this.pictureBoxSearch.Visible = false;
+            // 
+            // pictureBoxReplace
+            // 
+            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 597);
+            this.pictureBoxReplace.Name = "pictureBoxReplace";
+            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
+            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReplace.TabIndex = 12;
+            this.pictureBoxReplace.TabStop = false;
+            this.pictureBoxReplace.Visible = false;
             // 
             // tabControl2
             // 
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(3, 319);
+            this.tabControl2.Location = new System.Drawing.Point(3, 297);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(274, 241);
+            this.tabControl2.Size = new System.Drawing.Size(274, 294);
             this.tabControl2.TabIndex = 14;
             this.tabControl2.Visible = false;
             // 
@@ -197,9 +240,9 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(266, 207);
+            this.tabPage3.Size = new System.Drawing.Size(266, 260);
             this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "批量文件名替换";
+            this.tabPage3.Text = "文件名替换";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // comboBoxReplaceFrom
@@ -214,6 +257,64 @@
             this.comboBoxReplaceFrom.TabIndex = 1;
             this.comboBoxReplaceFrom.TextChanged += new System.EventHandler(this.comboBoxReplaceFrom_TextChanged);
             // 
+            // buttonReplaceStop
+            // 
+            this.buttonReplaceStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReplaceStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReplaceStop.Enabled = false;
+            this.buttonReplaceStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
+            this.buttonReplaceStop.Location = new System.Drawing.Point(8, 212);
+            this.buttonReplaceStop.Name = "buttonReplaceStop";
+            this.buttonReplaceStop.Size = new System.Drawing.Size(251, 42);
+            this.buttonReplaceStop.TabIndex = 9;
+            this.buttonReplaceStop.Text = "停止重命名(&R)";
+            this.buttonReplaceStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonReplaceStop.UseVisualStyleBackColor = true;
+            this.buttonReplaceStop.Visible = false;
+            this.buttonReplaceStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Image = global::FileNameReplacer.Properties.Resources.StringRegistryValue;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label2.Location = new System.Drawing.Point(6, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "　原字符：";
+            // 
+            // buttonReplace
+            // 
+            this.buttonReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReplace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReplace.Enabled = false;
+            this.buttonReplace.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
+            this.buttonReplace.Location = new System.Drawing.Point(7, 212);
+            this.buttonReplace.Name = "buttonReplace";
+            this.buttonReplace.Size = new System.Drawing.Size(252, 42);
+            this.buttonReplace.TabIndex = 9;
+            this.buttonReplace.Text = "开始重命名(&R)";
+            this.buttonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
+            // 
+            // checkBoxCase
+            // 
+            this.checkBoxCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxCase.AutoSize = true;
+            this.checkBoxCase.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxCase.Image = global::FileNameReplacer.Properties.Resources.StringData;
+            this.checkBoxCase.Location = new System.Drawing.Point(138, 11);
+            this.checkBoxCase.Name = "checkBoxCase";
+            this.checkBoxCase.Size = new System.Drawing.Size(125, 25);
+            this.checkBoxCase.TabIndex = 3;
+            this.checkBoxCase.Text = "区分大小写";
+            this.checkBoxCase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxCase.UseVisualStyleBackColor = true;
+            // 
             // buttonReplaceExchange
             // 
             this.buttonReplaceExchange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -227,6 +328,47 @@
             this.buttonReplaceExchange.UseVisualStyleBackColor = true;
             this.buttonReplaceExchange.Click += new System.EventHandler(this.buttonReplaceExchange_Click);
             // 
+            // checkBoxPreview
+            // 
+            this.checkBoxPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxPreview.AutoSize = true;
+            this.checkBoxPreview.Checked = true;
+            this.checkBoxPreview.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxPreview.Image = global::FileNameReplacer.Properties.Resources.StringData;
+            this.checkBoxPreview.Location = new System.Drawing.Point(8, 177);
+            this.checkBoxPreview.Name = "checkBoxPreview";
+            this.checkBoxPreview.Size = new System.Drawing.Size(109, 25);
+            this.checkBoxPreview.TabIndex = 3;
+            this.checkBoxPreview.Text = "实时预览";
+            this.checkBoxPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxPreview.UseVisualStyleBackColor = true;
+            // 
+            // buttonPreview
+            // 
+            this.buttonPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPreview.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonPreview.Image = global::FileNameReplacer.Properties.Resources.Test;
+            this.buttonPreview.Location = new System.Drawing.Point(137, 170);
+            this.buttonPreview.Name = "buttonPreview";
+            this.buttonPreview.Size = new System.Drawing.Size(122, 36);
+            this.buttonPreview.TabIndex = 9;
+            this.buttonPreview.Text = "预览(&P)";
+            this.buttonPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonPreview.UseVisualStyleBackColor = true;
+            this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Image = global::FileNameReplacer.Properties.Resources.ReplaceAll;
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label3.Location = new System.Drawing.Point(6, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 21);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "　替换为：";
+            // 
             // comboBoxReplaceTo
             // 
             this.comboBoxReplaceTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -239,6 +381,205 @@
             this.comboBoxReplaceTo.TabIndex = 3;
             this.comboBoxReplaceTo.TextChanged += new System.EventHandler(this.comboBoxReplaceTo_TextChanged);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label6);
+            this.tabPage5.Controls.Add(this.button2);
+            this.tabPage5.Controls.Add(this.button3);
+            this.tabPage5.Controls.Add(this.checkBox2);
+            this.tabPage5.Controls.Add(this.button4);
+            this.tabPage5.Controls.Add(this.checkBox1);
+            this.tabPage5.Controls.Add(this.numericUpDown2);
+            this.tabPage5.Controls.Add(this.numericUpDown1);
+            this.tabPage5.Controls.Add(this.comboBox2);
+            this.tabPage5.Controls.Add(this.comboBox1);
+            this.tabPage5.Controls.Add(this.linkLabelNumName);
+            this.tabPage5.Controls.Add(this.label9);
+            this.tabPage5.Controls.Add(this.label8);
+            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Location = new System.Drawing.Point(4, 30);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(266, 260);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "批量命名";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Enabled = false;
+            this.button2.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
+            this.button2.Location = new System.Drawing.Point(8, 212);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(251, 42);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "停止重命名(&R)";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.Enabled = false;
+            this.button3.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
+            this.button3.Location = new System.Drawing.Point(7, 212);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(252, 42);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "开始重命名(&R)";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox2.Image = global::FileNameReplacer.Properties.Resources.StringData;
+            this.checkBox2.Location = new System.Drawing.Point(8, 177);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(109, 25);
+            this.checkBox2.TabIndex = 14;
+            this.checkBox2.Text = "实时预览";
+            this.checkBox2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Image = global::FileNameReplacer.Properties.Resources.Test;
+            this.button4.Location = new System.Drawing.Point(137, 170);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(122, 36);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "预览(&P)";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox1.Image = global::FileNameReplacer.Properties.Resources.AddMember_16x;
+            this.checkBox1.Location = new System.Drawing.Point(8, 102);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(166, 25);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "序号位数自动补0";
+            this.checkBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(184, 101);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(75, 29);
+            this.numericUpDown2.TabIndex = 12;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(139, 66);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 29);
+            this.numericUpDown1.TabIndex = 12;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "123...789",
+            "1,10,11,...",
+            "123...DEF",
+            "ABCDE",
+            "ΑΒΓΔΕ",
+            "αβγδε",
+            "一二三四五",
+            "壹贰叁肆伍",
+            "甲乙丙丁戊",
+            "①②③④⑤",
+            "----- .----"});
+            this.comboBox2.Location = new System.Drawing.Point(131, 136);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(128, 27);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "#",
+            "*",
+            "*#"});
+            this.comboBox1.Location = new System.Drawing.Point(8, 33);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(251, 27);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // linkLabelNumName
+            // 
+            this.linkLabelNumName.AutoSize = true;
+            this.linkLabelNumName.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabelNumName.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabelNumName.Location = new System.Drawing.Point(28, 9);
+            this.linkLabelNumName.Name = "linkLabelNumName";
+            this.linkLabelNumName.Size = new System.Drawing.Size(111, 21);
+            this.linkLabelNumName.TabIndex = 11;
+            this.linkLabelNumName.TabStop = true;
+            this.linkLabelNumName.Text = "新文件名规则 ";
+            this.linkLabelNumName.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabelNumName.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNumName_LinkClicked);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Image = global::FileNameReplacer.Properties.Resources.Numeric_16x;
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label9.Location = new System.Drawing.Point(4, 137);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(106, 21);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "　编号方式：";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Image = global::FileNameReplacer.Properties.Resources.StartPoint_16x;
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label8.Location = new System.Drawing.Point(7, 68);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(122, 21);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "　计数开始于：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Image = global::FileNameReplacer.Properties.Resources.StringRegistryValue;
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label7.Location = new System.Drawing.Point(7, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 21);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "　";
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.buttonRMStop);
@@ -248,20 +589,39 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 30);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(266, 207);
+            this.tabPage4.Size = new System.Drawing.Size(266, 260);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "批量删除";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonRMStop
+            // 
+            this.buttonRMStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRMStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRMStop.Enabled = false;
+            this.buttonRMStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
+            this.buttonRMStop.Location = new System.Drawing.Point(8, 212);
+            this.buttonRMStop.Name = "buttonRMStop";
+            this.buttonRMStop.Size = new System.Drawing.Size(251, 42);
+            this.buttonRMStop.TabIndex = 10;
+            this.buttonRMStop.Text = "停止删除";
+            this.buttonRMStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonRMStop.UseVisualStyleBackColor = true;
+            this.buttonRMStop.Visible = false;
+            this.buttonRMStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
             // 
             // radioButtonRmF
             // 
             this.radioButtonRmF.AutoSize = true;
             this.radioButtonRmF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radioButtonRmF.Location = new System.Drawing.Point(20, 53);
+            this.radioButtonRmF.Image = global::FileNameReplacer.Properties.Resources.Cancel;
+            this.radioButtonRmF.Location = new System.Drawing.Point(51, 104);
             this.radioButtonRmF.Name = "radioButtonRmF";
-            this.radioButtonRmF.Size = new System.Drawing.Size(92, 25);
+            this.radioButtonRmF.Size = new System.Drawing.Size(108, 25);
             this.radioButtonRmF.TabIndex = 9;
             this.radioButtonRmF.Text = "永久删除";
+            this.radioButtonRmF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButtonRmF.UseVisualStyleBackColor = true;
             // 
             // radioButtonRm
@@ -269,13 +629,43 @@
             this.radioButtonRm.AutoSize = true;
             this.radioButtonRm.Checked = true;
             this.radioButtonRm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.radioButtonRm.Location = new System.Drawing.Point(20, 22);
+            this.radioButtonRm.Image = global::FileNameReplacer.Properties.Resources.RECYFULL;
+            this.radioButtonRm.Location = new System.Drawing.Point(51, 73);
             this.radioButtonRm.Name = "radioButtonRm";
-            this.radioButtonRm.Size = new System.Drawing.Size(124, 25);
+            this.radioButtonRm.Size = new System.Drawing.Size(140, 25);
             this.radioButtonRm.TabIndex = 9;
             this.radioButtonRm.TabStop = true;
             this.radioButtonRm.Text = "移动到回收站";
+            this.radioButtonRm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radioButtonRm.UseVisualStyleBackColor = true;
+            // 
+            // buttonRM
+            // 
+            this.buttonRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRM.Image = global::FileNameReplacer.Properties.Resources.Delete;
+            this.buttonRM.Location = new System.Drawing.Point(8, 212);
+            this.buttonRM.Name = "buttonRM";
+            this.buttonRM.Size = new System.Drawing.Size(252, 42);
+            this.buttonRM.TabIndex = 8;
+            this.buttonRM.Text = "删除列表中的所有文件";
+            this.buttonRM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonRM.UseVisualStyleBackColor = true;
+            this.buttonRM.Click += new System.EventHandler(this.buttonRM_Click);
+            // 
+            // labelUpdateAlert
+            // 
+            this.labelUpdateAlert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUpdateAlert.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_32;
+            this.labelUpdateAlert.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelUpdateAlert.Location = new System.Drawing.Point(0, 400);
+            this.labelUpdateAlert.Name = "labelUpdateAlert";
+            this.labelUpdateAlert.Size = new System.Drawing.Size(282, 110);
+            this.labelUpdateAlert.TabIndex = 6;
+            this.labelUpdateAlert.Text = "请先进行搜索\r\n或将文件拖入到右侧列表中";
+            this.labelUpdateAlert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl1
             // 
@@ -286,12 +676,12 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(274, 314);
+            this.tabControl1.Size = new System.Drawing.Size(274, 292);
             this.tabControl1.TabIndex = 13;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.linkLabel1);
+            this.tabPage1.Controls.Add(this.linkLabelSearch);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.labelFilePath);
             this.tabPage1.Controls.Add(this.buttonMultiple);
@@ -303,22 +693,34 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.checkBoxASub);
             this.tabPage1.Controls.Add(this.checkBoxADir);
-            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.checkBoxAFile);
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(266, 280);
+            this.tabPage1.Size = new System.Drawing.Size(266, 258);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "文件搜索";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // linkLabelSearch
+            // 
+            this.linkLabelSearch.AutoSize = true;
+            this.linkLabelSearch.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabelSearch.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabelSearch.Location = new System.Drawing.Point(28, 83);
+            this.linkLabelSearch.Name = "linkLabelSearch";
+            this.linkLabelSearch.Size = new System.Drawing.Size(79, 21);
+            this.linkLabelSearch.TabIndex = 11;
+            this.linkLabelSearch.TabStop = true;
+            this.linkLabelSearch.Text = "搜索条件 ";
+            this.linkLabelSearch.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSearch_LinkClicked);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(184, 241);
+            this.button1.Location = new System.Drawing.Point(185, 217);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 25);
             this.button1.TabIndex = 10;
@@ -327,6 +729,45 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // labelFilePath
+            // 
+            this.labelFilePath.AutoSize = true;
+            this.labelFilePath.Image = global::FileNameReplacer.Properties.Resources.FolderOpened;
+            this.labelFilePath.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.labelFilePath.Location = new System.Drawing.Point(7, 12);
+            this.labelFilePath.Name = "labelFilePath";
+            this.labelFilePath.Size = new System.Drawing.Size(106, 21);
+            this.labelFilePath.TabIndex = 0;
+            this.labelFilePath.Text = "　起始文件夹";
+            // 
+            // buttonMultiple
+            // 
+            this.buttonMultiple.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonMultiple.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMultiple.Image = global::FileNameReplacer.Properties.Resources.MultiView;
+            this.buttonMultiple.Location = new System.Drawing.Point(132, 77);
+            this.buttonMultiple.Name = "buttonMultiple";
+            this.buttonMultiple.Size = new System.Drawing.Size(128, 32);
+            this.buttonMultiple.TabIndex = 2;
+            this.buttonMultiple.Text = "多条件(&M)...";
+            this.buttonMultiple.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonMultiple.UseVisualStyleBackColor = true;
+            this.buttonMultiple.Click += new System.EventHandler(this.buttonMultiple_Click);
+            // 
+            // buttonChgRootPath
+            // 
+            this.buttonChgRootPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonChgRootPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonChgRootPath.Image = global::FileNameReplacer.Properties.Resources.OpenFolder;
+            this.buttonChgRootPath.Location = new System.Drawing.Point(132, 6);
+            this.buttonChgRootPath.Name = "buttonChgRootPath";
+            this.buttonChgRootPath.Size = new System.Drawing.Size(128, 32);
+            this.buttonChgRootPath.TabIndex = 2;
+            this.buttonChgRootPath.Text = "浏览(&B)...";
+            this.buttonChgRootPath.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonChgRootPath.UseVisualStyleBackColor = true;
+            this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
             // 
             // comboBoxSearch
             // 
@@ -342,19 +783,108 @@
             this.comboBoxSearch.Size = new System.Drawing.Size(252, 27);
             this.comboBoxSearch.TabIndex = 1;
             // 
-            // label6
+            // buttonSearchStop
             // 
-            this.label6.AutoSize = true;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label6.Location = new System.Drawing.Point(7, 145);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 21);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "以 ; 分隔，支持 *";
+            this.buttonSearchStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSearchStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSearchStop.Enabled = false;
+            this.buttonSearchStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
+            this.buttonSearchStop.Location = new System.Drawing.Point(8, 210);
+            this.buttonSearchStop.Name = "buttonSearchStop";
+            this.buttonSearchStop.Size = new System.Drawing.Size(252, 42);
+            this.buttonSearchStop.TabIndex = 9;
+            this.buttonSearchStop.Text = "停止搜索(&S)";
+            this.buttonSearchStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonSearchStop.UseVisualStyleBackColor = true;
+            this.buttonSearchStop.Visible = false;
+            this.buttonSearchStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSearch.Image = global::FileNameReplacer.Properties.Resources.SearchFolderOpened;
+            this.buttonSearch.Location = new System.Drawing.Point(8, 210);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(253, 42);
+            this.buttonSearch.TabIndex = 8;
+            this.buttonSearch.Text = "开始搜索(&S)";
+            this.buttonSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Image = global::FileNameReplacer.Properties.Resources.SearchFolderClosed;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label1.Location = new System.Drawing.Point(7, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 21);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "　";
+            // 
+            // checkBoxASub
+            // 
+            this.checkBoxASub.AutoSize = true;
+            this.checkBoxASub.Checked = true;
+            this.checkBoxASub.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxASub.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxASub.Image = global::FileNameReplacer.Properties.Resources.Class;
+            this.checkBoxASub.Location = new System.Drawing.Point(131, 148);
+            this.checkBoxASub.Name = "checkBoxASub";
+            this.checkBoxASub.Size = new System.Drawing.Size(128, 25);
+            this.checkBoxASub.TabIndex = 7;
+            this.checkBoxASub.Text = "子文件夹(&S)";
+            this.checkBoxASub.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxASub.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxADir
+            // 
+            this.checkBoxADir.AutoSize = true;
+            this.checkBoxADir.Checked = true;
+            this.checkBoxADir.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxADir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxADir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
+            this.checkBoxADir.Location = new System.Drawing.Point(10, 176);
+            this.checkBoxADir.Name = "checkBoxADir";
+            this.checkBoxADir.Size = new System.Drawing.Size(115, 25);
+            this.checkBoxADir.TabIndex = 5;
+            this.checkBoxADir.Text = "文件夹(&D)";
+            this.checkBoxADir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxADir.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Image = global::FileNameReplacer.Properties.Resources.TypeDefinition;
+            this.label4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label4.Location = new System.Drawing.Point(6, 149);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 21);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "　搜索内容：";
+            // 
+            // checkBoxAFile
+            // 
+            this.checkBoxAFile.AutoSize = true;
+            this.checkBoxAFile.Checked = true;
+            this.checkBoxAFile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxAFile.Image = global::FileNameReplacer.Properties.Resources.FileSystemEditor;
+            this.checkBoxAFile.Location = new System.Drawing.Point(131, 176);
+            this.checkBoxAFile.Name = "checkBoxAFile";
+            this.checkBoxAFile.Size = new System.Drawing.Size(96, 25);
+            this.checkBoxAFile.TabIndex = 5;
+            this.checkBoxAFile.Text = "文件(&F)";
+            this.checkBoxAFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxAFile.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.linkLabel2);
+            this.tabPage2.Controls.Add(this.linkLabelSleep);
             this.tabPage2.Controls.Add(this.linkLabelGitHub);
             this.tabPage2.Controls.Add(this.numericUpDownLimit);
             this.tabPage2.Controls.Add(this.numericUpDownSleep);
@@ -366,10 +896,39 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(266, 280);
+            this.tabPage2.Size = new System.Drawing.Size(266, 258);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "高级设置";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // linkLabelSleep
+            // 
+            this.linkLabelSleep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelSleep.AutoSize = true;
+            this.linkLabelSleep.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabelSleep.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabelSleep.Location = new System.Drawing.Point(59, 48);
+            this.linkLabelSleep.Name = "linkLabelSleep";
+            this.linkLabelSleep.Size = new System.Drawing.Size(64, 21);
+            this.linkLabelSleep.TabIndex = 16;
+            this.linkLabelSleep.TabStop = true;
+            this.linkLabelSleep.Text = "UI刷新 ";
+            this.linkLabelSleep.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.linkLabelSleep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSleep_LinkClicked);
+            // 
+            // linkLabelGitHub
+            // 
+            this.linkLabelGitHub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelGitHub.AutoSize = true;
+            this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
+            this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.linkLabelGitHub.Location = new System.Drawing.Point(179, 230);
+            this.linkLabelGitHub.Name = "linkLabelGitHub";
+            this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
+            this.linkLabelGitHub.TabIndex = 16;
+            this.linkLabelGitHub.TabStop = true;
+            this.linkLabelGitHub.Text = "　GitHub";
+            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // numericUpDownLimit
             // 
@@ -414,6 +973,73 @@
             0,
             0});
             // 
+            // checkBoxLimit
+            // 
+            this.checkBoxLimit.AutoSize = true;
+            this.checkBoxLimit.Checked = true;
+            this.checkBoxLimit.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxLimit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxLimit.Image = global::FileNameReplacer.Properties.Resources.FullTextStopList;
+            this.checkBoxLimit.Location = new System.Drawing.Point(9, 12);
+            this.checkBoxLimit.Name = "checkBoxLimit";
+            this.checkBoxLimit.Size = new System.Drawing.Size(109, 25);
+            this.checkBoxLimit.TabIndex = 11;
+            this.checkBoxLimit.Text = "结果限量";
+            this.checkBoxLimit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxLimit.UseVisualStyleBackColor = true;
+            this.checkBoxLimit.CheckedChanged += new System.EventHandler(this.checkBoxLimit_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Image = global::FileNameReplacer.Properties.Resources.Timer;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label5.Location = new System.Drawing.Point(7, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 21);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "　等待";
+            // 
+            // checkBoxDark
+            // 
+            this.checkBoxDark.AutoSize = true;
+            this.checkBoxDark.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxDark.Image = global::FileNameReplacer.Properties.Resources.DarkTheme_16x;
+            this.checkBoxDark.Location = new System.Drawing.Point(9, 143);
+            this.checkBoxDark.Name = "checkBoxDark";
+            this.checkBoxDark.Size = new System.Drawing.Size(109, 25);
+            this.checkBoxDark.TabIndex = 13;
+            this.checkBoxDark.Text = "暗色主题";
+            this.checkBoxDark.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxDark.UseVisualStyleBackColor = true;
+            this.checkBoxDark.CheckedChanged += new System.EventHandler(this.checkBoxDark_CheckedChanged);
+            // 
+            // checkBoxDebug
+            // 
+            this.checkBoxDebug.AutoSize = true;
+            this.checkBoxDebug.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxDebug.Image = global::FileNameReplacer.Properties.Resources.Test;
+            this.checkBoxDebug.Location = new System.Drawing.Point(9, 112);
+            this.checkBoxDebug.Name = "checkBoxDebug";
+            this.checkBoxDebug.Size = new System.Drawing.Size(237, 25);
+            this.checkBoxDebug.TabIndex = 13;
+            this.checkBoxDebug.Text = "不实际操作文件（调试用）";
+            this.checkBoxDebug.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxDebug.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRealWidth
+            // 
+            this.checkBoxRealWidth.AutoSize = true;
+            this.checkBoxRealWidth.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxRealWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
+            this.checkBoxRealWidth.Location = new System.Drawing.Point(9, 81);
+            this.checkBoxRealWidth.Name = "checkBoxRealWidth";
+            this.checkBoxRealWidth.Size = new System.Drawing.Size(189, 25);
+            this.checkBoxRealWidth.TabIndex = 13;
+            this.checkBoxRealWidth.Text = "实时调整列宽（慢）";
+            this.checkBoxRealWidth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxRealWidth.UseVisualStyleBackColor = true;
+            // 
             // dataFileList
             // 
             this.dataFileList.AllowDrop = true;
@@ -436,7 +1062,7 @@
             this.dataFileList.Name = "dataFileList";
             this.dataFileList.ReadOnly = true;
             this.dataFileList.RowTemplate.Height = 23;
-            this.dataFileList.Size = new System.Drawing.Size(712, 629);
+            this.dataFileList.Size = new System.Drawing.Size(712, 660);
             this.dataFileList.TabIndex = 2;
             this.dataFileList.Visible = false;
             this.dataFileList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataFileList_RowsAdded);
@@ -445,6 +1071,16 @@
             this.dataFileList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragDrop);
             this.dataFileList.DragEnter += new System.Windows.Forms.DragEventHandler(this.dataFileList_DragEnter);
             this.dataFileList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataFileList_KeyDown);
+            // 
+            // ColumnIcon
+            // 
+            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnIcon.HeaderText = "";
+            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.ColumnIcon.Name = "ColumnIcon";
+            this.ColumnIcon.ReadOnly = true;
+            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnIcon.Width = 30;
             // 
             // Dir
             // 
@@ -527,25 +1163,85 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButtonNumDir
+            // 
+            this.toolStripButtonNumDir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
+            this.toolStripButtonNumDir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNumDir.Name = "toolStripButtonNumDir";
+            this.toolStripButtonNumDir.Size = new System.Drawing.Size(39, 25);
+            this.toolStripButtonNumDir.Text = "0";
+            this.toolStripButtonNumDir.ToolTipText = "要处理的文件夹数量";
+            // 
+            // toolStripButtonNumFile
+            // 
+            this.toolStripButtonNumFile.Image = global::FileNameReplacer.Properties.Resources.Document;
+            this.toolStripButtonNumFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNumFile.Name = "toolStripButtonNumFile";
+            this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
+            this.toolStripButtonNumFile.Text = "0";
+            this.toolStripButtonNumFile.ToolTipText = "要处理的文件数量";
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonP1rm
+            // 
+            this.toolStripButtonP1rm.Enabled = false;
+            this.toolStripButtonP1rm.Image = global::FileNameReplacer.Properties.Resources.DeleteDocument;
+            this.toolStripButtonP1rm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1rm.Name = "toolStripButtonP1rm";
+            this.toolStripButtonP1rm.Size = new System.Drawing.Size(110, 25);
+            this.toolStripButtonP1rm.Text = "移除选定项";
+            this.toolStripButtonP1rm.ToolTipText = "移除选定项后，此项不做处理，不会影响原文件。";
+            this.toolStripButtonP1rm.Click += new System.EventHandler(this.toolStripButtonP1rm_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
+            // toolStripButtonP1cp
+            // 
+            this.toolStripButtonP1cp.Enabled = false;
+            this.toolStripButtonP1cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
+            this.toolStripButtonP1cp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1cp.Name = "toolStripButtonP1cp";
+            this.toolStripButtonP1cp.Size = new System.Drawing.Size(126, 25);
+            this.toolStripButtonP1cp.Text = "复制到剪贴板";
+            this.toolStripButtonP1cp.Click += new System.EventHandler(this.toolStripButtonP1cp_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
+            // toolStripButtonAutoWidth
+            // 
+            this.toolStripButtonAutoWidth.Enabled = false;
+            this.toolStripButtonAutoWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
+            this.toolStripButtonAutoWidth.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAutoWidth.Name = "toolStripButtonAutoWidth";
+            this.toolStripButtonAutoWidth.Size = new System.Drawing.Size(126, 25);
+            this.toolStripButtonAutoWidth.Text = "自动调整列宽";
+            this.toolStripButtonAutoWidth.ToolTipText = "根据内容自动调整列宽，清空后再按可以还原到默认值。";
+            this.toolStripButtonAutoWidth.Click += new System.EventHandler(this.toolStripButtonAutoWidth_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonP1cls
+            // 
+            this.toolStripButtonP1cls.Enabled = false;
+            this.toolStripButtonP1cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
+            this.toolStripButtonP1cls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonP1cls.Name = "toolStripButtonP1cls";
+            this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
+            this.toolStripButtonP1cls.Text = "清空";
+            this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
             // 
             // labelTableWait
             // 
@@ -553,7 +1249,7 @@
             this.labelTableWait.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelTableWait.Location = new System.Drawing.Point(0, 0);
             this.labelTableWait.Name = "labelTableWait";
-            this.labelTableWait.Size = new System.Drawing.Size(712, 657);
+            this.labelTableWait.Size = new System.Drawing.Size(712, 688);
             this.labelTableWait.TabIndex = 3;
             this.labelTableWait.Text = "请稍候";
             this.labelTableWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -607,502 +1303,26 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewImageColumn1.Width = 30;
             // 
-            // pictureBoxSearch
-            // 
-            this.pictureBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxSearch.Image = global::FileNameReplacer.Properties.Resources.FINDCOMP;
-            this.pictureBoxSearch.Location = new System.Drawing.Point(3, 581);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(274, 45);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 11;
-            this.pictureBoxSearch.TabStop = false;
-            this.pictureBoxSearch.Visible = false;
-            // 
-            // pictureBoxReplace
-            // 
-            this.pictureBoxReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxReplace.Location = new System.Drawing.Point(3, 566);
-            this.pictureBoxReplace.Name = "pictureBoxReplace";
-            this.pictureBoxReplace.Size = new System.Drawing.Size(274, 60);
-            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxReplace.TabIndex = 12;
-            this.pictureBoxReplace.TabStop = false;
-            this.pictureBoxReplace.Visible = false;
-            // 
-            // buttonReplaceStop
-            // 
-            this.buttonReplaceStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReplaceStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReplaceStop.Enabled = false;
-            this.buttonReplaceStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
-            this.buttonReplaceStop.Location = new System.Drawing.Point(7, 157);
-            this.buttonReplaceStop.Name = "buttonReplaceStop";
-            this.buttonReplaceStop.Size = new System.Drawing.Size(252, 42);
-            this.buttonReplaceStop.TabIndex = 9;
-            this.buttonReplaceStop.Text = "停止重命名(&R)";
-            this.buttonReplaceStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonReplaceStop.UseVisualStyleBackColor = true;
-            this.buttonReplaceStop.Visible = false;
-            this.buttonReplaceStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Image = global::FileNameReplacer.Properties.Resources.StringRegistryValue;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label2.Location = new System.Drawing.Point(6, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "　原字符：";
-            // 
-            // buttonReplace
-            // 
-            this.buttonReplace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReplace.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReplace.Enabled = false;
-            this.buttonReplace.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
-            this.buttonReplace.Location = new System.Drawing.Point(7, 157);
-            this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(252, 42);
-            this.buttonReplace.TabIndex = 9;
-            this.buttonReplace.Text = "开始重命名(&R)";
-            this.buttonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonReplace.UseVisualStyleBackColor = true;
-            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
-            // 
-            // checkBoxCase
-            // 
-            this.checkBoxCase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxCase.AutoSize = true;
-            this.checkBoxCase.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxCase.Image = global::FileNameReplacer.Properties.Resources.StringData;
-            this.checkBoxCase.Location = new System.Drawing.Point(138, 11);
-            this.checkBoxCase.Name = "checkBoxCase";
-            this.checkBoxCase.Size = new System.Drawing.Size(125, 25);
-            this.checkBoxCase.TabIndex = 3;
-            this.checkBoxCase.Text = "区分大小写";
-            this.checkBoxCase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxCase.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPreview
-            // 
-            this.checkBoxPreview.AutoSize = true;
-            this.checkBoxPreview.Checked = true;
-            this.checkBoxPreview.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxPreview.Image = global::FileNameReplacer.Properties.Resources.StringData;
-            this.checkBoxPreview.Location = new System.Drawing.Point(8, 125);
-            this.checkBoxPreview.Name = "checkBoxPreview";
-            this.checkBoxPreview.Size = new System.Drawing.Size(109, 25);
-            this.checkBoxPreview.TabIndex = 3;
-            this.checkBoxPreview.Text = "实时预览";
-            this.checkBoxPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxPreview.UseVisualStyleBackColor = true;
-            // 
-            // buttonPreview
-            // 
-            this.buttonPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonPreview.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.buttonPreview.Location = new System.Drawing.Point(137, 120);
-            this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(122, 36);
-            this.buttonPreview.TabIndex = 9;
-            this.buttonPreview.Text = "预览(&P)";
-            this.buttonPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonPreview.UseVisualStyleBackColor = true;
-            this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Image = global::FileNameReplacer.Properties.Resources.ReplaceAll;
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label3.Location = new System.Drawing.Point(6, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 21);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "　替换为：";
-            // 
-            // buttonRMStop
-            // 
-            this.buttonRMStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRMStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRMStop.Enabled = false;
-            this.buttonRMStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
-            this.buttonRMStop.Location = new System.Drawing.Point(7, 98);
-            this.buttonRMStop.Name = "buttonRMStop";
-            this.buttonRMStop.Size = new System.Drawing.Size(252, 42);
-            this.buttonRMStop.TabIndex = 10;
-            this.buttonRMStop.Text = "停止删除";
-            this.buttonRMStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonRMStop.UseVisualStyleBackColor = true;
-            this.buttonRMStop.Visible = false;
-            this.buttonRMStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
-            // 
-            // buttonRM
-            // 
-            this.buttonRM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRM.Image = global::FileNameReplacer.Properties.Resources.Delete;
-            this.buttonRM.Location = new System.Drawing.Point(6, 98);
-            this.buttonRM.Name = "buttonRM";
-            this.buttonRM.Size = new System.Drawing.Size(254, 42);
-            this.buttonRM.TabIndex = 8;
-            this.buttonRM.Text = "删除列表中的所有文件";
-            this.buttonRM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonRM.UseVisualStyleBackColor = true;
-            this.buttonRM.Click += new System.EventHandler(this.buttonRM_Click);
-            // 
-            // labelUpdateAlert
-            // 
-            this.labelUpdateAlert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelUpdateAlert.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_32;
-            this.labelUpdateAlert.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelUpdateAlert.Location = new System.Drawing.Point(0, 400);
-            this.labelUpdateAlert.Name = "labelUpdateAlert";
-            this.labelUpdateAlert.Size = new System.Drawing.Size(282, 110);
-            this.labelUpdateAlert.TabIndex = 6;
-            this.labelUpdateAlert.Text = "请先进行搜索\r\n或将文件拖入到右侧列表中";
-            this.labelUpdateAlert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
-            this.linkLabel1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.linkLabel1.Location = new System.Drawing.Point(136, 145);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(63, 21);
-            this.linkLabel1.TabIndex = 11;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "通配符 ";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // labelFilePath
-            // 
-            this.labelFilePath.AutoSize = true;
-            this.labelFilePath.Image = global::FileNameReplacer.Properties.Resources.FolderOpened;
-            this.labelFilePath.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.labelFilePath.Location = new System.Drawing.Point(7, 12);
-            this.labelFilePath.Name = "labelFilePath";
-            this.labelFilePath.Size = new System.Drawing.Size(122, 21);
-            this.labelFilePath.TabIndex = 0;
-            this.labelFilePath.Text = "　起始文件夹：";
-            // 
-            // buttonMultiple
-            // 
-            this.buttonMultiple.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonMultiple.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonMultiple.Image = global::FileNameReplacer.Properties.Resources.MultiView;
-            this.buttonMultiple.Location = new System.Drawing.Point(132, 77);
-            this.buttonMultiple.Name = "buttonMultiple";
-            this.buttonMultiple.Size = new System.Drawing.Size(128, 32);
-            this.buttonMultiple.TabIndex = 2;
-            this.buttonMultiple.Text = "多条件(&M)...";
-            this.buttonMultiple.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonMultiple.UseVisualStyleBackColor = true;
-            this.buttonMultiple.Click += new System.EventHandler(this.buttonMultiple_Click);
-            // 
-            // buttonChgRootPath
-            // 
-            this.buttonChgRootPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonChgRootPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonChgRootPath.Image = global::FileNameReplacer.Properties.Resources.OpenFolder;
-            this.buttonChgRootPath.Location = new System.Drawing.Point(132, 6);
-            this.buttonChgRootPath.Name = "buttonChgRootPath";
-            this.buttonChgRootPath.Size = new System.Drawing.Size(128, 32);
-            this.buttonChgRootPath.TabIndex = 2;
-            this.buttonChgRootPath.Text = "浏览(&B)...";
-            this.buttonChgRootPath.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonChgRootPath.UseVisualStyleBackColor = true;
-            this.buttonChgRootPath.Click += new System.EventHandler(this.buttonChgRootPath_Click);
-            // 
-            // buttonSearchStop
-            // 
-            this.buttonSearchStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSearchStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSearchStop.Enabled = false;
-            this.buttonSearchStop.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
-            this.buttonSearchStop.Location = new System.Drawing.Point(8, 232);
-            this.buttonSearchStop.Name = "buttonSearchStop";
-            this.buttonSearchStop.Size = new System.Drawing.Size(251, 42);
-            this.buttonSearchStop.TabIndex = 9;
-            this.buttonSearchStop.Text = "停止搜索(&S)";
-            this.buttonSearchStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonSearchStop.UseVisualStyleBackColor = true;
-            this.buttonSearchStop.Visible = false;
-            this.buttonSearchStop.Click += new System.EventHandler(this.buttonSearchStop_Click);
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSearch.Image = global::FileNameReplacer.Properties.Resources.SearchFolderOpened;
-            this.buttonSearch.Location = new System.Drawing.Point(7, 232);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(253, 42);
-            this.buttonSearch.TabIndex = 8;
-            this.buttonSearch.Text = "开始搜索(&S)";
-            this.buttonSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Image = global::FileNameReplacer.Properties.Resources.SearchFolderClosed;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label1.Location = new System.Drawing.Point(7, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 21);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "　搜索条件：";
-            // 
-            // checkBoxASub
-            // 
-            this.checkBoxASub.AutoSize = true;
-            this.checkBoxASub.Checked = true;
-            this.checkBoxASub.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxASub.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxASub.Image = global::FileNameReplacer.Properties.Resources.Class;
-            this.checkBoxASub.Location = new System.Drawing.Point(130, 172);
-            this.checkBoxASub.Name = "checkBoxASub";
-            this.checkBoxASub.Size = new System.Drawing.Size(128, 25);
-            this.checkBoxASub.TabIndex = 7;
-            this.checkBoxASub.Text = "子文件夹(&S)";
-            this.checkBoxASub.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxASub.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxADir
-            // 
-            this.checkBoxADir.AutoSize = true;
-            this.checkBoxADir.Checked = true;
-            this.checkBoxADir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxADir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxADir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
-            this.checkBoxADir.Location = new System.Drawing.Point(9, 200);
-            this.checkBoxADir.Name = "checkBoxADir";
-            this.checkBoxADir.Size = new System.Drawing.Size(115, 25);
-            this.checkBoxADir.TabIndex = 5;
-            this.checkBoxADir.Text = "文件夹(&D)";
-            this.checkBoxADir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxADir.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Image = global::FileNameReplacer.Properties.Resources.TypeDefinition;
-            this.label4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label4.Location = new System.Drawing.Point(5, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 21);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "　搜索内容：";
-            // 
-            // checkBoxAFile
-            // 
-            this.checkBoxAFile.AutoSize = true;
-            this.checkBoxAFile.Checked = true;
-            this.checkBoxAFile.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxAFile.Image = global::FileNameReplacer.Properties.Resources.FileSystemEditor;
-            this.checkBoxAFile.Location = new System.Drawing.Point(130, 200);
-            this.checkBoxAFile.Name = "checkBoxAFile";
-            this.checkBoxAFile.Size = new System.Drawing.Size(96, 25);
-            this.checkBoxAFile.TabIndex = 5;
-            this.checkBoxAFile.Text = "文件(&F)";
-            this.checkBoxAFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxAFile.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
-            this.linkLabel2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.linkLabel2.Location = new System.Drawing.Point(59, 48);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(64, 21);
-            this.linkLabel2.TabIndex = 16;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "UI刷新 ";
-            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
-            // linkLabelGitHub
-            // 
-            this.linkLabelGitHub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
-            this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(179, 252);
-            this.linkLabelGitHub.Name = "linkLabelGitHub";
-            this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
-            this.linkLabelGitHub.TabIndex = 16;
-            this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "　GitHub";
-            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
-            // 
-            // checkBoxLimit
-            // 
-            this.checkBoxLimit.AutoSize = true;
-            this.checkBoxLimit.Checked = true;
-            this.checkBoxLimit.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxLimit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxLimit.Image = global::FileNameReplacer.Properties.Resources.FullTextStopList;
-            this.checkBoxLimit.Location = new System.Drawing.Point(9, 12);
-            this.checkBoxLimit.Name = "checkBoxLimit";
-            this.checkBoxLimit.Size = new System.Drawing.Size(109, 25);
-            this.checkBoxLimit.TabIndex = 11;
-            this.checkBoxLimit.Text = "结果限量";
-            this.checkBoxLimit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxLimit.UseVisualStyleBackColor = true;
-            this.checkBoxLimit.CheckedChanged += new System.EventHandler(this.checkBoxLimit_CheckedChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Image = global::FileNameReplacer.Properties.Resources.Timer;
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label5.Location = new System.Drawing.Point(7, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 21);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "　等待";
-            // 
-            // checkBoxDark
-            // 
-            this.checkBoxDark.AutoSize = true;
-            this.checkBoxDark.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxDark.Image = global::FileNameReplacer.Properties.Resources.DarkTheme_16x;
-            this.checkBoxDark.Location = new System.Drawing.Point(9, 143);
-            this.checkBoxDark.Name = "checkBoxDark";
-            this.checkBoxDark.Size = new System.Drawing.Size(109, 25);
-            this.checkBoxDark.TabIndex = 13;
-            this.checkBoxDark.Text = "暗色主题";
-            this.checkBoxDark.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxDark.UseVisualStyleBackColor = true;
-            this.checkBoxDark.CheckedChanged += new System.EventHandler(this.checkBoxDark_CheckedChanged);
-            // 
-            // checkBoxDebug
-            // 
-            this.checkBoxDebug.AutoSize = true;
-            this.checkBoxDebug.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxDebug.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.checkBoxDebug.Location = new System.Drawing.Point(9, 112);
-            this.checkBoxDebug.Name = "checkBoxDebug";
-            this.checkBoxDebug.Size = new System.Drawing.Size(237, 25);
-            this.checkBoxDebug.TabIndex = 13;
-            this.checkBoxDebug.Text = "不实际操作文件（调试用）";
-            this.checkBoxDebug.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxDebug.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRealWidth
-            // 
-            this.checkBoxRealWidth.AutoSize = true;
-            this.checkBoxRealWidth.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxRealWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
-            this.checkBoxRealWidth.Location = new System.Drawing.Point(9, 81);
-            this.checkBoxRealWidth.Name = "checkBoxRealWidth";
-            this.checkBoxRealWidth.Size = new System.Drawing.Size(189, 25);
-            this.checkBoxRealWidth.TabIndex = 13;
-            this.checkBoxRealWidth.Text = "实时调整列宽（慢）";
-            this.checkBoxRealWidth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.checkBoxRealWidth.UseVisualStyleBackColor = true;
-            // 
-            // ColumnIcon
-            // 
-            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnIcon.HeaderText = "";
-            this.ColumnIcon.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.ColumnIcon.Name = "ColumnIcon";
-            this.ColumnIcon.ReadOnly = true;
-            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnIcon.Width = 30;
-            // 
-            // toolStripButtonNumDir
-            // 
-            this.toolStripButtonNumDir.Image = global::FileNameReplacer.Properties.Resources.FolderClosed;
-            this.toolStripButtonNumDir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNumDir.Name = "toolStripButtonNumDir";
-            this.toolStripButtonNumDir.Size = new System.Drawing.Size(39, 25);
-            this.toolStripButtonNumDir.Text = "0";
-            this.toolStripButtonNumDir.ToolTipText = "要处理的文件夹数量";
-            // 
-            // toolStripButtonNumFile
-            // 
-            this.toolStripButtonNumFile.Image = global::FileNameReplacer.Properties.Resources.Document;
-            this.toolStripButtonNumFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNumFile.Name = "toolStripButtonNumFile";
-            this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
-            this.toolStripButtonNumFile.Text = "0";
-            this.toolStripButtonNumFile.ToolTipText = "要处理的文件数量";
-            // 
-            // toolStripButtonP1rm
-            // 
-            this.toolStripButtonP1rm.Enabled = false;
-            this.toolStripButtonP1rm.Image = global::FileNameReplacer.Properties.Resources.DeleteDocument;
-            this.toolStripButtonP1rm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1rm.Name = "toolStripButtonP1rm";
-            this.toolStripButtonP1rm.Size = new System.Drawing.Size(110, 25);
-            this.toolStripButtonP1rm.Text = "移除选定项";
-            this.toolStripButtonP1rm.ToolTipText = "移除选定项后，此项不做处理，不会影响原文件。";
-            this.toolStripButtonP1rm.Click += new System.EventHandler(this.toolStripButtonP1rm_Click);
-            // 
-            // toolStripButtonP1cp
-            // 
-            this.toolStripButtonP1cp.Enabled = false;
-            this.toolStripButtonP1cp.Image = global::FileNameReplacer.Properties.Resources.Copy;
-            this.toolStripButtonP1cp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1cp.Name = "toolStripButtonP1cp";
-            this.toolStripButtonP1cp.Size = new System.Drawing.Size(126, 25);
-            this.toolStripButtonP1cp.Text = "复制到剪贴板";
-            this.toolStripButtonP1cp.Click += new System.EventHandler(this.toolStripButtonP1cp_Click);
-            // 
-            // toolStripButtonAutoWidth
-            // 
-            this.toolStripButtonAutoWidth.Enabled = false;
-            this.toolStripButtonAutoWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
-            this.toolStripButtonAutoWidth.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAutoWidth.Name = "toolStripButtonAutoWidth";
-            this.toolStripButtonAutoWidth.Size = new System.Drawing.Size(126, 25);
-            this.toolStripButtonAutoWidth.Text = "自动调整列宽";
-            this.toolStripButtonAutoWidth.ToolTipText = "根据内容自动调整列宽，清空后再按可以还原到默认值。";
-            this.toolStripButtonAutoWidth.Click += new System.EventHandler(this.toolStripButtonAutoWidth_Click);
-            // 
-            // toolStripButtonP1cls
-            // 
-            this.toolStripButtonP1cls.Enabled = false;
-            this.toolStripButtonP1cls.Image = global::FileNameReplacer.Properties.Resources.CleanData;
-            this.toolStripButtonP1cls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonP1cls.Name = "toolStripButtonP1cls";
-            this.toolStripButtonP1cls.Size = new System.Drawing.Size(62, 25);
-            this.toolStripButtonP1cls.Text = "清空";
-            this.toolStripButtonP1cls.Click += new System.EventHandler(this.toolStripButtonP1cls_Click);
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(6, 66);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(253, 188);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "该版本尚未提供此功能";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 661);
+            this.ClientSize = new System.Drawing.Size(1004, 692);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
-            this.Text = "文件名批量替换工具 v2.0";
+            this.Text = "GlimmerRename 流光易名 v2.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1110,9 +1330,15 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1125,8 +1351,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1197,10 +1421,9 @@
         private System.Windows.Forms.Button buttonRMStop;
         private System.Windows.Forms.Label labelUpdateAlert;
         private System.Windows.Forms.Button buttonMultiple;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelSearch;
+        private System.Windows.Forms.LinkLabel linkLabelSleep;
         private System.Windows.Forms.DataGridViewImageColumn ColumnIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
@@ -1209,6 +1432,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.CheckBox checkBoxDark;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.LinkLabel linkLabelNumName;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label6;
     }
 }
 

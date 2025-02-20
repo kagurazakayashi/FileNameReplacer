@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,6 +77,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Help.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help.Designer.cs">
+      <DependentUpon>Help.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Replace.cs" />
@@ -74,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help.resx">
+      <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -138,6 +162,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\SearchF.txt" />
+    <None Include="Resources\NumName.txt" />
+    <None Include="Resources\Sleep.txt" />
+    <None Include="Resources\AddMember_16x.png" />
+    <None Include="Resources\Compliant_16x.png" />
+    <None Include="Resources\CompareValidator_16x.png" />
+    <None Include="Resources\CompareFolders_16x.png" />
+    <None Include="Resources\CompareFiles_16x.png" />
+    <None Include="Resources\StartPoint_16x.png" />
+    <None Include="Resources\Numeric_16x.png" />
+    <None Include="Resources\RECYFULL.ICO" />
     <None Include="Resources\DarkTheme_16x.png" />
     <None Include="Resources\OpenWebSite.png" />
     <None Include="Resources\MultiView.png" />
@@ -174,6 +209,19 @@
     <None Include="Resources\FullTextStopList.png" />
     <None Include="Resources\StopOutline.png" />
     <None Include="Resources\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestFolderLab\TestFolderLab.vbproj">
+      <Project>{9ac811aa-e192-4f36-b095-542ed2212678}</Project>
+      <Name>TestFolderLab</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

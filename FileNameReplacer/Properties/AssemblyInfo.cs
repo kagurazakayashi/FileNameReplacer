@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("雅诗文件名批量替换工具")]
-[assembly: AssemblyDescription("批量检索并替换文件/目录名")]
+[assembly: AssemblyTitle("GlimmerRename 流光易名")]
+[assembly: AssemblyDescription("雅诗文件名批量替换工具")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("KagurazkaYashi")]
-[assembly: AssemblyProduct("FileNameReplacer")]
+[assembly: AssemblyCompany("KagurazkaMiyabi")]
+[assembly: AssemblyProduct("Glimmer Rename 流光易名")]
 [assembly: AssemblyCopyright("Copyright © 2025 KagurazkaMiyabi")]
 [assembly: AssemblyTrademark("KagurazkaYashi")]
 [assembly: AssemblyCulture("")]

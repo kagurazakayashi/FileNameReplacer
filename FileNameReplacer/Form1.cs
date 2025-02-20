@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace FileNameReplacer
@@ -761,34 +762,6 @@ namespace FileNameReplacer
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string[] info = new string[]
-            {
-                "在文件系统中，* 通配符通常用于匹配文件名中的任意字符序列。例如：",
-                "[*.txt] 匹配所有以 .txt 结尾的文件（如 file.txt、notes.txt）。",
-                "[doc*] 匹配所有以 doc 开头的文件（如 document.docx、doc1.pdf）。",
-                "[*2018*] 匹配所有名称中包含 2018 的文件（如 log-2018-05-01.log、2018-01.zip）。",
-                "[*one.*] 匹配所有文件名以 one 结尾的文件（如 a1one.log、b2one.txt）。",
-                "[*.*] 匹配所有带扩展名的文件名（如 file.txt、image.jpg）。",
-                "[*] 匹配所有文件。"
-            };
-            MessageBox.Show(string.Join("\r\n", info), "通配符( * )使用说明", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string[] info = new string[]
-            {
-                "前台绘制图形画面需要一些时间才能完成，没有足够时间刷新的话，将会导致程序看起来没有相应。",
-                "这项设置会让后台工作等待前台绘制图形画面指定毫秒数，避免出现没有相应。",
-                "建议设置区间：1-100 ，高速电脑建议值：1，低速电脑建议值：10。",
-                "更小的值：可以让任务更快地完成，但是图形画面可能卡顿甚至程序在完成前停止响应。",
-                "更大的值：可以更流畅地实时查看进度和文件列表，但是任务完成时间会延长。"
-            };
-            MessageBox.Show(string.Join("\r\n", info), "等待 UI 刷新配置说明", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void dataFileList_SelectionChanged(object sender, EventArgs e)
         {
             string tip = "";
@@ -835,6 +808,24 @@ namespace FileNameReplacer
             {
                 DarkMode.ApplyLightMode(this);
             }
+        }
+
+        private void linkLabelSearch_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Help help = new Help(((LinkLabel)sender).Text, Resources.SearchF);
+            help.Show();
+        }
+
+        private void linkLabelSleep_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Help help = new Help(((LinkLabel)sender).Text, Resources.Sleep);
+            help.Show();
+        }
+
+        private void linkLabelNumName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Help help = new Help(((LinkLabel)sender).Text, Resources.NumName);
+            help.Show();
         }
     }
 }

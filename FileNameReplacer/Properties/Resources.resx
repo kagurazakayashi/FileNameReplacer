@@ -133,6 +133,9 @@
   <data name="FINDCOMP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FINDCOMP.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RenameEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RenameEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="UpdatePanel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UpdatePanel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,6 +144,9 @@
   </data>
   <data name="DocumentOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentOK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SEARCH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SEARCH.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,17 +169,20 @@
   <data name="FolderOpened" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderOpened.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DeleteDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteDocument.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AutoSizeStretch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AutoSizeStretch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CleanData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CleanData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DeleteDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteDocument.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CleanData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CleanData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StringData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StringData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,14 +190,17 @@
   <data name="DeleteFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteFolder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StartPoint_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartPoint_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Test" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Test.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RenameEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RenameEvent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DocumentWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FolderClosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderClosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,9 +217,6 @@
   <data name="OpenWebSite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenWebSite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SearchFolderOpened" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SearchFolderOpened.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -223,8 +232,8 @@
   <data name="FILEDEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FILEDEL.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DocumentWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DarkTheme_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DarkTheme_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InfoTipInline.11.11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InfoTipInline.11.11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,19 +256,43 @@
   <data name="FolderWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FolderWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RECYFULL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RECYFULL.ICO;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FINDFILE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FINDFILE.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FullTextStopList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FullTextStopList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Numeric_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Numeric_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Class" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Class.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DarkTheme_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DarkTheme_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CompareFiles_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CompareFiles_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CompareFolders_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CompareFolders_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CompareValidator_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CompareValidator_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Compliant_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Compliant_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddMember_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddMember_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NumName" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NumName.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="SearchF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SearchF.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="Sleep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sleep.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
 </root>

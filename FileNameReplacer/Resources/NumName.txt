@@ -1,0 +1,7 @@
+使用 * 插入原始文件名称(包含扩展名)
+例如: doc.txt -> my* -> mydoc.txt
+使用 % 插入原始文件名称(不包含扩展名)
+例如: doc.txt -> my%.md -> mydoc.md
+使用 # 将序号插入到指定位置
+例如: photo#.jpg -> photo1.jpg, photo2.jpg
+它们也可以结合使用。

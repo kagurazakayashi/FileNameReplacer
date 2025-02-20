@@ -73,6 +73,16 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap AddMember_16x {
+            get {
+                object obj = ResourceManager.GetObject("AddMember_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap AutoSizeStretch {
             get {
                 object obj = ResourceManager.GetObject("AutoSizeStretch", resourceCulture);
@@ -126,6 +136,46 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap CollectionPageItemTemplate {
             get {
                 object obj = ResourceManager.GetObject("CollectionPageItemTemplate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap CompareFiles_16x {
+            get {
+                object obj = ResourceManager.GetObject("CompareFiles_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap CompareFolders_16x {
+            get {
+                object obj = ResourceManager.GetObject("CompareFolders_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap CompareValidator_16x {
+            get {
+                object obj = ResourceManager.GetObject("CompareValidator_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Compliant_16x {
+            get {
+                object obj = ResourceManager.GetObject("Compliant_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,6 +433,31 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Numeric_16x {
+            get {
+                object obj = ResourceManager.GetObject("Numeric_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 使用 * 插入原始文件名称(包含扩展名)
+        ///例如: doc.txt -&gt; my* -&gt; mydoc.txt
+        ///使用 % 插入原始文件名称(不包含扩展名)
+        ///例如: doc.txt -&gt; my%.md -&gt; mydoc.md
+        ///使用 # 将序号插入到指定位置
+        ///例如: photo#.jpg -&gt; photo1.jpg, photo2.jpg
+        ///它们也可以结合使用。 的本地化字符串。
+        /// </summary>
+        internal static string NumName {
+            get {
+                return ResourceManager.GetString("NumName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap OpenFolder {
             get {
                 object obj = ResourceManager.GetObject("OpenFolder", resourceCulture);
@@ -396,6 +471,16 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap OpenWebSite {
             get {
                 object obj = ResourceManager.GetObject("OpenWebSite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap RECYFULL {
+            get {
+                object obj = ResourceManager.GetObject("RECYFULL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -441,6 +526,22 @@ namespace FileNameReplacer.Properties {
         }
         
         /// <summary>
+        ///   查找类似 在这里输入要搜索的文件名。支持通配符 * ，不带 * 则为精确搜索。
+        ///在文件系统中，* 通配符通常用于匹配文件名中的任意字符序列。例如：
+        ///[*.txt] 匹配所有以 .txt 结尾的文件（如 file.txt、notes.txt）。
+        ///[doc*] 匹配所有以 doc 开头的文件（如 document.docx、doc1.pdf）。
+        ///[*2018*] 匹配所有名称中包含 2018 的文件（如 log-2018-05-01.log、2018-01.zip）。
+        ///[*one.*] 匹配所有文件名以 one 结尾的文件（如 a1one.log、b2one.txt）。
+        ///[*.*] 匹配所有带扩展名的文件名（如 file.txt、image.jpg）。
+        ///[*] 匹配所有文件。 的本地化字符串。
+        /// </summary>
+        internal static string SearchF {
+            get {
+                return ResourceManager.GetString("SearchF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap SearchFolderClosed {
@@ -456,6 +557,29 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap SearchFolderOpened {
             get {
                 object obj = ResourceManager.GetObject("SearchFolderOpened", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 前台绘制图形画面需要一些时间才能完成，没有足够时间刷新的话，将会导致程序看起来没有相应。
+        ///这项设置会让后台工作等待前台绘制图形画面指定毫秒数，避免出现没有相应。
+        ///建议设置区间：1-100 ，高速电脑建议值：1，低速电脑建议值：10。
+        ///更小的值：可以让任务更快地完成，但是图形画面可能卡顿甚至程序在完成前停止响应。
+        ///更大的值：可以更流畅地实时查看进度和文件列表，但是任务完成时间会延长。 的本地化字符串。
+        /// </summary>
+        internal static string Sleep {
+            get {
+                return ResourceManager.GetString("Sleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap StartPoint_16x {
+            get {
+                object obj = ResourceManager.GetObject("StartPoint_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
