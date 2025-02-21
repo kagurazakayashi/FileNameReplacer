@@ -5,14 +5,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FileNameReplacer
 {
-    public partial class Form1: Form
+    public partial class Form1 : Form
     {
         private Search searchEngine;
         private Replace replaceEngine;
@@ -542,7 +544,15 @@ namespace FileNameReplacer
         {
             if (dataFileList.GetCellCount(DataGridViewElementStates.Selected) > 0)
             {
-                Clipboard.SetDataObject(dataFileList.GetClipboardContent());
+                DataObject data = dataFileList.GetClipboardContent();
+                if (data != null)
+                {
+                    Clipboard.SetDataObject(data);
+                    Point mousePosition = this.PointToClient(Cursor.Position);
+                    toolTip1.ToolTipTitle = "已复制到剪贴板：";
+                    toolTip1.Show(data.GetText(), this, mousePosition);
+                    timerToolTipHide.Enabled = true;
+                }
             }
         }
 
@@ -660,7 +670,7 @@ namespace FileNameReplacer
             {
                 comboBoxRootPath.Items.Add(drive);
             }
-            comboBoxRootPath.Items.Add(string.Join(";", drives));
+            //comboBoxRootPath.Items.Add(string.Join(";", drives));
             comboBoxRootPath.SelectedIndex = 0;
             string[] extensions = SysInfo.GetRegisteredFileExtensions();
             foreach (var ext in extensions)
@@ -813,19 +823,89 @@ namespace FileNameReplacer
         private void linkLabelSearch_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Help help = new Help(((LinkLabel)sender).Text, Resources.SearchF);
-            help.Show();
+            help.ShowDialog();
         }
 
         private void linkLabelSleep_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Help help = new Help(((LinkLabel)sender).Text, Resources.Sleep);
-            help.Show();
+            help.ShowDialog();
         }
 
         private void linkLabelNumName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Help help = new Help(((LinkLabel)sender).Text, Resources.NumName);
-            help.Show();
+            help.ShowDialog();
+        }
+
+        private void dataFileList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (!checkBoxCanOpenFile.Checked) return;
+            DataGridViewCell selectedCell = dataFileList.CurrentCell;
+            if (selectedCell != null)
+            {
+                int columnIndex = selectedCell.ColumnIndex;
+                int rowIndex = selectedCell.RowIndex;
+                bool isDir = Convert.ToBoolean(dataFileList.Rows[rowIndex].Cells[4].Value);
+                if (columnIndex == 1)
+                {
+                    openFile("", selectedCell.Value?.ToString(), isDir);
+                }
+                else if (columnIndex == 2)
+                {
+                    openFile(dataFileList.Rows[rowIndex].Cells[1].Value?.ToString(), selectedCell.Value?.ToString(), isDir);
+                }
+                else if (columnIndex == 3)
+                {
+                    openFile(dataFileList.Rows[rowIndex].Cells[1].Value?.ToString(), selectedCell.Value?.ToString(), isDir);
+                }
+            }
+        }
+
+        private void openFile(string dir, string file, bool isDir)
+        {
+            if (file != null && file.Length > 0)
+            {
+                string filePath = file;
+                if (dir.Length > 0)
+                {
+                    filePath = dir + Path.DirectorySeparatorChar.ToString() + filePath;
+                }
+                else
+                {
+                    isDir = true;
+                }
+                bool exists = false;
+                if (isDir)
+                {
+                    exists = Directory.Exists(filePath);
+                }
+                else
+                {
+                    exists = File.Exists(filePath);
+                }
+                if (exists)
+                {
+                    Point mousePosition = this.PointToClient(Cursor.Position);
+                    toolTip1.ToolTipTitle = "正在打开：";
+                    toolTip1.Show(filePath, this, mousePosition);
+                    timerToolTipHide.Enabled = true;
+                    try
+                    {
+                        Process.Start(filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void timerToolTipHide_Tick(object sender, EventArgs e)
+        {
+            timerToolTipHide.Enabled = false;
+            toolTip1.Hide(this);
         }
     }
 }
