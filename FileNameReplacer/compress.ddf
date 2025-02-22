@@ -1,0 +1,8 @@
+.Set CompressionType=MSZIP
+.Set CompressionLevel=7
+.Set Cabinet=ON
+.Set Compress=ON
+.Set DiskDirectoryTemplate=.
+.Set MaxDiskSize=0
+.Set InfFileName=NUL
+.Set RptFileName=NUL

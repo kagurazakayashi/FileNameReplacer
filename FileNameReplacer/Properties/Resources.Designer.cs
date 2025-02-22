@@ -403,6 +403,16 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap HelpApplication_16x {
+            get {
+                object obj = ResourceManager.GetObject("HelpApplication_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap InfoTipInline_11_11 {
             get {
                 object obj = ResourceManager.GetObject("InfoTipInline.11.11", resourceCulture);
@@ -416,6 +426,16 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap InfoTipInline_32 {
             get {
                 object obj = ResourceManager.GetObject("InfoTipInline.32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Input_16x {
+            get {
+                object obj = ResourceManager.GetObject("Input_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -458,6 +478,16 @@ namespace FileNameReplacer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap OpenfileDialog_16x {
+            get {
+                object obj = ResourceManager.GetObject("OpenfileDialog_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap OpenFolder {
             get {
                 object obj = ResourceManager.GetObject("OpenFolder", resourceCulture);
@@ -471,6 +501,16 @@ namespace FileNameReplacer.Properties {
         internal static System.Drawing.Bitmap OpenWebSite {
             get {
                 object obj = ResourceManager.GetObject("OpenWebSite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Output_16x {
+            get {
+                object obj = ResourceManager.GetObject("Output_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -562,8 +602,8 @@ namespace FileNameReplacer.Properties {
         }
         
         /// <summary>
-        ///   查找类似 前台绘制图形画面需要一些时间才能完成，没有足够时间刷新的话，将会导致程序看起来没有相应。
-        ///这项设置会让后台工作等待前台绘制图形画面指定毫秒数，避免出现没有相应。
+        ///   查找类似 前台绘制图形画面需要一些时间才能完成，没有足够时间刷新的话，将会导致程序看起来没有响应。
+        ///这项设置会让后台工作等待前台绘制图形画面指定毫秒数，避免出现没有响应。
         ///建议设置区间：1-100 ，高速电脑建议值：1，低速电脑建议值：10。
         ///更小的值：可以让任务更快地完成，但是图形画面可能卡顿甚至程序在完成前停止响应。
         ///更大的值：可以更流畅地实时查看进度和文件列表，但是任务完成时间会延长。 的本地化字符串。

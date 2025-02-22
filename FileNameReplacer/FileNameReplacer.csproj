@@ -109,6 +109,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="compress.ddf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="LICENSE" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -162,6 +165,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\OpenfileDialog_16x.png" />
+    <None Include="Resources\HelpApplication_16x.png" />
+    <None Include="Resources\Output_16x.png" />
+    <None Include="Resources\Input_16x.png" />
     <None Include="Resources\SearchF.txt" />
     <None Include="Resources\NumName.txt" />
     <None Include="Resources\Sleep.txt" />
@@ -224,4 +231,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if /i "$(Configuration)"=="Release" (
+CD "$(SolutionDir)$(ProjectName)\$(OutDir)"
+DEL 1.cab
+DIR /B *.pdb &gt;&gt; compress.ddf
+DIR /B *.exe &gt;&gt; compress.ddf
+makecab /F compress.ddf
+RENAME 1.cab "$(ProjectName)_$(PlatformName).cab"
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
