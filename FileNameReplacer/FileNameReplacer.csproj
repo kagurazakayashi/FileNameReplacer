@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\NamedSet_16x.png" />
     <None Include="Resources\OpenfileDialog_16x.png" />
     <None Include="Resources\HelpApplication_16x.png" />
     <None Include="Resources\Output_16x.png" />

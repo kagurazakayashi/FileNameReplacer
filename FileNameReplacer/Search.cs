@@ -14,12 +14,15 @@ namespace FileNameReplacer
         public bool searchSubDir = false; // 是否搜尋子目錄
         public bool searchDir = false; // 是否包含資料夾
         public bool searchFile = true; // 是否包含檔案
+        public bool extName = false;
         public int SleepTime = 1;
-        private int searchCount = 0; // 計數器，記錄搜尋結果數量
         public decimal maxSearchLimit = 10000; // 觸發使用者提示的搜尋條數
         private bool searchCountAlert = true; // 太多了提醒我
         public int[] TotalC = new int[2] { 0, 0 };
+        public int[] TotalS = new int[2] { 0, 0 };
         public Int16 Status = 0;
+        private bool diglogShow = false;
+        public bool run = false;
 
         // 回调：当找到文件或文件夹时触发
         public Action<FileItem> OnFileFound;
@@ -39,11 +42,11 @@ namespace FileNameReplacer
             }
             Status = 1;
             ShouldCancel2 = false;
-            searchCount = 0;
             if (maxSearchLimit > 0)
             {
                 searchCountAlert = true;
             }
+            diglogShow = false;
             SearchDirectory(rootDir);
             if (Status == 1)
             {
@@ -53,28 +56,30 @@ namespace FileNameReplacer
 
         private void SearchDirectory(string dir)
         {
-            // 先檢查是否請求取消
             if (ShouldCancel2 || (ShouldCancel != null && ShouldCancel()))
             {
                 return;
             }
             try
             {
-                // 先處理檔案
                 if (searchFile)
                 {
                     string[] files = Directory.GetFiles(dir);
                     foreach (string file in files)
                     {
-                        string fileName = Path.GetFileNameWithoutExtension(file);
+                        string fileName = extName ? Path.GetFileName(file) : Path.GetFileNameWithoutExtension(file);
                         foreach (string m in searchMode)
                         {
+                            TotalS[1]++;
                             if (IsMatch(fileName, m))
                             {
+                                if (!run)
+                                {
+                                    return;
+                                }
                                 FileItem item = new FileItem(false, dir, Path.GetFileName(file));
                                 OnFileFound?.Invoke(item);
                                 Thread.Sleep(SleepTime);
-                                searchCount++;
                                 if (CheckSearchLimitExceeded())
                                 {
                                     ShouldCancel2 = true;
@@ -84,8 +89,6 @@ namespace FileNameReplacer
                         }
                     }
                 }
-
-                // 再處理資料夾
                 if (searchDir)
                 {
                     string[] directories = Directory.GetDirectories(dir);
@@ -94,12 +97,16 @@ namespace FileNameReplacer
                         string folderName = Path.GetFileName(subDir);
                         foreach (string m in searchMode)
                         {
+                            TotalS[0]++;
                             if (IsMatch(folderName, m))
                             {
+                                if (!run)
+                                {
+                                    return;
+                                }
                                 FileItem item = new FileItem(true, dir, folderName);
                                 OnFileFound?.Invoke(item);
                                 Thread.Sleep(SleepTime);
-                                searchCount++;
                                 if (CheckSearchLimitExceeded())
                                 {
                                     ShouldCancel2 = true;
@@ -107,15 +114,22 @@ namespace FileNameReplacer
                                 }
                             }
                         }
+                        if (!run)
+                        {
+                            return;
+                        }
                         if (searchSubDir)
                         {
-                            SearchDirectory(subDir); // 遞迴搜尋
+                            SearchDirectory(subDir);
                         }
                     }
                 }
                 else
                 {
-                    // 即使 searchDir 為 false，仍然繼續遞迴搜尋子目錄，以便查詢檔案
+                    if (!run)
+                    {
+                        return;
+                    }
                     if (searchSubDir)
                     {
                         if (CheckSearchLimitExceeded())
@@ -191,33 +205,45 @@ namespace FileNameReplacer
             int totalAll = TotalC[0] + TotalC[1];
             if (totalAll >= max)
             {
-                MessageBox.Show(
-                    $"本程序无法处理超过 {max.ToString()} 条搜索结果！\n{TotalC[0].ToString()} 个文件夹，{TotalC[1].ToString()} 个文件。",
-                    "搜索结果过多",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                if (!diglogShow && run)
+                {
+                    diglogShow = true;
+                    MessageBox.Show(
+                        $"本程序无法处理超过 {max.ToString()} 条搜索结果！\n{TotalC[0].ToString()} 个文件夹，{TotalC[1].ToString()} 个文件。",
+                        "搜索结果过多",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.ServiceNotification
+                    );
+                }
                 Status = 2;
                 return true;
             }
             decimal nextLimit = totalAll + maxSearchLimit;
             if (searchCountAlert && totalAll > 0 && (totalAll % maxSearchLimit == 0))
             {
-                DialogResult result = MessageBox.Show(
+                if (!diglogShow && run)
+                {
+                    diglogShow = true;
+                    DialogResult result = MessageBox.Show(
                     $"搜索结果已超过 {totalAll.ToString()} 条，是否需要停止搜索？\n{TotalC[0].ToString()} 个文件夹，{TotalC[1].ToString()} 个文件。\n[是] 中止搜索\n[否] 不要停止，超过 {nextLimit.ToString()} 条再询问我\n[取消] 不要停止，本次搜索不再询问",
                     "搜索结果过多",
                     MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.ServiceNotification
                 );
-
-                if (result == DialogResult.Yes)
-                {
-                    Status = 2;
-                    return true; // 終止搜尋
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    searchCountAlert = false;
+                    if (result == DialogResult.Yes)
+                    {
+                        Status = 2;
+                        return true;
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        searchCountAlert = false;
+                    }
+                    diglogShow = false;
                 }
             }
             return false;
