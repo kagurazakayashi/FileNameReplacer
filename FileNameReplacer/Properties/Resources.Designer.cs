@@ -526,6 +526,22 @@ namespace FileNameReplacer.Properties {
         }
         
         /// <summary>
+        ///   查找类似 子文件夹：在搜索时，连带这个文件夹里面的所有层级文件夹一起搜索。
+        ///
+        ///文件：在搜索时，满足条件的文件会加入到待处理列表，如果后续执行操作，这些文件会包含在内。
+        ///文件夹：在搜索时，满足条件的文件夹也会加入到待处理列表，如果后续执行操作，这些文件夹也会包含在内。
+        ///不勾选 &quot;文件夹&quot; 时，&quot;子文件夹&quot; 选项仍然有效，反之也是如此。
+        ///
+        ///包含文件扩展名：在搜索时，将文件扩展名也纳入考虑。
+        ///例如：当搜索词是 &quot;*.txt&quot; 时，文件 &quot;aaa.txt&quot; 只有在这项开启时才能被找到。 的本地化字符串。
+        /// </summary>
+        internal static string Range {
+            get {
+                return ResourceManager.GetString("Range", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap RECYFULL {

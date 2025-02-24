@@ -42,6 +42,7 @@
             this.label1.Padding = new System.Windows.Forms.Padding(20);
             this.label1.Size = new System.Drawing.Size(40, 61);
             this.label1.TabIndex = 0;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Help
             // 
@@ -55,12 +56,15 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Margin = new System.Windows.Forms.Padding(5);
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Help";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "使用说明：";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Help_Load);
+            this.Click += new System.EventHandler(this.Help_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

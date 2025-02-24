@@ -28,5 +28,15 @@ namespace FileNameReplacer
             DarkMode.AutoDarkMode(this);
             //label1.Select(0, 0);
         }
+
+        private void Help_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

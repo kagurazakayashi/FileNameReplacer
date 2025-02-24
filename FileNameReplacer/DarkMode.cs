@@ -129,12 +129,14 @@ namespace FileNameReplacer
                     c.LinkColor = isDarkMode ? Color.SkyBlue : Color.Blue;
                     c.VisitedLinkColor = c.LinkColor;
                     break;
+                case TabControl c:
+                    c.Appearance = isDarkMode ? TabAppearance.FlatButtons : TabAppearance.Normal;
+                    break;
             }
             foreach (Control childControl in control.Controls)
             {
                 SetControlColors(childControl, backColor, foreColor, isDarkMode);
             }
         }
-
     }
 }

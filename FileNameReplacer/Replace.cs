@@ -13,6 +13,7 @@ namespace FileNameReplacer
         public bool Emu = true;
         public int SleepTime = 1;
         public int[] TotalOK = new int[3] { 0, 0, 0 };
+        public bool run = false;
 
         public Action<ReplaceJob> OnFileRename;
 
@@ -20,6 +21,7 @@ namespace FileNameReplacer
         {
             for (int i = 0; i < Jobs.Length; i++)
             {
+                if (!run) return;
                 ReplaceJob job = Jobs[i];
                 if (job.FromFullPath() == job.ToFullPath())
                 {

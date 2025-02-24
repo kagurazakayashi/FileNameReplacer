@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace FileNameReplacer
 {
@@ -20,6 +21,8 @@ namespace FileNameReplacer
         private Replace replaceEngine;
         private Int16 FileAction = 0;
         private Dictionary<string, int> defaultColumnWidths = new Dictionary<string, int>();
+        private string Title = "";
+        private bool close = false;
 
         public Form1()
         {
@@ -33,6 +36,7 @@ namespace FileNameReplacer
         private void Form1_Load(object sender, EventArgs e)
         {
             timerLoad.Enabled = true;
+            Title = Text;
             checkBoxDark.Checked = DarkMode.AutoDarkMode(this);
         }
 
@@ -110,6 +114,7 @@ namespace FileNameReplacer
                 searchRunningUI(true, 0);
                 FileAction = 0;
                 pictureBoxReplace.Image = Resources.FILEMOVE;
+                Text = Title + " - 正在替换";
                 backgroundWorkerReplace.RunWorkerAsync();
             }
         }
@@ -149,6 +154,8 @@ namespace FileNameReplacer
                 comboBoxSearch.Items.Insert(0, comboBoxRootPath.Text);
                 searchRunningUI(true, -1);
                 dataFileList.Rows.Clear();
+                timerUpdateSchAll.Enabled = true;
+                Text = Title + " - 正在搜索";
                 backgroundWorkerSearch.RunWorkerAsync(); // 开始异步搜索
             }
         }
@@ -161,6 +168,7 @@ namespace FileNameReplacer
             bool searchSubDir = false;
             bool searchDir = false;
             bool searchFile = false;
+            bool extName = false;
             decimal maxSearchLimit = 0;
             int sleepTime = 1;
             this.Invoke((MethodInvoker)delegate
@@ -171,6 +179,7 @@ namespace FileNameReplacer
                 searchDir = checkBoxADir.Checked;
                 searchFile = checkBoxAFile.Checked;
                 maxSearchLimit = numericUpDownLimit.Value;
+                extName = checkBoxSearchExtName.Checked;
                 sleepTime = Convert.ToInt32(numericUpDownSleep.Value);
             });
             List<string> tPattern = new List<string>();
@@ -190,6 +199,8 @@ namespace FileNameReplacer
                 searchFile = searchFile,
                 maxSearchLimit = maxSearchLimit,
                 SleepTime = sleepTime,
+                extName = extName,
+                run = true,
                 ShouldCancel = () => backgroundWorkerSearch.CancellationPending
             };
             // 绑定回调函数
@@ -214,7 +225,14 @@ namespace FileNameReplacer
         private void addFileItemToList(FileItem fileItem)
         {
             int dataLen = dataFileList.Rows.Count;
-            dataFileList.Rows.Add(); //dataGridView
+            try
+            {
+                dataFileList.Rows.Add();
+            }
+            catch
+            {
+                return;
+            }
             dataFileList.Rows[dataLen].Cells[1].Value = UIAction.NormalizePath(fileItem.inPath);
             dataFileList.Rows[dataLen].Cells[2].Value = fileItem.fileName;
             dataFileList.Rows[dataLen].Cells[4].Value = fileItem.isDir;
@@ -224,11 +242,12 @@ namespace FileNameReplacer
                 dataFileList.Rows[dataLen].Cells[0].Value = Resources.FolderClosed;
                 int num = int.Parse(toolStripButtonNumDir.Text) + 1;
                 toolStripButtonNumDir.Text = num.ToString();
+                Console.WriteLine("DIR " + toolStripButtonNumDir.Text);
                 if (searchEngine != null) searchEngine.TotalC[0] = num;
             }
             else
             {
-                int num = int.Parse(toolStripButtonNumDir.Text) + 1;
+                int num = int.Parse(toolStripButtonNumFile.Text) + 1;
                 toolStripButtonNumFile.Text = num.ToString();
                 if (searchEngine != null) searchEngine.TotalC[1] = num;
             }
@@ -248,17 +267,28 @@ namespace FileNameReplacer
 
         private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (close) return;
             searchRunningUI(false, -1);
             notifyIcon1.Visible = true;
+            timerUpdateSchAll.Enabled = false;
+            updateSch();
+            string[] info = new string[2]
+            {
+                "查找了 " + toolStripButtonNumDirSch.Text + " 个文件夹和 " + toolStripButtonNumFileSch.Text + " 个文件。",
+                "找到了 " + toolStripButtonNumDir.Text + " 个文件夹和 " + toolStripButtonNumFile.Text + " 个文件。",
+            };
             if (e.Cancelled || searchEngine.Status == 2)
             {
-                notifyIcon1.ShowBalloonTip(3000, "搜索已取消。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Error);
+                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "搜索已取消。", string.Join("\r\n", info), ToolTipIcon.Error);
+                Text = Title + " - 搜索已取消: " + string.Join("", info);
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(3000, "搜索完成。", $"找到了 {toolStripButtonNumDir.Text} 个文件夹和 {toolStripButtonNumFile.Text} 个文件。", ToolTipIcon.Info);
+                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "搜索完成。", string.Join("\r\n", info), ToolTipIcon.Info);
+                Text = Title + " - 搜索完成: " + string.Join("", info);
             }
-            //labelUpdateAlert
+            toolStripButtonNumDirSch.Text = "0";
+            toolStripButtonNumFileSch.Text = "0";
             if (dataFileList.Rows.Count > 0)
             {
                 buttonReplace.Enabled = true;
@@ -279,6 +309,7 @@ namespace FileNameReplacer
             buttonSearchStop.Enabled = false;
             if (backgroundWorkerSearch.IsBusy)
             {
+                searchEngine.run = false;
                 backgroundWorkerSearch.CancelAsync();
             }
             if (!backgroundWorkerSearch.IsBusy)
@@ -308,7 +339,7 @@ namespace FileNameReplacer
             buttonRMStop.Enabled = false;
             buttonRMStop.Visible = false;
 
-            pictureBoxSearch.Visible = false;
+            pictureBoxSearchBox.Visible = false;
             pictureBoxReplace.Visible = false;
             tabControl2.Visible = true;
             progressBar1.Style = ProgressBarStyle.Blocks;
@@ -320,7 +351,7 @@ namespace FileNameReplacer
                 if (mode == -1)
                 {
                     progressBar1.Style = ProgressBarStyle.Marquee;
-                    pictureBoxSearch.Visible = true;
+                    pictureBoxSearchBox.Visible = true;
                     buttonSearch.Visible = false;
                     buttonSearchStop.Enabled = true;
                     buttonSearchStop.Visible = true;
@@ -386,13 +417,20 @@ namespace FileNameReplacer
         private string preview(string oldStr)
         {
             string newStr;
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(oldStr);
+            string extension = Path.GetExtension(oldStr);
+            string oldStrToProcess = checkBoxReplaceExtName.Checked ? oldStr : fileNameWithoutExtension;
             if (checkBoxCase.Checked)
             {
-                newStr = oldStr.Replace(comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
+                newStr = oldStrToProcess.Replace(comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
             }
             else
             {
-                newStr = UIAction.ReplaceIgnoringCase(oldStr, comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
+                newStr = UIAction.ReplaceIgnoringCase(oldStrToProcess, comboBoxReplaceFrom.Text, comboBoxReplaceTo.Text);
+            }
+            if (!checkBoxReplaceExtName.Checked)
+            {
+                newStr = newStr + extension;
             }
             return newStr;
         }
@@ -446,7 +484,8 @@ namespace FileNameReplacer
                 Jobs = jobs,
                 SleepTime = sleepTime,
                 FileAction = this.FileAction,
-                Emu = emu
+                Emu = emu,
+                run = true
             };
             replaceEngine.OnFileRename = (fileItem) =>
             {
@@ -510,15 +549,24 @@ namespace FileNameReplacer
 
         private void backgroundWorkerReplace_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (close) return;
             searchRunningUI(false, FileAction);
             notifyIcon1.Visible = true;
+            string[] info = new string[3]
+            {
+                replaceEngine.TotalOK[0].ToString() + " 个成功，",
+                replaceEngine.TotalOK[1].ToString() + " 个失败，",
+                replaceEngine.TotalOK[2].ToString() + " 个跳过。",
+            };
             if (e.Cancelled || replaceEngine.Status == 2)
             {
-                notifyIcon1.ShowBalloonTip(3000, "操作已取消。", $"{replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Error);
+                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "操作已取消。", string.Join("\r\n", info), ToolTipIcon.Error);
+                Text = Title + " - 操作已取消: " + string.Join("", info);
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(3000, "操作完成。", $"{replaceEngine.TotalOK[0].ToString()} 个成功, {replaceEngine.TotalOK[1].ToString()} 个失败， {replaceEngine.TotalOK[2].ToString()} 个跳过。", ToolTipIcon.Info);
+                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "操作完成。", string.Join("\r\n", info), ToolTipIcon.Info);
+                Text = Title + " - 操作完成: " + string.Join("", info);
             }
             buttonReplace.Enabled = false;
             buttonRM.Enabled = false;
@@ -648,7 +696,18 @@ namespace FileNameReplacer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            close = true;
             notifyIcon1.Visible = false;
+            if (searchEngine != null)
+            {
+                searchEngine.run = false;
+                backgroundWorkerSearch.CancelAsync();
+            }
+            if (replaceEngine != null)
+            {
+                replaceEngine.run = false;
+                backgroundWorkerReplace.CancelAsync();
+            }
         }
 
         private void timerLoad_Tick(object sender, EventArgs e)
@@ -699,6 +758,7 @@ namespace FileNameReplacer
                     FileAction = 2;
                     pictureBoxReplace.Image = Resources.FILEDELR;
                 }
+                Text = Title + " - 正在删除";
                 backgroundWorkerReplace.RunWorkerAsync();
             }
         }
@@ -906,6 +966,58 @@ namespace FileNameReplacer
         {
             timerToolTipHide.Enabled = false;
             toolTip1.Hide(this);
+        }
+
+        private void checkBoxCase_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
+        }
+
+        private void checkBoxReplaceExtName_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
+        }
+
+        private void comboBoxReplaceTo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
+        }
+
+        private void comboBoxReplaceFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPreview.Checked)
+            {
+                previewAll();
+            }
+        }
+
+        private void updateSch()
+        {
+            if (searchEngine != null)
+            {
+                toolStripButtonNumDirSch.Text = searchEngine.TotalS[0].ToString();
+                toolStripButtonNumFileSch.Text = searchEngine.TotalS[1].ToString();
+            }
+        }
+
+        private void timerUpdateSchAll_Tick(object sender, EventArgs e)
+        {
+            updateSch();
+        }
+
+        private void linkLabelSearchRange_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Help help = new Help(((LinkLabel)sender).Text, Resources.Range);
+            help.ShowDialog();
         }
     }
 }

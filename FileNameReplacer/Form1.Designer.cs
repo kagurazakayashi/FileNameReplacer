@@ -32,8 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboBoxRootPath = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBoxSearchBox = new System.Windows.Forms.Panel();
+            this.toolStripButtonNumFileSch = new System.Windows.Forms.Label();
+            this.toolStripButtonNumDirSch = new System.Windows.Forms.Label();
             this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBoxReplace = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -71,6 +74,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkBoxSearchExtName = new System.Windows.Forms.CheckBox();
+            this.linkLabelSearchRange = new System.Windows.Forms.LinkLabel();
             this.linkLabelSearch = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.labelFilePath = new System.Windows.Forms.Label();
@@ -106,6 +110,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNumDir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonNumFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1rm = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonP1cp = new System.Windows.Forms.ToolStripButton();
@@ -123,15 +128,12 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timerToolTipHide = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.timerUpdateSchAll = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxSearchBox = new System.Windows.Forms.Panel();
-            this.toolStripButtonNumDirSch = new System.Windows.Forms.Label();
-            this.toolStripButtonNumFileSch = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pictureBoxSearchBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).BeginInit();
             this.tabControl2.SuspendLayout();
@@ -147,7 +149,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSleep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            this.pictureBoxSearchBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxRootPath
@@ -185,14 +186,46 @@
             this.splitContainer1.SplitterDistance = 284;
             this.splitContainer1.TabIndex = 4;
             // 
-            // progressBar1
+            // pictureBoxSearchBox
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBoxSearchBox.Controls.Add(this.toolStripButtonNumFileSch);
+            this.pictureBoxSearchBox.Controls.Add(this.toolStripButtonNumDirSch);
+            this.pictureBoxSearchBox.Controls.Add(this.pictureBoxSearch);
+            this.pictureBoxSearchBox.Location = new System.Drawing.Point(4, 645);
+            this.pictureBoxSearchBox.Name = "pictureBoxSearchBox";
+            this.pictureBoxSearchBox.Size = new System.Drawing.Size(278, 48);
+            this.pictureBoxSearchBox.TabIndex = 15;
+            this.pictureBoxSearchBox.Visible = false;
+            // 
+            // toolStripButtonNumFileSch
+            // 
+            this.toolStripButtonNumFileSch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(5, 697);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(276, 23);
-            this.progressBar1.TabIndex = 7;
+            this.toolStripButtonNumFileSch.Image = global::FileNameReplacer.Properties.Resources.CompareFiles_16x;
+            this.toolStripButtonNumFileSch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolStripButtonNumFileSch.Location = new System.Drawing.Point(167, 0);
+            this.toolStripButtonNumFileSch.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripButtonNumFileSch.Name = "toolStripButtonNumFileSch";
+            this.toolStripButtonNumFileSch.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.toolStripButtonNumFileSch.Size = new System.Drawing.Size(106, 48);
+            this.toolStripButtonNumFileSch.TabIndex = 2;
+            this.toolStripButtonNumFileSch.Text = "0";
+            this.toolStripButtonNumFileSch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // toolStripButtonNumDirSch
+            // 
+            this.toolStripButtonNumDirSch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripButtonNumDirSch.Image = global::FileNameReplacer.Properties.Resources.CompareFolders_16x;
+            this.toolStripButtonNumDirSch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolStripButtonNumDirSch.Location = new System.Drawing.Point(0, 0);
+            this.toolStripButtonNumDirSch.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripButtonNumDirSch.Name = "toolStripButtonNumDirSch";
+            this.toolStripButtonNumDirSch.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.toolStripButtonNumDirSch.Size = new System.Drawing.Size(106, 48);
+            this.toolStripButtonNumDirSch.TabIndex = 2;
+            this.toolStripButtonNumDirSch.Text = "0";
+            this.toolStripButtonNumDirSch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // pictureBoxSearch
             // 
@@ -203,6 +236,15 @@
             this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxSearch.TabIndex = 11;
             this.pictureBoxSearch.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(5, 697);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(276, 23);
+            this.progressBar1.TabIndex = 7;
             // 
             // pictureBoxReplace
             // 
@@ -410,10 +452,10 @@
             this.tabPage5.Controls.Add(this.label9);
             this.tabPage5.Controls.Add(this.label8);
             this.tabPage5.Controls.Add(this.label7);
-            this.tabPage5.Location = new System.Drawing.Point(4, 30);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(270, 260);
+            this.tabPage5.Size = new System.Drawing.Size(270, 268);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "批量命名";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -434,7 +476,7 @@
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Enabled = false;
             this.button2.Image = global::FileNameReplacer.Properties.Resources.StopOutline;
-            this.button2.Location = new System.Drawing.Point(8, 212);
+            this.button2.Location = new System.Drawing.Point(8, 220);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(255, 42);
             this.button2.TabIndex = 15;
@@ -450,7 +492,7 @@
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Enabled = false;
             this.button3.Image = global::FileNameReplacer.Properties.Resources.RenameEvent;
-            this.button3.Location = new System.Drawing.Point(7, 212);
+            this.button3.Location = new System.Drawing.Point(7, 220);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(256, 42);
             this.button3.TabIndex = 16;
@@ -466,7 +508,7 @@
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBox2.Image = global::FileNameReplacer.Properties.Resources.StringData;
-            this.checkBox2.Location = new System.Drawing.Point(8, 177);
+            this.checkBox2.Location = new System.Drawing.Point(8, 185);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(109, 25);
             this.checkBox2.TabIndex = 14;
@@ -479,7 +521,7 @@
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.Image = global::FileNameReplacer.Properties.Resources.Test;
-            this.button4.Location = new System.Drawing.Point(141, 170);
+            this.button4.Location = new System.Drawing.Point(141, 178);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(122, 36);
             this.button4.TabIndex = 17;
@@ -562,10 +604,10 @@
             this.linkLabelNumName.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.linkLabelNumName.Location = new System.Drawing.Point(28, 9);
             this.linkLabelNumName.Name = "linkLabelNumName";
-            this.linkLabelNumName.Size = new System.Drawing.Size(111, 21);
+            this.linkLabelNumName.Size = new System.Drawing.Size(122, 21);
             this.linkLabelNumName.TabIndex = 11;
             this.linkLabelNumName.TabStop = true;
-            this.linkLabelNumName.Text = "新文件名规则 ";
+            this.linkLabelNumName.Text = "新文件名规则：";
             this.linkLabelNumName.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.linkLabelNumName.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNumName_LinkClicked);
             // 
@@ -608,10 +650,10 @@
             this.tabPage4.Controls.Add(this.radioButtonRmF);
             this.tabPage4.Controls.Add(this.radioButtonRm);
             this.tabPage4.Controls.Add(this.buttonRM);
-            this.tabPage4.Location = new System.Drawing.Point(4, 30);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(270, 260);
+            this.tabPage4.Size = new System.Drawing.Size(270, 268);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "批量删除";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -667,7 +709,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRM.Image = global::FileNameReplacer.Properties.Resources.Delete;
-            this.buttonRM.Location = new System.Drawing.Point(8, 178);
+            this.buttonRM.Location = new System.Drawing.Point(8, 186);
             this.buttonRM.Name = "buttonRM";
             this.buttonRM.Size = new System.Drawing.Size(256, 42);
             this.buttonRM.TabIndex = 8;
@@ -704,6 +746,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.checkBoxSearchExtName);
+            this.tabPage1.Controls.Add(this.linkLabelSearchRange);
             this.tabPage1.Controls.Add(this.linkLabelSearch);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.labelFilePath);
@@ -741,6 +784,19 @@
             this.checkBoxSearchExtName.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.checkBoxSearchExtName.UseVisualStyleBackColor = true;
             // 
+            // linkLabelSearchRange
+            // 
+            this.linkLabelSearchRange.AutoSize = true;
+            this.linkLabelSearchRange.Image = global::FileNameReplacer.Properties.Resources.InfoTipInline_11_11;
+            this.linkLabelSearchRange.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.linkLabelSearchRange.Location = new System.Drawing.Point(28, 148);
+            this.linkLabelSearchRange.Name = "linkLabelSearchRange";
+            this.linkLabelSearchRange.Size = new System.Drawing.Size(90, 21);
+            this.linkLabelSearchRange.TabIndex = 11;
+            this.linkLabelSearchRange.TabStop = true;
+            this.linkLabelSearchRange.Text = "搜索范围：";
+            this.linkLabelSearchRange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSearchRange_LinkClicked);
+            // 
             // linkLabelSearch
             // 
             this.linkLabelSearch.AutoSize = true;
@@ -748,10 +804,10 @@
             this.linkLabelSearch.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.linkLabelSearch.Location = new System.Drawing.Point(28, 83);
             this.linkLabelSearch.Name = "linkLabelSearch";
-            this.linkLabelSearch.Size = new System.Drawing.Size(79, 21);
+            this.linkLabelSearch.Size = new System.Drawing.Size(90, 21);
             this.linkLabelSearch.TabIndex = 11;
             this.linkLabelSearch.TabStop = true;
-            this.linkLabelSearch.Text = "搜索条件 ";
+            this.linkLabelSearch.Text = "搜索条件：";
             this.linkLabelSearch.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSearch_LinkClicked);
             // 
             // button1
@@ -899,11 +955,11 @@
             this.label4.AutoSize = true;
             this.label4.Image = global::FileNameReplacer.Properties.Resources.TypeDefinition;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label4.Location = new System.Drawing.Point(6, 149);
+            this.label4.Location = new System.Drawing.Point(7, 148);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 21);
+            this.label4.Size = new System.Drawing.Size(26, 21);
             this.label4.TabIndex = 6;
-            this.label4.Text = "　搜索内容：";
+            this.label4.Text = "　";
             // 
             // checkBoxAFile
             // 
@@ -932,10 +988,10 @@
             this.tabPage2.Controls.Add(this.checkBoxDark);
             this.tabPage2.Controls.Add(this.checkBoxDebug);
             this.tabPage2.Controls.Add(this.checkBoxRealWidth);
-            this.tabPage2.Location = new System.Drawing.Point(4, 30);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(270, 290);
+            this.tabPage2.Size = new System.Drawing.Size(270, 298);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "高级设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -948,10 +1004,10 @@
             this.linkLabelSleep.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.linkLabelSleep.Location = new System.Drawing.Point(62, 48);
             this.linkLabelSleep.Name = "linkLabelSleep";
-            this.linkLabelSleep.Size = new System.Drawing.Size(64, 21);
+            this.linkLabelSleep.Size = new System.Drawing.Size(75, 21);
             this.linkLabelSleep.TabIndex = 16;
             this.linkLabelSleep.TabStop = true;
-            this.linkLabelSleep.Text = "UI刷新 ";
+            this.linkLabelSleep.Text = "UI刷新：";
             this.linkLabelSleep.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.linkLabelSleep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSleep_LinkClicked);
             // 
@@ -961,7 +1017,7 @@
             this.linkLabelGitHub.AutoSize = true;
             this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
             this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(183, 262);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(183, 270);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
             this.linkLabelGitHub.TabIndex = 16;
@@ -1237,6 +1293,11 @@
             this.toolStripButtonNumFile.Text = "0";
             this.toolStripButtonNumFile.ToolTipText = "要处理的文件数量";
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
+            // 
             // toolStripButtonP1rm
             // 
             this.toolStripButtonP1rm.Enabled = false;
@@ -1364,56 +1425,10 @@
             this.timerToolTipHide.Interval = 5000;
             this.timerToolTipHide.Tick += new System.EventHandler(this.timerToolTipHide_Tick);
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
-            // 
             // timerUpdateSchAll
             // 
             this.timerUpdateSchAll.Interval = 500;
             this.timerUpdateSchAll.Tick += new System.EventHandler(this.timerUpdateSchAll_Tick);
-            // 
-            // pictureBoxSearchBox
-            // 
-            this.pictureBoxSearchBox.Controls.Add(this.toolStripButtonNumFileSch);
-            this.pictureBoxSearchBox.Controls.Add(this.toolStripButtonNumDirSch);
-            this.pictureBoxSearchBox.Controls.Add(this.pictureBoxSearch);
-            this.pictureBoxSearchBox.Location = new System.Drawing.Point(4, 645);
-            this.pictureBoxSearchBox.Name = "pictureBoxSearchBox";
-            this.pictureBoxSearchBox.Size = new System.Drawing.Size(278, 48);
-            this.pictureBoxSearchBox.TabIndex = 15;
-            this.pictureBoxSearchBox.Visible = false;
-            // 
-            // toolStripButtonNumDirSch
-            // 
-            this.toolStripButtonNumDirSch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolStripButtonNumDirSch.Image = global::FileNameReplacer.Properties.Resources.CompareFolders_16x;
-            this.toolStripButtonNumDirSch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.toolStripButtonNumDirSch.Location = new System.Drawing.Point(0, 0);
-            this.toolStripButtonNumDirSch.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButtonNumDirSch.Name = "toolStripButtonNumDirSch";
-            this.toolStripButtonNumDirSch.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.toolStripButtonNumDirSch.Size = new System.Drawing.Size(106, 48);
-            this.toolStripButtonNumDirSch.TabIndex = 2;
-            this.toolStripButtonNumDirSch.Text = "0";
-            this.toolStripButtonNumDirSch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // toolStripButtonNumFileSch
-            // 
-            this.toolStripButtonNumFileSch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolStripButtonNumFileSch.Image = global::FileNameReplacer.Properties.Resources.CompareFiles_16x;
-            this.toolStripButtonNumFileSch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.toolStripButtonNumFileSch.Location = new System.Drawing.Point(167, 0);
-            this.toolStripButtonNumFileSch.Margin = new System.Windows.Forms.Padding(0);
-            this.toolStripButtonNumFileSch.Name = "toolStripButtonNumFileSch";
-            this.toolStripButtonNumFileSch.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.toolStripButtonNumFileSch.Size = new System.Drawing.Size(106, 48);
-            this.toolStripButtonNumFileSch.TabIndex = 2;
-            this.toolStripButtonNumFileSch.Text = "0";
-            this.toolStripButtonNumFileSch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // Form1
             // 
@@ -1433,6 +1448,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pictureBoxSearchBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReplace)).EndInit();
             this.tabControl2.ResumeLayout(false);
@@ -1454,7 +1470,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataFileList)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.pictureBoxSearchBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1559,6 +1574,7 @@
         private System.Windows.Forms.Panel pictureBoxSearchBox;
         private System.Windows.Forms.Label toolStripButtonNumFileSch;
         private System.Windows.Forms.Label toolStripButtonNumDirSch;
+        private System.Windows.Forms.LinkLabel linkLabelSearchRange;
     }
 }
 
