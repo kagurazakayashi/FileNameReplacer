@@ -95,6 +95,7 @@
             this.numericUpDownSleep = new System.Windows.Forms.NumericUpDown();
             this.checkBoxLimit = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.checkBoxEndAlert = new System.Windows.Forms.CheckBox();
             this.checkBoxCanOpenFile = new System.Windows.Forms.CheckBox();
             this.checkBoxDark = new System.Windows.Forms.CheckBox();
             this.checkBoxDebug = new System.Windows.Forms.CheckBox();
@@ -165,6 +166,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Enabled = false;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -253,7 +255,7 @@
             this.pictureBoxReplace.Location = new System.Drawing.Point(3, 633);
             this.pictureBoxReplace.Name = "pictureBoxReplace";
             this.pictureBoxReplace.Size = new System.Drawing.Size(278, 60);
-            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReplace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxReplace.TabIndex = 12;
             this.pictureBoxReplace.TabStop = false;
             this.pictureBoxReplace.Visible = false;
@@ -984,14 +986,15 @@
             this.tabPage2.Controls.Add(this.numericUpDownSleep);
             this.tabPage2.Controls.Add(this.checkBoxLimit);
             this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.checkBoxEndAlert);
             this.tabPage2.Controls.Add(this.checkBoxCanOpenFile);
             this.tabPage2.Controls.Add(this.checkBoxDark);
             this.tabPage2.Controls.Add(this.checkBoxDebug);
             this.tabPage2.Controls.Add(this.checkBoxRealWidth);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(270, 298);
+            this.tabPage2.Size = new System.Drawing.Size(270, 290);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "高级设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1014,15 +1017,15 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabelGitHub.AutoSize = true;
             this.linkLabelGitHub.Image = global::FileNameReplacer.Properties.Resources.OpenWebSite;
             this.linkLabelGitHub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(183, 270);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(183, 262);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(80, 21);
             this.linkLabelGitHub.TabIndex = 16;
             this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "　GitHub";
+            this.linkLabelGitHub.Tag = "";
+            this.linkLabelGitHub.Text = "　GitHub\r\n \r\nhttps://github.com/kagurazakayashi/FileNameReplacer";
             this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // numericUpDownLimit
@@ -1094,6 +1097,20 @@
             this.label5.Size = new System.Drawing.Size(58, 21);
             this.label5.TabIndex = 15;
             this.label5.Text = "　等待";
+            // 
+            // checkBoxEndAlert
+            // 
+            this.checkBoxEndAlert.AutoSize = true;
+            this.checkBoxEndAlert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxEndAlert.Image = global::FileNameReplacer.Properties.Resources.WindowsServiceWarning_16x;
+            this.checkBoxEndAlert.Location = new System.Drawing.Point(9, 205);
+            this.checkBoxEndAlert.Name = "checkBoxEndAlert";
+            this.checkBoxEndAlert.Size = new System.Drawing.Size(237, 25);
+            this.checkBoxEndAlert.TabIndex = 13;
+            this.checkBoxEndAlert.Text = "完成时弹窗而不是通知提醒";
+            this.checkBoxEndAlert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.checkBoxEndAlert.UseVisualStyleBackColor = true;
+            this.checkBoxEndAlert.CheckedChanged += new System.EventHandler(this.checkBoxDark_CheckedChanged);
             // 
             // checkBoxCanOpenFile
             // 
@@ -1283,6 +1300,7 @@
             this.toolStripButtonNumDir.Size = new System.Drawing.Size(39, 25);
             this.toolStripButtonNumDir.Text = "0";
             this.toolStripButtonNumDir.ToolTipText = "要处理的文件夹数量";
+            this.toolStripButtonNumDir.Click += new System.EventHandler(this.toolStripButtonNumDir_Click);
             // 
             // toolStripButtonNumFile
             // 
@@ -1292,6 +1310,7 @@
             this.toolStripButtonNumFile.Size = new System.Drawing.Size(39, 25);
             this.toolStripButtonNumFile.Text = "0";
             this.toolStripButtonNumFile.ToolTipText = "要处理的文件数量";
+            this.toolStripButtonNumFile.Click += new System.EventHandler(this.toolStripButtonNumFile_Click);
             // 
             // toolStripSeparator5
             // 
@@ -1331,7 +1350,6 @@
             // 
             // toolStripButtonAutoWidth
             // 
-            this.toolStripButtonAutoWidth.Enabled = false;
             this.toolStripButtonAutoWidth.Image = global::FileNameReplacer.Properties.Resources.AutoSizeStretch;
             this.toolStripButtonAutoWidth.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAutoWidth.Name = "toolStripButtonAutoWidth";
@@ -1402,7 +1420,7 @@
             // 
             // timerLoad
             // 
-            this.timerLoad.Interval = 1000;
+            this.timerLoad.Interval = 500;
             this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
             // 
             // dataGridViewImageColumn1
@@ -1440,7 +1458,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
-            this.Text = "GlimmerRename 流光易名 v2.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1575,6 +1592,7 @@
         private System.Windows.Forms.Label toolStripButtonNumFileSch;
         private System.Windows.Forms.Label toolStripButtonNumDirSch;
         private System.Windows.Forms.LinkLabel linkLabelSearchRange;
+        private System.Windows.Forms.CheckBox checkBoxEndAlert;
     }
 }
 

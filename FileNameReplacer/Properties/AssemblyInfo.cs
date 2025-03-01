@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("雅诗文件名批量替换工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KagurazkaMiyabi")]
-[assembly: AssemblyProduct("Glimmer Rename 流光易名")]
-[assembly: AssemblyCopyright("Copyright © 2025 KagurazkaMiyabi")]
-[assembly: AssemblyTrademark("KagurazkaYashi")]
+[assembly: AssemblyProduct("GlimmerRename 流光易名")]
+[assembly: AssemblyCopyright("Copyright (c) 2025 KagurazakaYashi/Miyabi FileNameReplacer is licensed under Mulan PSL v2.")]
+[assembly: AssemblyTrademark("KagurazakaYashi")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型
@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //      生成号
 //      修订号
 //
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]
 [assembly: NeutralResourcesLanguage("zh-CN")]

@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rename.ico" />
+    <None Include="Resources\WindowsServiceWarning_16x.png" />
     <None Include="Resources\Range.txt" />
     <None Include="Resources\NamedSet_16x.png" />
     <None Include="Resources\OpenfileDialog_16x.png" />
@@ -236,11 +237,15 @@
   <PropertyGroup>
     <PostBuildEvent>if /i "$(Configuration)"=="Release" (
 CD "$(SolutionDir)$(ProjectName)\$(OutDir)"
-DEL 1.cab
 DIR /B *.pdb &gt;&gt; compress.ddf
 DIR /B *.exe &gt;&gt; compress.ddf
 makecab /F compress.ddf
 RENAME 1.cab "$(ProjectName)_$(PlatformName).cab"
 )</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>if /i "$(Configuration)"=="Release" (
+DEL /Q "$(SolutionDir)$(ProjectName)\$(OutDir)\*.*"
+)</PreBuildEvent>
   </PropertyGroup>
 </Project>

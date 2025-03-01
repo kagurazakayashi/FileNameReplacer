@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -36,8 +37,16 @@ namespace FileNameReplacer
         private void Form1_Load(object sender, EventArgs e)
         {
             timerLoad.Enabled = true;
-            Title = Text;
             checkBoxDark.Checked = DarkMode.AutoDarkMode(this);
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            AssemblyName assemblyName = assembly.GetName();
+            Title = UIAction.GetAttribute<AssemblyTitleAttribute>(assembly)?.Title ?? "";
+            string fileVersion = UIAction.GetAttribute<AssemblyFileVersionAttribute>(assembly)?.Version ?? "";
+            if (fileVersion.Length > 0)
+            {
+                Title += " v" + fileVersion;
+            }
+            Text = Title;
         }
 
         private void buttonChgRootPath_Click(object sender, EventArgs e)
@@ -68,8 +77,8 @@ namespace FileNameReplacer
                 searchEngine.TotalC[0] = dir;
                 searchEngine.TotalC[1] = file;
             }
-            toolStripButtonNumDir.Text = dir.ToString();
-            toolStripButtonNumFile.Text = file.ToString();
+            toolStripButtonNumDir.Text = dir.ToString("N0", CultureInfo.InvariantCulture);
+            toolStripButtonNumFile.Text = file.ToString("N0", CultureInfo.InvariantCulture);
             if (dir == 0 && file == 0)
             {
                 labelUpdateAlert.Text = "没有文件可以操作";
@@ -87,7 +96,7 @@ namespace FileNameReplacer
 
         private void buttonPreview_Click(object sender, EventArgs e)
         {
-            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            if (UIAction.IsComboBoxEmpty(comboBoxReplaceFrom)) return;
             comboBoxReplaceFrom.Items.Insert(0, comboBoxReplaceFrom.Text);
             comboBoxReplaceTo.Items.Insert(0, comboBoxReplaceTo.Text);
             previewAll();
@@ -95,7 +104,7 @@ namespace FileNameReplacer
 
         private void buttonReplace_Click(object sender, EventArgs e)
         {
-            if (UIAction.ChkComboBoxIsEmpty(comboBoxReplaceFrom)) return;
+            if (UIAction.IsComboBoxEmpty(comboBoxReplaceFrom)) return;
             if (dataFileList.Rows.Count == 0)
             {
                 MessageBox.Show("文件处理列表是空的，请先进行文件搜索。", "请先指定要操作的文件", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -240,15 +249,14 @@ namespace FileNameReplacer
             if (fileItem.isDir)
             {
                 dataFileList.Rows[dataLen].Cells[0].Value = Resources.FolderClosed;
-                int num = int.Parse(toolStripButtonNumDir.Text) + 1;
-                toolStripButtonNumDir.Text = num.ToString();
-                Console.WriteLine("DIR " + toolStripButtonNumDir.Text);
+                int num = UIAction.ParseNumberWithSeparators(toolStripButtonNumDir.Text) + 1;
+                toolStripButtonNumDir.Text = num.ToString("N0", CultureInfo.InvariantCulture);
                 if (searchEngine != null) searchEngine.TotalC[0] = num;
             }
             else
             {
-                int num = int.Parse(toolStripButtonNumFile.Text) + 1;
-                toolStripButtonNumFile.Text = num.ToString();
+                int num = UIAction.ParseNumberWithSeparators(toolStripButtonNumFile.Text) + 1;
+                toolStripButtonNumFile.Text = num.ToString("N0", CultureInfo.InvariantCulture);
                 if (searchEngine != null) searchEngine.TotalC[1] = num;
             }
             if (checkBoxRealWidth.Checked)
@@ -269,7 +277,6 @@ namespace FileNameReplacer
         {
             if (close) return;
             searchRunningUI(false, -1);
-            notifyIcon1.Visible = true;
             timerUpdateSchAll.Enabled = false;
             updateSch();
             string[] info = new string[2]
@@ -279,13 +286,47 @@ namespace FileNameReplacer
             };
             if (e.Cancelled || searchEngine.Status == 2)
             {
-                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "搜索已取消。", string.Join("\r\n", info), ToolTipIcon.Error);
-                Text = Title + " - 搜索已取消: " + string.Join("", info);
+                string dTitle = "搜索已取消。";
+                Text = Title + " - " + dTitle + string.Join("", info);
+                if (checkBoxEndAlert.Checked)
+                {
+                    UIAction.ActivateWindow(this, true);
+                    MessageBox.Show(
+                        string.Join("\r\n", info),
+                        dTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    UIAction.ActivateWindow(this, false);
+                    notifyIcon1.Visible = false;
+                }
+                else
+                {
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, dTitle, string.Join("\r\n", info), ToolTipIcon.Error);
+                }
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "搜索完成。", string.Join("\r\n", info), ToolTipIcon.Info);
-                Text = Title + " - 搜索完成: " + string.Join("", info);
+                string dTitle = "搜索完成。";
+                Text = Title + " - " + dTitle + string.Join("", info);
+                if (checkBoxEndAlert.Checked)
+                {
+                    UIAction.ActivateWindow(this, true);
+                    MessageBox.Show(
+                        string.Join("\r\n", info),
+                        dTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    UIAction.ActivateWindow(this, false);
+                    notifyIcon1.Visible = false;
+                }
+                else
+                {
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, dTitle, string.Join("\r\n", info), ToolTipIcon.Info);
+                }
             }
             toolStripButtonNumDirSch.Text = "0";
             toolStripButtonNumFileSch.Text = "0";
@@ -321,7 +362,7 @@ namespace FileNameReplacer
         private void searchRunningUI(bool isRun, Int16 mode)
         {
             this.Cursor = isRun ? Cursors.AppStarting : Cursors.Default;
-            UIAction.DisableControls(this, !isRun);
+            UIAction.SetControlsEnabled(this, !isRun);
             dataFileList.Cursor = this.Cursor;
 
             buttonSearch.Enabled = false;
@@ -551,22 +592,55 @@ namespace FileNameReplacer
         {
             if (close) return;
             searchRunningUI(false, FileAction);
-            notifyIcon1.Visible = true;
             string[] info = new string[3]
             {
-                replaceEngine.TotalOK[0].ToString() + " 个成功，",
-                replaceEngine.TotalOK[1].ToString() + " 个失败，",
-                replaceEngine.TotalOK[2].ToString() + " 个跳过。",
+                replaceEngine.TotalOK[0].ToString("N0", CultureInfo.InvariantCulture) + " 个成功，",
+                replaceEngine.TotalOK[1].ToString("N0", CultureInfo.InvariantCulture) + " 个失败，",
+                replaceEngine.TotalOK[2].ToString("N0", CultureInfo.InvariantCulture) + " 个跳过。",
             };
             if (e.Cancelled || replaceEngine.Status == 2)
             {
-                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "操作已取消。", string.Join("\r\n", info), ToolTipIcon.Error);
-                Text = Title + " - 操作已取消: " + string.Join("", info);
+                string dTitle = "操作已取消。";
+                Text = Title + " - " + dTitle + string.Join("", info);
+                if (checkBoxEndAlert.Checked)
+                {
+                    UIAction.ActivateWindow(this, true);
+                    MessageBox.Show(
+                        string.Join("\r\n", info),
+                        dTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    UIAction.ActivateWindow(this, false);
+                    notifyIcon1.Visible = false;
+                }
+                else
+                {
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, dTitle, string.Join("\r\n", info), ToolTipIcon.Error);
+                }
             }
             else
             {
-                notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, "操作完成。", string.Join("\r\n", info), ToolTipIcon.Info);
-                Text = Title + " - 操作完成: " + string.Join("", info);
+                string dTitle = "操作完成。";
+                Text = Title + " - " + dTitle + string.Join("", info);
+                if (checkBoxEndAlert.Checked)
+                {
+                    UIAction.ActivateWindow(this, true);
+                    MessageBox.Show(
+                        string.Join("\r\n", info),
+                        dTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    UIAction.ActivateWindow(this, false);
+                    notifyIcon1.Visible = false;
+                }
+                else
+                {
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(timerToolTipHide.Interval, dTitle, string.Join("\r\n", info), ToolTipIcon.Info);
+                }
             }
             buttonReplace.Enabled = false;
             buttonRM.Enabled = false;
@@ -656,7 +730,7 @@ namespace FileNameReplacer
             if (len > 1000)
             {
                 DialogResult result = MessageBox.Show(
-                    $"调整 {len.ToString()} 行的宽度可能需要一些时间，\r\n操作过程中程序可能会暂停响应，请等待。\r\n是否继续？",
+                    $"调整 {len.ToString("N0", CultureInfo.InvariantCulture)} 行的宽度可能需要一些时间，\r\n操作过程中程序可能会暂停响应，请等待。\r\n是否继续？",
                     "自动调整表格列宽度",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -717,7 +791,6 @@ namespace FileNameReplacer
             {
                 defaultColumnWidths[column.Name] = column.Width;
             }
-            toolStripButtonAutoWidth.Enabled = true;
             dataFileList.Visible = true;
             string[] paths = SysInfo.GetCommonUserFolders();
             foreach (var path in paths)
@@ -736,6 +809,7 @@ namespace FileNameReplacer
             {
                 comboBoxSearch.Items.Add("*" + ext);
             }
+            splitContainer1.Enabled = true;
         }
 
         private void buttonRM_Click(object sender, EventArgs e)
@@ -775,7 +849,7 @@ namespace FileNameReplacer
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            const string url = "https://github.com/kagurazakayashi/FileNameReplacer";
+            string url = linkLabelGitHub.Text.Split('\n')[2];
             try
             {
                 Process.Start(new ProcessStartInfo
@@ -1004,8 +1078,8 @@ namespace FileNameReplacer
         {
             if (searchEngine != null)
             {
-                toolStripButtonNumDirSch.Text = searchEngine.TotalS[0].ToString();
-                toolStripButtonNumFileSch.Text = searchEngine.TotalS[1].ToString();
+                toolStripButtonNumDirSch.Text = searchEngine.TotalS[0].ToString("N0", CultureInfo.InvariantCulture);
+                toolStripButtonNumFileSch.Text = searchEngine.TotalS[1].ToString("N0", CultureInfo.InvariantCulture);
             }
         }
 
@@ -1018,6 +1092,16 @@ namespace FileNameReplacer
         {
             Help help = new Help(((LinkLabel)sender).Text, Resources.Range);
             help.ShowDialog();
+        }
+
+        private void toolStripButtonNumDir_Click(object sender, EventArgs e)
+        {
+            UIAction.SelectDataGridViewRow(dataFileList, 4, true);
+        }
+
+        private void toolStripButtonNumFile_Click(object sender, EventArgs e)
+        {
+            UIAction.SelectDataGridViewRow(dataFileList, 4, false);
         }
     }
 }
